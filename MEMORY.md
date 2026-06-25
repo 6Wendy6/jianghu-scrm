@@ -40,6 +40,7 @@
 - 2026-06-24: Customer group operations now follow the Haoke-style secondary menu structure under `客户群运营`: `客户群管理 / 入群欢迎语 / 客户群群发 / 群SOP / 群日历 / 客户群提醒 / 客户群标签`. Each child page must expose its own object list and save loop instead of being a static explanation page.
 - 2026-06-24: Closed the branch-analysis gaps in the tag-rules redesign worktree by adding final override renderers for customer management and customer group operations. Customer management now has batch actions plus row-level customer detail/touch actions, and customer group secondary pages keep visible state after creating groups, mass sends, welcome/SOP/calendar/reminder rules, and group tag groups.
 - 2026-06-25: Based on `好客私域通客户转化逻辑分析.md`, the MVP branch now covers the missing conversion loop after private-domain acquisition: behavior radar creates high-intent signals and guide tasks, customer management shows intent score and sales stage, customer detail can create leads/opportunities and record orders/payments, and conversion results flow back into customer tags, lifecycle, timelines, sales pipeline, and customer-group contribution.
+- 2026-06-25: The tag-rules redesign worktree is published to GitHub at `https://github.com/6Wendy6/jianghu-scrm` on branch `codex/tag-rules-screenshot-redesign`.
 
 ## Open Questions
 
