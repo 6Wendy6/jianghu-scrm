@@ -1,0 +1,10 @@
+{
+  "name": "ai-scrm-mvp",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && go run .",
+    "build": "cd frontend && npm run build",
+    "check": "cd frontend && npm run build && cd ../backend && go test ./..."
+  }
+}
