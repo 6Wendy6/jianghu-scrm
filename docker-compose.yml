@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: jianghu-scrm-postgres
+    environment:
+      POSTGRES_DB: scrm
+      POSTGRES_USER: scrm
+      POSTGRES_PASSWORD: scrm
+    ports:
+      - "15432:5432"
+    volumes:
+      - scrm_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U scrm -d scrm"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_buffers=256MB"
+      - "-c"
+      - "effective_cache_size=768MB"
+      - "-c"
+      - "work_mem=8MB"
+      - "-c"
+      - "maintenance_work_mem=128MB"
+      - "-c"
+      - "max_connections=200"
+
+  redis:
+    image: redis:7-alpine
+    container_name: jianghu-scrm-redis
+    ports:
+      - "16379:6379"
+    volumes:
+      - scrm_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    command:
+      - "redis-server"
+      - "--appendonly"
+      - "yes"
+      - "--maxmemory"
+      - "256mb"
+      - "--maxmemory-policy"
+      - "allkeys-lru"
+
+volumes:
+  scrm_postgres_data:
+  scrm_redis_data:

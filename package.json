@@ -4,6 +4,16 @@
   "scripts": {
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && go run .",
+    "dev:backend:db": "cd backend && SCRM_DATABASE_URL='postgres://scrm:scrm@127.0.0.1:15432/scrm?sslmode=disable' SCRM_AUTO_MIGRATE=true go run .",
+    "dev:backend:db:redis": "cd backend && SCRM_DATABASE_URL='postgres://scrm:scrm@127.0.0.1:15432/scrm?sslmode=disable' SCRM_REDIS_ADDR='127.0.0.1:16379' SCRM_AUTO_MIGRATE=true go run .",
+    "infra:up": "docker compose up -d postgres redis",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f postgres",
+    "redis:up": "docker compose up -d redis",
+    "redis:logs": "docker compose logs -f redis",
+    "perf:smoke": "DURATION_SECONDS=5 CONCURRENCY=10 TARGET_RPS=60 node scripts/load-test.mjs",
+    "perf:load": "node scripts/load-test.mjs",
     "build": "cd frontend && npm run build",
     "check": "cd frontend && npm run build && cd ../backend && go test ./..."
   }
