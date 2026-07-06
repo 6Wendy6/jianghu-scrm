@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 func (api *API) customerActionHandler(w http.ResponseWriter, r *http.Request) error {
@@ -16,6 +17,23 @@ func (api *API) customerActionHandler(w http.ResponseWriter, r *http.Request) er
 	}
 	if len(parts) == 1 && parts[0] == "batch-tags-async" {
 		return api.enqueueBatchTags(w, r)
+	}
+	if len(parts) >= 2 {
+		switch parts[1] {
+		case "stage", "tags", "follow-ups", "timeline":
+			return api.opsCustomerActionHandler(w, r, parts[0], parts[1:])
+		}
+	}
+	if api.db != nil && len(parts) == 1 && r.Method == http.MethodGet && strings.HasPrefix(parts[0], "oc") {
+		return api.opsCustomerActionHandler(w, r, parts[0], nil)
+	}
+	if len(parts) == 1 && r.Method == http.MethodGet {
+		api.mu.RLock()
+		opsCustomerExists := api.findOpsCustomerLocked(parts[0]) != nil
+		api.mu.RUnlock()
+		if opsCustomerExists {
+			return api.opsCustomerActionHandler(w, r, parts[0], nil)
+		}
 	}
 	if api.db != nil {
 		return api.customerActionDBHandler(w, r, parts)

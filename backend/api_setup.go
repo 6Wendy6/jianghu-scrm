@@ -56,11 +56,13 @@ func newAPI() *API {
 	}
 	api.autoRules = []AutoTagRule{{ID: "ar1", Name: "门店码入池打来源", Trigger: "扫码来源=门店活码", Actions: []string{"打线下门店", "打门店标签"}, Scope: "全部门店", Impact: 3426, Status: "启用"}}
 	api.preTagRules = []PreTagRule{{ID: "pr1", Entry: "南山店试用活动", Tags: []string{"南山店", "高意向"}, Trigger: "扫码/提交表单/进群", Period: "2026-06-24 至 2026-07-24", Status: "启用"}}
+	api.seedCustomerOps()
 	return api
 }
 
 func (api *API) register(mux *http.ServeMux) {
 	mux.HandleFunc("/api/health", api.withJSON(api.health))
+	mux.HandleFunc("/api/system/status", api.withJSON(api.systemStatusHandler))
 	mux.HandleFunc("/api/metrics", api.metricsHandler)
 	mux.HandleFunc("/api/bootstrap", api.withJSON(api.bootstrap))
 	mux.HandleFunc("/api/summary", api.withJSON(api.summary))
@@ -79,15 +81,41 @@ func (api *API) register(mux *http.ServeMux) {
 	mux.HandleFunc("/api/tag-groups", api.withJSON(api.tagGroupsHandler))
 	mux.HandleFunc("/api/tag-rules/auto", api.withJSON(api.autoRulesHandler))
 	mux.HandleFunc("/api/tag-rules/pre", api.withJSON(api.preTagRulesHandler))
+	mux.HandleFunc("/api/customer-ops/bootstrap", api.withJSON(api.customerOpsBootstrapHandler))
+	mux.HandleFunc("/api/customer-ops/customers", api.withJSON(api.opsCustomersHandler))
+	mux.HandleFunc("/api/sop-tasks", api.withJSON(api.opsTasksHandler))
+	mux.HandleFunc("/api/sop-tasks/", api.withJSON(api.opsTaskActionHandler))
+	mux.HandleFunc("/api/materials", api.withJSON(api.opsMaterialsHandler))
+	mux.HandleFunc("/api/materials/", api.withJSON(api.opsMaterialActionHandler))
+	mux.HandleFunc("/api/operation-exceptions", api.withJSON(api.opsExceptionsHandler))
+	mux.HandleFunc("/api/operation-exceptions/", api.withJSON(api.opsExceptionActionHandler))
 	mux.HandleFunc("/api/events/inbox", api.withJSON(api.eventInboxHandler))
 	mux.HandleFunc("/api/tasks", api.withJSON(api.tasksHandler))
 	mux.HandleFunc("/api/tasks/", api.withJSON(api.taskActionHandler))
+	mux.HandleFunc("/api/monobase/status", api.withJSON(api.monobaseStatusHandler))
+	mux.HandleFunc("/api/monobase/sync", api.withJSON(api.monobaseSyncHandler))
+	mux.HandleFunc("/api/wecom/config", api.withJSON(api.wecomConfigHandler))
+	mux.HandleFunc("/api/wecom/test-connection", api.withJSON(api.wecomTestConnectionHandler))
+	mux.HandleFunc("/api/wecom/users", api.withJSON(api.wecomUsersHandler))
+	mux.HandleFunc("/api/wecom/users/", api.withJSON(api.wecomUserActionHandler))
+	mux.HandleFunc("/api/wecom/contact-way", api.withJSON(api.wecomContactWayHandler))
+	mux.HandleFunc("/api/wecom/contact-way/", api.withJSON(api.wecomContactWayActionHandler))
+	mux.HandleFunc("/api/wecom/callback", api.wecomCallbackHandler)
+	mux.HandleFunc("/api/wecom/callback/", api.wecomCallbackHandler)
+	mux.HandleFunc("/api/scrm/wecom/doctor", api.withJSON(api.scrmWeComDoctorHandler))
+	mux.HandleFunc("/api/scrm/wecom/retries", api.withJSON(api.scrmWeComRetryTasksHandler))
+	mux.HandleFunc("/api/scrm/wecom/retries/", api.withJSON(api.scrmWeComRetryTaskActionHandler))
+	mux.HandleFunc("/api/scrm/wecom/integration-log", api.withJSON(api.scrmWeComIntegrationLogHandler))
+	mux.HandleFunc("/api/scrm/contact-way-bindings", api.withJSON(api.scrmContactWayBindingsHandler))
+	mux.HandleFunc("/api/scrm/contact-way-bindings/", api.withJSON(api.scrmContactWayBindingActionHandler))
+	mux.HandleFunc("/api/scrm/customer-assignments", api.withJSON(api.scrmCustomerAssignmentsHandler))
+	mux.HandleFunc("/api/scrm/stores/", api.withJSON(api.scrmStoreGuidesHandler))
 }
 
 func (api *API) withJSON(next func(http.ResponseWriter, *http.Request) error) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-Request-ID, X-SCRM-API-Token, Authorization")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-Request-ID, X-SCRM-API-Token, Authorization, X-SCRM-Role, X-SCRM-Region-ID, X-SCRM-Store-ID, X-SCRM-Guide-ID")
 		w.Header().Set("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS")
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		if r.Method == http.MethodOptions {
@@ -101,6 +129,9 @@ func (api *API) withJSON(next func(http.ResponseWriter, *http.Request) error) ht
 			}
 			if errors.Is(err, errBadRequest) {
 				status = http.StatusBadRequest
+			}
+			if errors.Is(err, errForbidden) {
+				status = http.StatusForbidden
 			}
 			w.WriteHeader(status)
 			_ = json.NewEncoder(w).Encode(map[string]string{"error": err.Error()})

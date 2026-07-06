@@ -10,33 +10,46 @@ import (
 )
 
 type Config struct {
-	Addr              string
-	ReadHeaderTimeout time.Duration
-	ReadTimeout       time.Duration
-	WriteTimeout      time.Duration
-	IdleTimeout       time.Duration
-	ShutdownTimeout   time.Duration
-	RateLimitRPS      int
-	RateLimitBurst    int
-	APIToken          string
-	BusinessTimeZone  string
-	BusinessLocation  *time.Location
-	WorkerInterval    time.Duration
-	WorkerBatchSize   int
-	WorkerMaxAttempts int
-	WorkerRetryDelay  time.Duration
-	DatabaseURL       string
-	DBMaxOpenConns    int
-	DBMaxIdleConns    int
-	DBConnMaxLifetime time.Duration
-	DBPingTimeout     time.Duration
-	AutoMigrate       bool
-	CacheTTL          time.Duration
-	CacheMaxEntries   int
-	RedisAddr         string
-	RedisPassword     string
-	RedisDB           int
-	RedisKeyPrefix    string
+	Addr                  string
+	ReadHeaderTimeout     time.Duration
+	ReadTimeout           time.Duration
+	WriteTimeout          time.Duration
+	IdleTimeout           time.Duration
+	ShutdownTimeout       time.Duration
+	RateLimitRPS          int
+	RateLimitBurst        int
+	APIToken              string
+	DatabaseMode          string
+	BusinessTimeZone      string
+	BusinessLocation      *time.Location
+	WorkerInterval        time.Duration
+	WorkerBatchSize       int
+	WorkerMaxAttempts     int
+	WorkerRetryDelay      time.Duration
+	DatabaseURL           string
+	DBMaxOpenConns        int
+	DBMaxIdleConns        int
+	DBConnMaxLifetime     time.Duration
+	DBPingTimeout         time.Duration
+	AutoMigrate           bool
+	CacheTTL              time.Duration
+	CacheMaxEntries       int
+	RedisAddr             string
+	RedisPassword         string
+	RedisDB               int
+	RedisKeyPrefix        string
+	SecretEncryptKey      string
+	WeComCorpID           string
+	WeComAgentID          string
+	WeComSecret           string
+	WeComCallbackToken    string
+	WeComCallbackAESKey   string
+	WeComTrustedIPHint    string
+	WeComContactWayDryRun bool
+	MonobaseBaseURL       string
+	MonobaseToken         string
+	MonobaseCorpID        string
+	MonobasePageSize      int
 }
 
 type requestIDKey struct{}
@@ -116,31 +129,43 @@ type apiMetrics struct {
 }
 
 type API struct {
-	mu             sync.RWMutex
-	stores         []Store
-	guides         []Guide
-	customers      []Customer
-	handover       []HandoverItem
-	touches        []TouchRule
-	groups         []CustomerGroup
-	groupMassTasks []GroupMassTask
-	groupWelcomes  []GroupWelcome
-	groupSOPs      []GroupSOP
-	groupCalendar  []GroupCalendarEvent
-	groupReminders []GroupReminder
-	groupTagGroups []GroupTagGroup
-	tags           []Tag
-	tagGroups      []TagGroup
-	autoRules      []AutoTagRule
-	preTagRules    []PreTagRule
-	events         []EventEnvelope
-	tasks          []TaskRecord
-	taskItems      []TaskItemRecord
-	db             *sql.DB
-	storageMode    string
-	cache          cacheStore
-	metrics        *apiMetrics
-	wecomSynced    bool
+	mu               sync.RWMutex
+	stores           []Store
+	guides           []Guide
+	customers        []Customer
+	handover         []HandoverItem
+	touches          []TouchRule
+	groups           []CustomerGroup
+	groupMassTasks   []GroupMassTask
+	groupWelcomes    []GroupWelcome
+	groupSOPs        []GroupSOP
+	groupCalendar    []GroupCalendarEvent
+	groupReminders   []GroupReminder
+	groupTagGroups   []GroupTagGroup
+	tags             []Tag
+	tagGroups        []TagGroup
+	autoRules        []AutoTagRule
+	preTagRules      []PreTagRule
+	opsCustomers     []OpsCustomer
+	opsLifecycleLogs []OpsLifecycleLog
+	opsTags          []OpsCustomerTag
+	opsTagLinks      []OpsCustomerTagRelation
+	opsFollowups     []OpsFollowUpRecord
+	opsTasks         []OpsTask
+	opsTaskLogs      []OpsTaskLog
+	opsMaterials     []OpsMaterial
+	opsTimelines     []OpsTimelineEvent
+	opsExceptions    []OpsException
+	events           []EventEnvelope
+	tasks            []TaskRecord
+	taskItems        []TaskItemRecord
+	db               *sql.DB
+	storageMode      string
+	cache            cacheStore
+	metrics          *apiMetrics
+	wecomSynced      bool
+	secretCipher     secretCipher
+	config           Config
 }
 
 type PageMeta struct {
@@ -154,6 +179,166 @@ type PageMeta struct {
 type PageResult[T any] struct {
 	Data []T      `json:"data"`
 	Page PageMeta `json:"page"`
+}
+
+type OpsCustomer struct {
+	ID                  string   `json:"id"`
+	Name                string   `json:"name"`
+	Nickname            string   `json:"nickname"`
+	Mobile              string   `json:"mobile"`
+	Avatar              string   `json:"avatar"`
+	SourceChannel       string   `json:"sourceChannel"`
+	RegionID            string   `json:"regionId"`
+	RegionName          string   `json:"regionName"`
+	StoreID             string   `json:"storeId"`
+	StoreName           string   `json:"storeName"`
+	OwnerGuideID        string   `json:"ownerGuideId"`
+	OwnerGuideName      string   `json:"ownerGuideName"`
+	LifecycleStage      string   `json:"lifecycleStage"`
+	IntentionLevel      string   `json:"intentionLevel"`
+	Status              string   `json:"status"`
+	AddWeComTime        string   `json:"addWecomTime"`
+	LastFollowUpTime    string   `json:"lastFollowUpTime"`
+	LastInteractionTime string   `json:"lastInteractionTime"`
+	DealStatus          string   `json:"dealStatus"`
+	Risk                string   `json:"risk"`
+	Tags                []string `json:"tags"`
+	CreatedAt           string   `json:"createdAt"`
+	UpdatedAt           string   `json:"updatedAt"`
+}
+
+type OpsLifecycleLog struct {
+	ID           string `json:"id"`
+	CustomerID   string `json:"customerId"`
+	StageBefore  string `json:"stageBefore"`
+	StageAfter   string `json:"stageAfter"`
+	Reason       string `json:"reason"`
+	OperatorID   string `json:"operatorId"`
+	OperatorName string `json:"operatorName"`
+	CreatedAt    string `json:"createdAt"`
+}
+
+type OpsCustomerTag struct {
+	ID        string `json:"id"`
+	Name      string `json:"name"`
+	Category  string `json:"category"`
+	Color     string `json:"color"`
+	Source    string `json:"source"`
+	IsEnabled bool   `json:"isEnabled"`
+	CreatedAt string `json:"createdAt"`
+	UpdatedAt string `json:"updatedAt"`
+}
+
+type OpsCustomerTagRelation struct {
+	ID         string `json:"id"`
+	CustomerID string `json:"customerId"`
+	TagID      string `json:"tagId"`
+	Source     string `json:"source"`
+	OperatorID string `json:"operatorId"`
+	CreatedAt  string `json:"createdAt"`
+}
+
+type OpsFollowUpRecord struct {
+	ID               string `json:"id"`
+	CustomerID       string `json:"customerId"`
+	StoreID          string `json:"storeId"`
+	GuideID          string `json:"guideId"`
+	FollowUpType     string `json:"followUpType"`
+	Content          string `json:"content"`
+	Result           string `json:"result"`
+	NextFollowUpTime string `json:"nextFollowUpTime"`
+	StageBefore      string `json:"stageBefore"`
+	StageAfter       string `json:"stageAfter"`
+	CreatedBy        string `json:"createdBy"`
+	CreatedAt        string `json:"createdAt"`
+}
+
+type OpsTask struct {
+	ID               string `json:"id"`
+	TaskType         string `json:"taskType"`
+	Title            string `json:"title"`
+	Description      string `json:"description"`
+	CustomerID       string `json:"customerId"`
+	CustomerName     string `json:"customerName"`
+	RegionID         string `json:"regionId"`
+	RegionName       string `json:"regionName"`
+	StoreID          string `json:"storeId"`
+	StoreName        string `json:"storeName"`
+	AssignedToUserID string `json:"assignedToUserId"`
+	AssignedToName   string `json:"assignedToName"`
+	AssignedToRole   string `json:"assignedToRole"`
+	Priority         string `json:"priority"`
+	Status           string `json:"status"`
+	DueTime          string `json:"dueTime"`
+	CompletedAt      string `json:"completedAt"`
+	Source           string `json:"source"`
+	CreatedAt        string `json:"createdAt"`
+	UpdatedAt        string `json:"updatedAt"`
+}
+
+type OpsTaskLog struct {
+	ID           string `json:"id"`
+	TaskID       string `json:"taskId"`
+	Action       string `json:"action"`
+	OldStatus    string `json:"oldStatus"`
+	NewStatus    string `json:"newStatus"`
+	Remark       string `json:"remark"`
+	OperatorID   string `json:"operatorId"`
+	OperatorName string `json:"operatorName"`
+	CreatedAt    string `json:"createdAt"`
+}
+
+type OpsTimelineEvent struct {
+	ID           string `json:"id"`
+	CustomerID   string `json:"customerId"`
+	EventType    string `json:"eventType"`
+	Title        string `json:"title"`
+	Content      string `json:"content"`
+	RelatedID    string `json:"relatedId"`
+	OperatorID   string `json:"operatorId"`
+	OperatorName string `json:"operatorName"`
+	CreatedAt    string `json:"createdAt"`
+}
+
+type OpsMaterial struct {
+	ID              string   `json:"id"`
+	Title           string   `json:"title"`
+	Content         string   `json:"content"`
+	MaterialType    string   `json:"materialType"`
+	ApplicableStage string   `json:"applicableStage"`
+	ApplicableTags  []string `json:"applicableTags"`
+	Status          string   `json:"status"`
+	CreatedBy       string   `json:"createdBy"`
+	CreatedAt       string   `json:"createdAt"`
+	UpdatedAt       string   `json:"updatedAt"`
+}
+
+type OpsException struct {
+	ID            string `json:"id"`
+	ExceptionType string `json:"exceptionType"`
+	Title         string `json:"title"`
+	Description   string `json:"description"`
+	Severity      string `json:"severity"`
+	RegionID      string `json:"regionId"`
+	RegionName    string `json:"regionName"`
+	StoreID       string `json:"storeId"`
+	StoreName     string `json:"storeName"`
+	CustomerID    string `json:"customerId"`
+	CustomerName  string `json:"customerName"`
+	TaskID        string `json:"taskId"`
+	AssignedTo    string `json:"assignedTo"`
+	Status        string `json:"status"`
+	Suggestion    string `json:"suggestion"`
+	CreatedAt     string `json:"createdAt"`
+	ResolvedAt    string `json:"resolvedAt"`
+}
+
+type OpsBootstrap struct {
+	Customers  []OpsCustomer    `json:"customers"`
+	Tasks      []OpsTask        `json:"tasks"`
+	Materials  []OpsMaterial    `json:"materials"`
+	Exceptions []OpsException   `json:"exceptions"`
+	Tags       []OpsCustomerTag `json:"tags"`
 }
 
 type Store struct {

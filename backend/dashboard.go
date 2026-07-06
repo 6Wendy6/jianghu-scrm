@@ -11,33 +11,41 @@ import (
 	"sort"
 	"strings"
 	"time"
+
+	"github.com/lib/pq"
 )
 
 var (
 	errNotFound   = errors.New("not found")
 	errBadRequest = errors.New("bad request")
+	errForbidden  = errors.New("forbidden")
 )
 
 func (api *API) health(w http.ResponseWriter, r *http.Request) error {
 	result := map[string]any{
-		"status":  "ok",
-		"time":    businessNow().Format(time.RFC3339),
-		"storage": defaultString(api.storageMode, "memory"),
-		"cache":   cacheStats(api.cache),
+		"status":           "ok",
+		"time":             businessNow().Format(time.RFC3339),
+		"storage":          defaultString(api.storageMode, "memory"),
+		"mode":             defaultString(api.storageMode, "memory"),
+		"migrationVersion": latestKnownMigration("migrations"),
+		"cache":            cacheStats(api.cache),
 	}
 	if api.db == nil {
-		result["database"] = "disabled"
+		result["database"] = map[string]any{"connected": false, "mode": "disabled"}
 		return writeJSON(w, result)
 	}
 	ctx, cancel := context.WithTimeout(r.Context(), 250*time.Millisecond)
 	defer cancel()
 	if err := api.db.PingContext(ctx); err != nil {
 		result["status"] = "degraded"
-		result["database"] = "unhealthy"
-		result["databaseError"] = err.Error()
+		result["database"] = map[string]any{"connected": false, "error": err.Error()}
 		return writeJSON(w, result)
 	}
-	result["database"] = "ok"
+	appliedMigration, _ := api.latestAppliedMigration(ctx)
+	if appliedMigration != "" {
+		result["appliedMigrationVersion"] = appliedMigration
+	}
+	result["database"] = map[string]any{"connected": true}
 	stats := api.db.Stats()
 	result["databasePool"] = map[string]any{
 		"openConnections": stats.OpenConnections,
@@ -46,6 +54,92 @@ func (api *API) health(w http.ResponseWriter, r *http.Request) error {
 		"waitCount":       stats.WaitCount,
 	}
 	return writeJSON(w, result)
+}
+
+func (api *API) systemStatusHandler(w http.ResponseWriter, r *http.Request) error {
+	if r.Method != http.MethodGet {
+		return errNotFound
+	}
+	status := map[string]any{
+		"status":           "ok",
+		"mode":             defaultString(api.storageMode, "memory"),
+		"storage":          defaultString(api.storageMode, "memory"),
+		"migrationVersion": latestKnownMigration("migrations"),
+		"time":             businessNow().Format(time.RFC3339),
+		"cache":            cacheStats(api.cache),
+	}
+	if api.db == nil {
+		status["database"] = map[string]any{"connected": false, "mode": "disabled"}
+		return writeJSON(w, status)
+	}
+	ctx, cancel := context.WithTimeout(r.Context(), 500*time.Millisecond)
+	defer cancel()
+	if err := api.db.PingContext(ctx); err != nil {
+		status["status"] = "degraded"
+		status["database"] = map[string]any{"connected": false, "error": err.Error()}
+		return writeJSON(w, status)
+	}
+	appliedMigration, err := api.latestAppliedMigration(ctx)
+	database := map[string]any{"connected": true}
+	if err != nil {
+		database["migrationError"] = err.Error()
+	} else if appliedMigration != "" {
+		status["appliedMigrationVersion"] = appliedMigration
+	}
+	missingTables, err := api.missingRequiredTables(ctx)
+	if err != nil {
+		database["schemaError"] = err.Error()
+	} else {
+		database["missingRequiredTables"] = missingTables
+		if len(missingTables) > 0 {
+			status["status"] = "degraded"
+			database["hint"] = "run npm run db:migrate before starting PostgreSQL mode"
+		}
+	}
+	stats := api.db.Stats()
+	database["pool"] = map[string]any{"openConnections": stats.OpenConnections, "inUse": stats.InUse, "idle": stats.Idle, "waitCount": stats.WaitCount}
+	status["database"] = database
+	return writeJSON(w, status)
+}
+
+func (api *API) latestAppliedMigration(ctx context.Context) (string, error) {
+	var version string
+	err := api.db.QueryRowContext(ctx, `SELECT version FROM schema_migrations ORDER BY version DESC LIMIT 1`).Scan(&version)
+	if errors.Is(err, sql.ErrNoRows) {
+		return "", nil
+	}
+	return version, err
+}
+
+func (api *API) missingRequiredTables(ctx context.Context) ([]string, error) {
+	required := []string{"customers", "customer_tags", "customer_lifecycle_logs", "follow_up_records", "sop_tasks", "sop_task_logs", "customer_operation_timeline", "materials", "operation_exceptions"}
+	rows, err := api.db.QueryContext(ctx, `
+		SELECT table_name
+		FROM information_schema.tables
+		WHERE table_schema = 'public' AND table_name = ANY($1)
+	`, pq.Array(required))
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	seen := map[string]bool{}
+	for rows.Next() {
+		var name string
+		if err := rows.Scan(&name); err != nil {
+			return nil, err
+		}
+		seen[name] = true
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	missing := []string{}
+	for _, name := range required {
+		if !seen[name] {
+			missing = append(missing, name)
+		}
+	}
+	return missing, nil
 }
 
 func (api *API) metricsHandler(w http.ResponseWriter, r *http.Request) {

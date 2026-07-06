@@ -13,8 +13,10 @@ import (
 func main() {
 	cfg := loadConfig()
 	api := newAPI()
+	api.config = cfg
 	api.metrics = newAPIMetrics()
 	api.cache = openCache(context.Background(), cfg)
+	api.secretCipher = newSecretCipher(cfg.SecretEncryptKey)
 	defer closeCache(api.cache)
 	db, storageMode, err := openDatabase(context.Background(), cfg)
 	if err != nil {

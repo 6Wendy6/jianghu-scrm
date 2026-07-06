@@ -4,6 +4,12 @@
 
 当前版本仍是 demo 到工程化基线的过渡态：已经具备 PostgreSQL、Redis、分页、缓存、异步任务、指标、压测脚本和基础安全开关，适合接入脱敏业务样本数据做功能验证和性能基线测试。
 
+## 文档入口
+
+- 产品说明：[docs/SCRM_PRODUCT_SPEC.md](./docs/SCRM_PRODUCT_SPEC.md)
+- 业务验收清单：[docs/SCRM_ACCEPTANCE_CHECKLIST.md](./docs/SCRM_ACCEPTANCE_CHECKLIST.md)
+- 稳定演示脚本：[docs/SCRM_DEMO_SCRIPT.md](./docs/SCRM_DEMO_SCRIPT.md)
+
 ## 快速开始
 
 环境要求：
@@ -34,10 +40,18 @@ cd ..
 npm run infra:up
 ```
 
-启动后端，自动执行迁移并使用 Redis 缓存：
+启动后端有两种模式。
+
+内存模式适合快速看原型，不需要数据库：
 
 ```bash
-npm run dev:backend:db:redis
+npm run dev:backend
+```
+
+PostgreSQL 模式适合真实开发，会读取 `.env` 中的 `DATABASE_URL` 或 `SCRM_DATABASE_URL`，并在启动时执行迁移：
+
+```bash
+npm run dev:backend:db
 ```
 
 后端默认地址：
@@ -49,15 +63,62 @@ http://127.0.0.1:8080
 启动前端：
 
 ```bash
-npm run dev:frontend
+npm run dev
 ```
 
 常用检查：
 
 ```bash
 curl http://127.0.0.1:8080/api/health
+curl http://127.0.0.1:8080/api/system/status
+npm run test:backend
 npm run check
 npm run perf:smoke
+```
+
+## 本地数据库运行约定
+
+本项目支持内存模式和 PostgreSQL 模式。为了避免误删本地数据，默认命令不会重置 Docker volume，也不会清空现有数据库。
+
+推荐在 `.env` 中显式配置：
+
+```bash
+DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15432/scrm_dev?sslmode=disable
+SCRM_DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15432/scrm_dev?sslmode=disable
+SCRM_TEST_DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15432/scrm_test?sslmode=disable
+SCRM_AUTO_MIGRATE=true
+```
+
+如果你本机 `15432` 的旧数据卷密码不是 `scrm/scrm`，不要直接删除或重置 volume。更稳妥的做法是：
+
+1. 保留旧数据卷。
+2. 在 `.env` 写入真实可用的 `DATABASE_URL`。
+3. 或单独新建 `scrm_dev` / `scrm_test` 标准库用于后续开发。
+
+迁移、seed、状态检查：
+
+```bash
+npm run db:migrate
+npm run db:seed
+npm run db:status
+```
+
+`backend/migrations/` 只放 schema migration；本地演示数据放在 `backend/seeds/`。当前客户运营 demo seed 是：
+
+```text
+backend/seeds/customer_ops_demo_seed.sql
+```
+
+DB 测试需要 `SCRM_TEST_DATABASE_URL` 指向一个可写的测试库：
+
+```bash
+npm run test:backend:db
+```
+
+如果没有测试库，普通测试仍可运行：
+
+```bash
+npm run test:backend
 ```
 
 ## 业务数据测试建议
@@ -72,7 +133,7 @@ npm run perf:smoke
 4. 再做性能验证：从 `npm run perf:smoke` 开始，再逐步增加并发和目标 RPS。
 5. 观察 `/api/metrics`：重点看请求延迟、DB 连接、Redis 命中率、任务积压和死信任务。
 
-如果导入真实业务样本，优先新建测试库或清空本地 Docker volume，避免 demo seed 数据和业务测试数据混在一起。
+如果导入真实业务样本，优先新建独立测试库并在 `.env` 指向它，不要为了测试直接清空既有 Docker volume，避免误删本机已有数据。
 
 ## 已做的工程优化
 
@@ -188,7 +249,12 @@ npm run perf:smoke
 
 常用变量：
 
+- `DATABASE_URL`: PostgreSQL 连接串别名；`SCRM_DATABASE_URL` 未设置时会使用它。
 - `SCRM_DATABASE_URL`: PostgreSQL 连接串。
+- `SCRM_TEST_DATABASE_URL`: 真实 PostgreSQL 行为测试使用的测试库连接串。
+- `SCRM_DATABASE_MODE`: 文档化模式标识，建议 `memory` 或 `postgres`。
+- `BACKEND_PORT`: 未设置 `SCRM_API_ADDR` 时用于推导后端端口。
+- `FRONTEND_PORT`: 前端开发服务端口建议值。
 - `SCRM_REDIS_ADDR`: Redis 地址。
 - `SCRM_AUTO_MIGRATE`: 是否启动时执行迁移。
 - `SCRM_API_TOKEN`: 可选 API Token。
@@ -218,5 +284,11 @@ DURATION_SECONDS=60 CONCURRENCY=100 TARGET_RPS=300 npm run perf:load
 
 - 真实企微回调验签、加解密、消息去重和外部接口限流还需要继续接入。
 - 多租户、组织、角色权限和门店级数据隔离还未完全落地。
+
+## 客户运营中心持久化说明
+
+客户运营中心的 PostgreSQL schema 在 `backend/migrations/011_customer_ops_persistence.sql`，演示数据在 `backend/seeds/customer_ops_demo_seed.sql`。
+
+DB 模式下，生命周期、标签、跟进、SOP 任务、素材和异常监控走 repository/service 分层，并在关键动作中使用事务写入主表、日志表和客户时间线。前端原型右下角会显示当前后端模式、数据库连接和迁移版本，便于区分当前跑的是 memory 还是 postgres。
 - 业务数据导入脚本还未内置，当前建议先按表结构或接口导入脱敏样本。
 - 目前是业务测试基线，不是最终生产发布包。
