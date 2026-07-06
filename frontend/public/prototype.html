@@ -6,7 +6,7 @@
   <title>线下门店私域 MVP 点击原型</title>
   <style>
     :root{color-scheme:light;--primary:#1677ff;--primary-2:#0958d9;--bg:#f5f7fb;--text:#1f2937;--muted:#667085;--border:#e5e7eb;--card:#fff;--green:#16a34a;--orange:#f97316;--red:#ef4444;--purple:#7c3aed;--teal:#0f766e}
-    *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}.app{display:flex;height:100vh;overflow:hidden}.sidebar{width:236px;background:#101828;color:#d0d5dd;display:flex;flex-direction:column}.brand{height:64px;display:flex;align-items:center;padding:0 20px;font-size:18px;font-weight:700;color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}.brand span{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;background:var(--primary);border-radius:8px;margin-right:10px}.nav{padding:14px 10px;overflow:auto}.nav button{width:100%;border:0;background:transparent;color:#d0d5dd;text-align:left;padding:12px 14px;border-radius:8px;margin:3px 0;cursor:pointer;font-size:14px}.nav button:hover,.nav button.active{background:#1d2939;color:#fff}.main{flex:1;display:flex;flex-direction:column;min-width:0}.topbar{height:64px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:16px}.topbar h1{font-size:20px;margin:0;white-space:nowrap}.topbar .meta{font-size:13px;color:var(--muted);text-align:right}.content{padding:22px;overflow:auto}.page{display:none}.page.active{display:block}.grid{display:grid;gap:16px}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px}.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;box-shadow:0 1px 2px rgba(16,24,40,.04)}.card h3{margin:0 0 12px;font-size:16px}.card p{margin:8px 0}.kpi{display:flex;flex-direction:column;gap:8px}.kpi .num{font-size:28px;font-weight:800}.kpi .label{color:var(--muted);font-size:13px}.trend{font-size:12px;color:var(--green)}.notice{border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;border-radius:8px;padding:12px 14px;margin-bottom:16px}.warning{border-color:#fed7aa;background:#fff7ed;color:#c2410c}.toolbar{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}.btn{border:1px solid var(--border);background:#fff;border-radius:8px;padding:9px 13px;cursor:pointer;color:var(--text)}.btn:hover{border-color:#b7c7dc}.btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}.btn.primary:hover{background:var(--primary-2)}.btn.green{background:var(--green);border-color:var(--green);color:#fff}.btn.danger{background:var(--red);border-color:var(--red);color:#fff}.input,.select,textarea{border:1px solid var(--border);background:#fff;border-radius:8px;padding:9px 12px;color:var(--text)}textarea{width:100%;min-height:86px;resize:vertical}table{width:100%;border-collapse:collapse;font-size:13px}th,td{border-bottom:1px solid var(--border);padding:12px 10px;text-align:left;vertical-align:middle}th{color:#667085;background:#f9fafb;font-weight:600}.tag{display:inline-flex;align-items:center;border-radius:999px;background:#eef4ff;color:#175cd3;padding:3px 8px;font-size:12px;margin:2px;white-space:nowrap}.tag.green{background:#ecfdf3;color:#027a48}.tag.orange{background:#fff7ed;color:#c2410c}.tag.purple{background:#f4f3ff;color:#5925dc}.tag.red{background:#fef3f2;color:#b42318}.tag.teal{background:#f0fdfa;color:#0f766e}.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 0 16px}.step{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px}.step b{display:block;margin-bottom:6px}.muted{color:var(--muted);font-size:13px}.mini{font-size:12px;color:var(--muted)}.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.node{background:#fff;border:1px solid var(--border);border-radius:8px;padding:11px 14px}.arrow{color:#98a2b3}.chart{height:180px;display:flex;align-items:end;gap:14px;padding:10px 4px 28px}.bar{flex:1;background:linear-gradient(180deg,#60a5fa,#1677ff);border-radius:8px 8px 0 0;min-height:24px;position:relative}.bar span{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--muted);white-space:nowrap}.metric-list{display:grid;gap:10px}.metric-row{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);padding:8px 0}.profile{display:grid;grid-template-columns:76px 1fr;gap:14px;align-items:center}.avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#0f766e,#1677ff);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:800}.timeline{border-left:2px solid var(--border);padding-left:14px}.timeline div{margin:0 0 16px}.timeline b{display:block}.timeline .mini{display:block;line-height:1.6}.drawer{position:fixed;right:-560px;top:0;width:540px;height:100vh;background:#fff;box-shadow:-8px 0 30px rgba(16,24,40,.16);transition:right .22s ease;z-index:10;padding:22px;overflow:auto}.drawer.open{right:0}.mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.28);z-index:9}.mask.open{display:block}.close{float:right;border:0;background:#f2f4f7;border-radius:8px;padding:8px 10px;cursor:pointer}.qr{display:flex;gap:14px;align-items:flex-start;background:#f9fafb;border:1px solid var(--border);border-radius:8px;padding:14px;margin:8px 0}.phone{border:1px solid var(--border);border-radius:22px;background:#111827;padding:10px;max-width:330px;margin:auto}.phone-screen{background:#fff;border-radius:16px;overflow:hidden}.phone-head{height:42px;background:#f8fafc;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}.phone-body{padding:14px}.page-guide{background:#fff;border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:8px;padding:14px 16px;margin-bottom:16px;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}.page-guide b{display:block;margin-bottom:5px}.page-guide p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}.page-guide .guide-action{color:var(--text);font-weight:600}.setting-hero{background:#fff;border:1px solid var(--border);border-radius:8px;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;margin-bottom:16px}.setting-hero h2{margin:0 0 6px;font-size:18px}.setting-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}.tabs{display:flex;gap:6px;border-bottom:1px solid var(--border);margin-bottom:16px}.tab{border:0;background:transparent;padding:10px 14px;border-radius:8px 8px 0 0;cursor:pointer;color:var(--muted)}.tab.active{background:#fff;color:var(--primary);box-shadow:inset 0 -2px 0 var(--primary)}.setting-panel{display:none}.setting-panel.active{display:block}.tag-group-list{display:grid;gap:10px}.tag-group-item{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:12px;align-items:center;border:1px solid var(--border);border-radius:8px;padding:12px;background:#fff}.tag-pill-row{display:flex;gap:6px;flex-wrap:wrap}.usage-card{border:1px solid var(--border);border-radius:8px;padding:12px;background:#fbfdff}.rule-status{display:inline-flex;align-items:center;gap:6px}.rule-status:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}.page>.notice,.page>.toolbar,.page>.card,.page>.grid,.page>.steps,#store-list>.notice,#store-list>.toolbar,#store-list>.card,#store-list>.grid,#store-config>.notice,#store-config>.card,#store-config>.grid{margin-bottom:16px}.page>:last-child,#store-list>:last-child,#store-config>:last-child{margin-bottom:0}.layout>div>.grid,.layout>div>.card,.layout>div>.notice{margin-bottom:16px}.layout>div>:last-child{margin-bottom:0}#drawerBody>*{margin-top:0}#drawerBody>p,#drawerBody>table,#drawerBody>.notice,#drawerBody>.profile,#drawerBody>.timeline,#drawerBody>.qr,#drawerBody>.grid{margin-bottom:14px}#drawerBody>:last-child{margin-bottom:0}@media(max-width:1100px){.grid-4,.grid-3,.grid-2,.steps,.layout,.setting-hero,.page-guide{grid-template-columns:1fr}.sidebar{width:210px}.drawer{width:min(540px,96vw)}.setting-actions{justify-content:flex-start}.tag-group-item{grid-template-columns:1fr}}@media(max-width:760px){.app{display:block;height:auto;overflow:visible}.sidebar{width:100%;height:auto}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;width:auto}.topbar{height:auto;align-items:flex-start;padding:14px;display:block}.topbar .meta{text-align:left;margin-top:6px}.content{padding:14px}.drawer{right:-100vw;width:100vw}.qr{display:block}.qr svg{margin-bottom:10px}.tabs{overflow:auto}.tab{white-space:nowrap}}
+    *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}.app{display:flex;height:100vh;overflow:hidden}.sidebar{width:236px;background:#101828;color:#d0d5dd;display:flex;flex-direction:column}.brand{height:64px;display:flex;align-items:center;padding:0 20px;font-size:18px;font-weight:700;color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}.brand span{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;background:var(--primary);border-radius:8px;margin-right:10px}.nav{padding:14px 10px;overflow:auto}.nav button{width:100%;border:0;background:transparent;color:#d0d5dd;text-align:left;padding:12px 14px;border-radius:8px;margin:3px 0;cursor:pointer;font-size:14px}.nav button:hover,.nav button.active{background:#1d2939;color:#fff}.main{flex:1;display:flex;flex-direction:column;min-width:0}.topbar{height:64px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:16px}.topbar h1{font-size:20px;margin:0;white-space:nowrap}.topbar .meta{font-size:13px;color:var(--muted);text-align:right}.content{padding:22px;overflow:auto}.page{display:none}.page.active{display:block}.grid{display:grid;gap:16px}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px}.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;box-shadow:0 1px 2px rgba(16,24,40,.04)}.card h3{margin:0 0 12px;font-size:16px}.card p{margin:8px 0}.kpi{display:flex;flex-direction:column;gap:8px}.kpi .num{font-size:28px;font-weight:800}.kpi .label{color:var(--muted);font-size:13px}.trend{font-size:12px;color:var(--green)}.notice{border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;border-radius:8px;padding:12px 14px;margin-bottom:16px}.warning{border-color:#fed7aa;background:#fff7ed;color:#c2410c}.toolbar{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}.btn{border:1px solid var(--border);background:#fff;border-radius:8px;padding:9px 13px;cursor:pointer;color:var(--text)}.btn:hover{border-color:#b7c7dc}.btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}.btn.primary:hover{background:var(--primary-2)}.btn.green{background:var(--green);border-color:var(--green);color:#fff}.btn.danger{background:var(--red);border-color:var(--red);color:#fff}.input,.select,textarea{border:1px solid var(--border);background:#fff;border-radius:8px;padding:9px 12px;color:var(--text)}textarea{width:100%;min-height:86px;resize:vertical}table{width:100%;border-collapse:collapse;font-size:13px}th,td{border-bottom:1px solid var(--border);padding:12px 10px;text-align:left;vertical-align:middle}th{color:#667085;background:#f9fafb;font-weight:600}.tag{display:inline-flex;align-items:center;border-radius:999px;background:#eef4ff;color:#175cd3;padding:3px 8px;font-size:12px;margin:2px;white-space:nowrap}.tag.green{background:#ecfdf3;color:#027a48}.tag.orange{background:#fff7ed;color:#c2410c}.tag.purple{background:#f4f3ff;color:#5925dc}.tag.red{background:#fef3f2;color:#b42318}.tag.teal{background:#f0fdfa;color:#0f766e}.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 0 16px}.step{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px}.step b{display:block;margin-bottom:6px}.muted{color:var(--muted);font-size:13px}.mini{font-size:12px;color:var(--muted)}.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.node{background:#fff;border:1px solid var(--border);border-radius:8px;padding:11px 14px}.arrow{color:#98a2b3}.chart{height:180px;display:flex;align-items:end;gap:14px;padding:10px 4px 28px}.bar{flex:1;background:linear-gradient(180deg,#60a5fa,#1677ff);border-radius:8px 8px 0 0;min-height:24px;position:relative}.bar span{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--muted);white-space:nowrap}.metric-list{display:grid;gap:10px}.metric-row{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);padding:8px 0}.profile{display:grid;grid-template-columns:76px 1fr;gap:14px;align-items:center}.avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#0f766e,#1677ff);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:800}.timeline{border-left:2px solid var(--border);padding-left:14px}.timeline div{margin:0 0 16px}.timeline b{display:block}.timeline .mini{display:block;line-height:1.6}.drawer{position:fixed;right:-560px;top:0;width:540px;height:100vh;background:#fff;box-shadow:-8px 0 30px rgba(16,24,40,.16);transition:right .22s ease;z-index:10;padding:22px;overflow:auto}.drawer.open{right:0}.mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.28);z-index:9}.mask.open{display:block}.close{float:right;border:0;background:#f2f4f7;border-radius:8px;padding:8px 10px;cursor:pointer}.qr{display:flex;gap:14px;align-items:flex-start;background:#f9fafb;border:1px solid var(--border);border-radius:8px;padding:14px;margin:8px 0}.phone{border:1px solid var(--border);border-radius:22px;background:#111827;padding:10px;max-width:330px;margin:auto}.phone-screen{background:#fff;border-radius:16px;overflow:hidden}.phone-head{height:42px;background:#f8fafc;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}.phone-body{padding:14px}.page-guide{background:#fff;border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:8px;padding:14px 16px;margin-bottom:16px;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}.page-guide b{display:block;margin-bottom:5px}.page-guide p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}.page-guide .guide-action{color:var(--text);font-weight:600}.setting-hero{background:#fff;border:1px solid var(--border);border-radius:8px;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;margin-bottom:16px}.setting-hero h2{margin:0 0 6px;font-size:18px}.setting-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}.tabs{display:flex;gap:6px;border-bottom:1px solid var(--border);margin-bottom:16px}.tab{border:0;background:transparent;padding:10px 14px;border-radius:8px 8px 0 0;cursor:pointer;color:var(--muted)}.tab.active{background:#fff;color:var(--primary);box-shadow:inset 0 -2px 0 var(--primary)}.setting-panel{display:none}.setting-panel.active{display:block}.tag-group-list{display:grid;gap:10px}.tag-group-item{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:12px;align-items:center;border:1px solid var(--border);border-radius:8px;padding:12px;background:#fff}.tag-pill-row{display:flex;gap:6px;flex-wrap:wrap}.usage-card{border:1px solid var(--border);border-radius:8px;padding:12px;background:#fbfdff}.rule-status{display:inline-flex;align-items:center;gap:6px}.rule-status:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}.dev-status-badge{position:fixed;right:14px;bottom:12px;z-index:8;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.94);box-shadow:0 6px 18px rgba(16,24,40,.12);padding:8px 10px;font-size:12px;color:var(--muted);max-width:320px}.dev-status-badge b{color:var(--text)}.dev-status-badge.ok{border-color:#bbf7d0}.dev-status-badge.warn{border-color:#fed7aa}.page>.notice,.page>.toolbar,.page>.card,.page>.grid,.page>.steps,#store-list>.notice,#store-list>.toolbar,#store-list>.card,#store-list>.grid,#store-config>.notice,#store-config>.card,#store-config>.grid{margin-bottom:16px}.page>:last-child,#store-list>:last-child,#store-config>:last-child{margin-bottom:0}.layout>div>.grid,.layout>div>.card,.layout>div>.notice{margin-bottom:16px}.layout>div>:last-child{margin-bottom:0}#drawerBody>*{margin-top:0}#drawerBody>p,#drawerBody>table,#drawerBody>.notice,#drawerBody>.profile,#drawerBody>.timeline,#drawerBody>.qr,#drawerBody>.grid{margin-bottom:14px}#drawerBody>:last-child{margin-bottom:0}@media(max-width:1100px){.grid-4,.grid-3,.grid-2,.steps,.layout,.setting-hero,.page-guide{grid-template-columns:1fr}.sidebar{width:210px}.drawer{width:min(540px,96vw)}.setting-actions{justify-content:flex-start}.tag-group-item{grid-template-columns:1fr}}@media(max-width:760px){.app{display:block;height:auto;overflow:visible}.sidebar{width:100%;height:auto}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;width:auto}.topbar{height:auto;align-items:flex-start;padding:14px;display:block}.topbar .meta{text-align:left;margin-top:6px}.content{padding:14px}.drawer{right:-100vw;width:100vw}.qr{display:block}.qr svg{margin-bottom:10px}.tabs{overflow:auto}.tab{white-space:nowrap}.dev-status-badge{position:static;margin:8px 14px}}
   .workflow-guide{display:none!important}.workflow-head{padding:16px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start}.workflow-head h2{margin:0 0 6px;font-size:18px}.workflow-head p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}.workflow-badge{display:inline-flex;align-items:center;border-radius:999px;background:#eff6ff;color:#175cd3;padding:5px 10px;font-size:12px;white-space:nowrap}.workflow-map{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:var(--border)}.flow-step{background:#fbfdff;padding:12px;min-height:72px}.flow-step b{display:block;font-size:13px;margin-bottom:4px}.flow-step span{display:block;color:var(--muted);font-size:12px;line-height:1.35}.flow-step.active{background:#eff6ff;box-shadow:inset 0 -3px 0 var(--primary)}.flow-step.done{background:#f0fdf4}.layer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:14px}.layer-card{border:1px solid var(--border);border-radius:8px;background:#fff;padding:13px}.layer-card b{display:block;font-size:14px;margin-bottom:6px}.layer-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}.section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:18px 0 10px}.section-title h3{margin:0;font-size:16px}.section-title p{margin:0;color:var(--muted);font-size:12px}.task-list{display:grid;gap:10px}.task-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;border:1px solid var(--border);border-radius:8px;background:#fff;padding:12px}.task-index{width:28px;height:28px;border-radius:50%;background:#eff6ff;color:#175cd3;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}.object-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}.object-chip{border:1px solid var(--border);border-radius:8px;background:#fff;padding:12px}.object-chip b{display:block;font-size:13px}.object-chip span{display:block;margin-top:4px;color:var(--muted);font-size:12px}.status-dot{display:inline-flex;align-items:center;gap:6px}.status-dot:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}.panel-note{border:1px solid #dbeafe;background:#f8fbff;border-radius:8px;padding:12px;color:#1e3a8a;font-size:13px;line-height:1.6}.mini-flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.mini-flow span{border:1px solid var(--border);border-radius:999px;background:#fff;padding:7px 10px;font-size:12px;color:var(--text)}.drawer-form{display:grid;gap:14px}.form-row{display:grid;grid-template-columns:112px minmax(0,1fr);gap:12px;align-items:start;border-bottom:1px solid var(--border);padding-bottom:12px}.form-row:last-child{border-bottom:0}.check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.check-card{border:1px solid var(--border);border-radius:8px;padding:10px;background:#fff}.check-card input{margin-right:6px}.drawer-footer{position:sticky;bottom:-22px;background:#fff;border-top:1px solid var(--border);padding:12px 0 0;margin-top:10px;display:flex;gap:10px;justify-content:flex-end}.impact-box{border:1px solid #bbf7d0;background:#f0fdf4;border-radius:8px;padding:12px;display:grid;gap:8px}.impact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.impact-item{background:#fff;border:1px solid #dcfce7;border-radius:8px;padding:10px}.impact-item b{display:block;font-size:18px}.mapping-row{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:center;border-bottom:1px solid var(--border);padding:10px 0}.mapping-row:last-child{border-bottom:0}.sort-controls{display:flex;gap:6px}.inline-note{color:var(--muted);font-size:12px;margin-top:6px}.drawer-wide{width:640px}.drawer.customer-drawer{width:min(820px,96vw)}.setting-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}.flow-card{border:1px solid var(--border);background:#fff;border-radius:8px;padding:14px;display:grid;gap:8px}.flow-card strong{font-size:15px}.flow-card .num-dot{width:26px;height:26px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}.flow-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}.data-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:stretch;margin-bottom:16px}.data-node{border:1px solid var(--border);background:#fff;border-radius:8px;padding:12px}.data-node b{display:block;margin-bottom:6px}.data-node p{margin:0;color:var(--muted);font-size:12px;line-height:1.45}.data-arrow{display:flex;align-items:center;color:#98a2b3;font-weight:700}.use-case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.use-case{border:1px solid var(--border);background:#fff;border-radius:8px;padding:14px}.use-case h3{margin:0 0 8px}.use-case p{margin:0 0 10px;color:var(--muted);font-size:13px;line-height:1.5}.use-case table{margin-top:8px}.plain-kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}.plain-kpi .card{box-shadow:none}.setting-section{margin-bottom:16px}.setting-section:last-child{margin-bottom:0}@media(max-width:1100px){.workflow-head,.workflow-map,.layer-grid,.object-strip,.check-grid,.impact-grid,.setting-flow,.data-flow,.use-case-grid,.plain-kpi{grid-template-columns:1fr}.data-arrow{display:none}.task-item{grid-template-columns:auto minmax(0,1fr)}}@media(max-width:760px){.workflow-guide{margin-bottom:12px}.flow-step{min-height:auto}.section-title{display:block}.section-title p{margin-top:4px}.task-item,.form-row,.mapping-row{grid-template-columns:1fr}.task-index{width:24px;height:24px}}
   .hk-tags-page{background:#f2f4f8;margin:-22px;padding:18px 18px 56px;min-height:calc(100vh - 64px)}.hk-top-tabs{display:flex;gap:28px;border-bottom:1px solid #d9dee8;margin:0 0 20px}.hk-top-tab{border:0;background:transparent;padding:0 2px 14px;color:#667085;font-size:16px;cursor:pointer}.hk-top-tab.active{color:#3147b7;font-weight:700;box-shadow:inset 0 -3px 0 #3147b7}.hk-toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:16px}.hk-toolbar-left{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.hk-primary{background:#3147b7!important;border-color:#3147b7!important;color:#fff!important;border-radius:4px!important;padding:12px 20px!important}.hk-ghost{border:1px solid #3147b7!important;color:#3147b7!important;background:#fff!important;border-radius:4px!important;padding:11px 18px!important}.hk-help{border:0;background:transparent;color:#3147b7;cursor:pointer;padding:0}.hk-select{min-width:170px;background:#fff;border:1px solid #d8dde8;border-radius:4px;padding:11px 42px 11px 14px;color:#4b5563}.hk-panel{background:#fff;border:1px solid #edf0f5}.hk-group-row{display:grid;grid-template-columns:150px minmax(0,1fr) 88px;gap:28px;padding:28px 28px;border-bottom:1px dashed #d9dee8;min-height:108px}.hk-group-row:last-child{border-bottom:0}.hk-group-name{font-weight:700;color:#202938;font-size:15px}.hk-group-body{display:grid;gap:14px}.hk-scope{color:#202938;font-size:14px}.hk-tagline{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.hk-add-chip{border:1px dashed #d8dde8;background:#fff;border-radius:4px;padding:7px 13px;color:#4b5563;cursor:pointer}.hk-chip{display:inline-flex;align-items:center;border:1px solid #dfe3eb;background:#fafafa;border-radius:4px;padding:7px 13px;color:#4b5563;font-size:13px}.hk-edit{border:0;background:transparent;color:#667085;cursor:pointer;align-self:start}.hk-edit:before{content:"✎";margin-right:5px;color:#98a2b3}.hk-subpage{display:none}.hk-subpage.active{display:block}.hk-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.hk-stat-card{background:#fff;border:1px solid #edf0f5;padding:18px}.hk-stat-card b{display:block;font-size:26px;margin:6px 0}.hk-rule-table{background:#fff;border:1px solid #edf0f5;padding:18px}.hk-rule-table table th{background:#f7f8fb}.hk-empty{background:#fff;border:1px solid #edf0f5;padding:44px;text-align:center;color:#667085}@media(max-width:900px){.hk-toolbar,.hk-toolbar-left{display:grid;align-items:stretch}.hk-group-row{grid-template-columns:1fr;gap:12px}.hk-stat-grid{grid-template-columns:1fr}}
   .nav button.has-subnav{display:flex;align-items:center;justify-content:space-between;gap:8px}.nav button.has-subnav:after{content:"⌄";font-size:13px;color:#98a2b3}.nav button.has-subnav.collapsed:after{content:"›"}.subnav{display:grid;grid-template-columns:1fr;gap:4px;padding:4px 10px 10px 34px;max-height:360px;opacity:1;overflow:hidden;transition:max-height .18s ease,opacity .18s ease,padding .18s ease}.subnav.collapsed{max-height:0;opacity:0;padding-top:0;padding-bottom:0}.subnav button{display:flex;align-items:center;width:100%;padding:10px 12px;margin:0;font-size:13px;border-radius:6px;border-left:3px solid transparent}.subnav button.active{background:#3147b7;color:#fff;border-left-color:#7db2ff}.group-page{display:grid;gap:16px}.group-hero{background:#fff;border:1px solid var(--border);border-radius:8px;padding:18px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center}.group-icon{width:54px;height:54px;border-radius:14px;background:#eaf6ff;color:#1677ff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px}.filter-panel{background:#fff;border:1px solid var(--border);border-radius:8px;padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:end}.filter-field{display:grid;gap:6px}.filter-field label{font-size:13px;color:var(--muted)}.table-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}.empty-state{min-height:360px;background:#fff;border:1px solid var(--border);border-radius:8px;display:grid;place-items:center;text-align:center;color:var(--muted)}.empty-state b{display:block;color:var(--text);margin-bottom:10px}.group-flow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.group-flow span{border:1px solid #9ecbff;color:#3147b7;border-radius:8px;padding:12px 18px;background:#f8fbff}.group-flow i{font-style:normal;color:#9ecbff}.group-split{display:grid;grid-template-columns:260px minmax(0,1fr);gap:16px}.rule-sidebar{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px}.rule-sidebar button{width:100%;text-align:left;margin-bottom:8px}.rule-sidebar button.active{background:#eef4ff;border-color:#8bb7ff;color:#175cd3}.mini-phone{width:220px;border:1px solid var(--border);border-radius:28px;background:#fff;padding:12px;margin:auto}.mini-phone-screen{height:330px;border:1px solid var(--border);border-radius:22px;padding:14px;background:#fbfdff}.mini-phone-msg{margin-top:190px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px;font-size:12px}@media(max-width:1100px){.filter-panel{grid-template-columns:1fr 1fr}.group-hero,.group-split{grid-template-columns:1fr}.subnav{padding-left:10px}}@media(max-width:760px){.filter-panel{grid-template-columns:1fr}.subnav:not(.collapsed){display:grid}.subnav button{white-space:normal}}
@@ -154,8 +154,8 @@
   function switchSettingTab(panelId,btn){document.querySelectorAll('#setting .setting-panel').forEach(p=>p.classList.remove('active'));document.getElementById(panelId).classList.add('active');document.querySelectorAll('#setting .tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active')}
   function qrSVG(){return '<svg width="150" height="150" viewBox="0 0 29 29" shape-rendering="crispEdges" style="border:6px solid #fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.15)"><rect width="29" height="29" fill="#fff"/><path fill="#101828" d="M0 0h7v1h-7zM8 0h1v1h-1zM11 0h2v1h-2zM15 0h1v1h-1zM18 0h1v1h-1zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h1v1h-1zM13 1h1v1h-1zM16 1h2v1h-2zM20 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h1v1h-1zM10 2h1v1h-1zM12 2h1v1h-1zM15 2h2v1h-2zM18 2h1v1h-1zM20 2h1v1h-1zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h2v1h-2zM13 3h3v1h-3zM17 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h1v1h-1zM11 4h1v1h-1zM14 4h1v1h-1zM16 4h1v1h-1zM18 4h2v1h-2zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h2v1h-2zM12 5h2v1h-2zM15 5h1v1h-1zM19 5h2v1h-2zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM9 7h2v1h-2zM13 7h1v1h-1zM17 7h2v1h-2zM0 8h2v1h-2zM4 8h1v1h-1zM6 8h3v1h-3zM10 8h1v1h-1zM13 8h2v1h-2zM16 8h1v1h-1zM19 8h1v1h-1zM21 8h2v1h-2zM25 8h1v1h-1zM27 8h2v1h-2zM2 9h1v1h-1zM5 9h2v1h-2zM9 9h1v1h-1zM11 9h3v1h-3zM15 9h2v1h-2zM20 9h1v1h-1zM23 9h1v1h-1zM26 9h2v1h-2zM1 10h2v1h-2zM4 10h1v1h-1zM7 10h2v1h-2zM10 10h1v1h-1zM12 10h1v1h-1zM14 10h2v1h-2zM18 10h2v1h-2zM22 10h1v1h-1zM24 10h2v1h-2zM28 10h1v1h-1zM0 11h1v1h-1zM3 11h2v1h-2zM6 11h1v1h-1zM8 11h1v1h-1zM13 11h3v1h-3zM17 11h1v1h-1zM19 11h2v1h-2zM23 11h2v1h-2zM27 11h1v1h-1zM2 12h3v1h-3zM7 12h1v1h-1zM9 12h2v1h-2zM12 12h1v1h-1zM15 12h1v1h-1zM18 12h1v1h-1zM20 12h2v1h-2zM24 12h1v1h-1zM26 12h2v1h-2zM0 13h1v1h-1zM5 13h2v1h-2zM8 13h2v1h-2zM11 13h1v1h-1zM14 13h2v1h-2zM17 13h2v1h-2zM21 13h1v1h-1zM23 13h3v1h-3zM1 14h2v1h-2zM4 14h1v1h-1zM6 14h3v1h-3zM10 14h2v1h-2zM13 14h1v1h-1zM16 14h2v1h-2zM19 14h1v1h-1zM22 14h2v1h-2zM25 14h1v1h-1zM27 14h2v1h-2zM0 15h1v1h-1zM3 15h1v1h-1zM5 15h1v1h-1zM9 15h2v1h-2zM12 15h2v1h-2zM15 15h1v1h-1zM18 15h1v1h-1zM21 15h2v1h-2zM24 15h1v1h-1zM26 15h1v1h-1zM2 16h2v1h-2zM6 16h1v1h-1zM8 16h1v1h-1zM11 16h1v1h-1zM14 16h3v1h-3zM18 16h2v1h-2zM23 16h2v1h-2zM27 16h1v1h-1zM0 17h1v1h-1zM4 17h3v1h-3zM9 17h1v1h-1zM12 17h2v1h-2zM16 17h1v1h-1zM19 17h2v1h-2zM22 17h1v1h-1zM25 17h2v1h-2zM8 18h1v1h-1zM10 18h3v1h-3zM15 18h2v1h-2zM18 18h1v1h-1zM20 18h1v1h-1zM24 18h5v1h-5zM0 19h2v1h-2zM3 19h2v1h-2zM6 19h2v1h-2zM9 19h1v1h-1zM13 19h1v1h-1zM17 19h2v1h-2zM21 19h2v1h-2zM26 19h1v1h-1zM28 19h1v1h-1zM2 20h1v1h-1zM4 20h2v1h-2zM8 20h3v1h-3zM12 20h1v1h-1zM15 20h1v1h-1zM17 20h1v1h-1zM20 20h7v1h-7zM0 21h7v1h-7zM9 21h1v1h-1zM11 21h2v1h-2zM14 21h1v1h-1zM16 21h1v1h-1zM18 21h1v1h-1zM20 21h1v1h-1zM24 21h1v1h-1zM26 21h1v1h-1zM0 22h1v1h-1zM6 22h1v1h-1zM8 22h1v1h-1zM10 22h2v1h-2zM13 22h2v1h-2zM17 22h2v1h-2zM20 22h1v1h-1zM24 22h1v1h-1zM26 22h3v1h-3zM0 23h1v1h-1zM2 23h3v1h-3zM6 23h1v1h-1zM9 23h2v1h-2zM12 23h1v1h-1zM15 23h3v1h-3zM19 23h1v1h-1zM21 23h2v1h-2zM24 23h1v1h-1zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM8 24h2v1h-2zM11 24h2v1h-2zM14 24h1v1h-1zM16 24h1v1h-1zM18 24h3v1h-3zM22 24h4v1h-4zM27 24h1v1h-1zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM9 25h1v1h-1zM12 25h2v1h-2zM15 25h1v1h-1zM17 25h1v1h-1zM19 25h1v1h-1zM23 25h1v1h-1zM25 25h2v1h-2zM0 26h1v1h-1zM6 26h1v1h-1zM8 26h2v1h-2zM11 26h1v1h-1zM13 26h3v1h-3zM18 26h1v1h-1zM20 26h2v1h-2zM24 26h2v1h-2zM27 26h1v1h-1zM0 27h7v1h-7zM10 27h1v1h-1zM13 27h1v1h-1zM16 27h2v1h-2zM19 27h1v1h-1zM21 27h1v1h-1zM23 27h2v1h-2zM26 27h1v1h-1zM28 27h1v1h-1z"/></svg>'}
   function qrBlock(title,store,total,today,last,badge='动态活码 · 实时分配导购'){return '<div class="qr">'+qrSVG()+'<div style="flex:1"><b>'+title+'</b><div class="mini" style="margin:4px 0 8px">门店：'+store+'</div><span class="tag green">'+badge+'</span><div style="display:flex;gap:18px;margin:10px 0 8px;flex-wrap:wrap"><div><div style="font-size:18px;font-weight:800">'+total+'</div><div class="mini">累计入池</div></div><div><div style="font-size:18px;font-weight:800;color:var(--primary)">'+today+'</div><div class="mini">今日入池</div></div><div><div style="font-size:13px;font-weight:600">'+last+'</div><div class="mini">最近入池</div></div></div><button class="btn">下载二维码</button> <button class="btn">下载带门头海报</button></div></div>'}
-  function openStorePage(){document.getElementById('store-config').innerHTML='<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap"><button class="btn" onclick="backToStoreList()">返回门店列表</button><h2 style="margin:0;font-size:18px">门店私域配置：深圳南山万象天地店</h2></div><div class="notice">业务单元只读，SCRM 仅配置私域承接能力。用户影响：店长不用维护两套门店资料，导购调店/离职时也不会改写客户最初来源。</div><div class="card"><h3>业务单元信息</h3><p class="muted">内部编码：BU-KST-HN-001｜外部编码：POS-3201｜品牌：蔻斯汀｜区域：华南｜类型：直营｜自定义属性：购物中心店 / 一线城市 / 美妆集合</p></div><div class="grid grid-2"><div class="card"><h3>门店物料码（海报/收银台长期码）</h3>'+qrBlock('南山店-门店物料码','南山万象天地店',1240,28,'今天 15:02')+'<p class="muted">分配规则：排班优先；无排班时按系统参数轮流/负载均衡。导购离职只从分配池移出，海报无需更换。</p></div><div class="card"><h3>私域配置</h3><table><tr><th>配置项</th><th>当前值</th></tr><tr><td>默认入池模式</td><td><span class="tag green">跟随全局 · 企微优先</span></td></tr><tr><td>关注服务号引导</td><td>开启</td></tr><tr><td>门店客户群</td><td>南山店会员福利群</td></tr><tr><td>默认欢迎语</td><td>会员福利 + 门店群 + 服务号关注</td></tr></table><p><button class="btn primary" onclick="openStoreConfig()">编辑私域配置</button></p></div></div><div class="card"><h3>门店活码生命周期</h3><table><tr><th>导购(成员)</th><th>门店×导购活码</th><th>累计/今日</th><th>活码状态</th><th>客户处理</th><th>操作</th></tr><tr><td>江诗颖</td><td>南山店-江诗颖</td><td>388 / 12</td><td><span class="tag green">在用</span></td><td>正常服务</td><td><button class="btn" onclick="openCode()">查看</button> <button class="btn" onclick="openCodeLifecycle()">移除</button></td></tr><tr><td>王敏</td><td>南山店-王敏</td><td>205 / 7</td><td><span class="tag green">在用</span></td><td>正常服务</td><td><button class="btn" onclick="openCode()">查看</button></td></tr><tr><td>林浩（已调店）</td><td>南山店-林浩</td><td>96 / 0</td><td><span class="tag orange">已停用·可恢复</span></td><td>6 人进交接池，纯手动</td><td><button class="btn" onclick="openCodeLifecycle()">恢复</button> <button class="btn" onclick="openHandover()">查看交接</button></td></tr><tr><td>赵敏（已离职）</td><td>南山店-赵敏</td><td>142 / 0</td><td><span class="tag red">已销毁</span></td><td>9 人强制交接</td><td><button class="btn green" onclick="openHandover()">去交接</button></td></tr></table><p class="mini">添加成员自动生成 active 码；移除/调店停用可恢复；离职销毁不可恢复。停用/销毁永不影响存量客户来源锁定。</p><p><button class="btn primary" onclick="openStaffAdd()">添加接待导购</button> <button class="btn" onclick="go(\'code\')">查看客户</button></p></div>';document.getElementById('store-list').style.display='none';document.getElementById('store-config').style.display='block';go('store');document.getElementById('title').innerText='门店私域配置'}
-  function backToStoreList(){document.getElementById('store-config').style.display='none';document.getElementById('store-list').style.display='block';document.getElementById('title').innerText='门店'}
+  function openStorePage(){const config=document.getElementById('store-config');const list=document.getElementById('store-list');if(!config)return;config.innerHTML='<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap"><button class="btn" onclick="backToStoreList()">返回门店列表</button><h2 style="margin:0;font-size:18px">门店私域配置：深圳南山万象天地店</h2></div><div class="notice">业务单元只读，SCRM 仅配置私域承接能力。用户影响：店长不用维护两套门店资料，导购调店/离职时也不会改写客户最初来源。</div><div class="card"><h3>业务单元信息</h3><p class="muted">内部编码：BU-KST-HN-001｜外部编码：POS-3201｜品牌：蔻斯汀｜区域：华南｜类型：直营｜自定义属性：购物中心店 / 一线城市 / 美妆集合</p></div><div class="grid grid-2"><div class="card"><h3>门店物料码（海报/收银台长期码）</h3>'+qrBlock('南山店-门店物料码','南山万象天地店',1240,28,'今天 15:02')+'<p class="muted">分配规则：排班优先；无排班时按系统参数轮流/负载均衡。导购离职只从分配池移出，海报无需更换。</p></div><div class="card"><h3>私域配置</h3><table><tr><th>配置项</th><th>当前值</th></tr><tr><td>默认入池模式</td><td><span class="tag green">跟随全局 · 企微优先</span></td></tr><tr><td>关注服务号引导</td><td>开启</td></tr><tr><td>门店客户群</td><td>南山店会员福利群</td></tr><tr><td>默认欢迎语</td><td>会员福利 + 门店群 + 服务号关注</td></tr></table><p><button class="btn primary" onclick="openStoreConfig()">编辑私域配置</button></p></div></div><div class="card"><h3>门店活码生命周期</h3><table><tr><th>导购(成员)</th><th>门店×导购活码</th><th>累计/今日</th><th>活码状态</th><th>客户处理</th><th>操作</th></tr><tr><td>江诗颖</td><td>南山店-江诗颖</td><td>388 / 12</td><td><span class="tag green">在用</span></td><td>正常服务</td><td><button class="btn" onclick="openCode()">查看</button> <button class="btn" onclick="openCodeLifecycle()">移除</button></td></tr><tr><td>王敏</td><td>南山店-王敏</td><td>205 / 7</td><td><span class="tag green">在用</span></td><td>正常服务</td><td><button class="btn" onclick="openCode()">查看</button></td></tr><tr><td>林浩（已调店）</td><td>南山店-林浩</td><td>96 / 0</td><td><span class="tag orange">已停用·可恢复</span></td><td>6 人进交接池，纯手动</td><td><button class="btn" onclick="openCodeLifecycle()">恢复</button> <button class="btn" onclick="openHandover()">查看交接</button></td></tr><tr><td>赵敏（已离职）</td><td>南山店-赵敏</td><td>142 / 0</td><td><span class="tag red">已销毁</span></td><td>9 人强制交接</td><td><button class="btn green" onclick="openHandover()">去交接</button></td></tr></table><p class="mini">添加成员自动生成 active 码；移除/调店停用可恢复；离职销毁不可恢复。停用/销毁永不影响存量客户来源锁定。</p><p><button class="btn primary" onclick="openStaffAdd()">添加接待导购</button> <button class="btn" onclick="go(\'code\')">查看客户</button></p></div>';if(list)list.style.display='none';config.style.display='block';go('store');const title=document.getElementById('title');if(title)title.innerText='门店私域配置'}
+  function backToStoreList(){const config=document.getElementById('store-config');const list=document.getElementById('store-list');if(config)config.style.display='none';if(list)list.style.display='block';const title=document.getElementById('title');if(title)title.innerText='门店'}
   function openCode(){showDrawer('活码配置：南山店-江诗颖','<div class="notice">门店×导购码自动生成，客户扫哪张码，来源门店就锁定为该码所属门店。</div>'+qrBlock('南山店-江诗颖','南山万象天地店',388,12,'今天 14:28','门店×导购码 · 来源锁定')+'<table><tr><th>配置项</th><th>值</th></tr><tr><td>绑定关系</td><td>门店 BU-KST-HN-001 + 成员江诗颖</td></tr><tr><td>入池模式</td><td>跟随全局（企微优先），可覆盖为关注优先</td></tr><tr><td>自动标签</td><td>线下门店、南山店、江诗颖</td></tr><tr><td>欢迎语</td><td>门店欢迎语，含服务号关注引导</td></tr></table><p><button class="btn primary">编辑</button> <button class="btn">查看客户数据</button></p>')}
   function openMaterialCode(){showDrawer('门店物料码：南山店','<div class="notice">物料码用于长期海报、收银台和包装，不绑定单个导购；成员变动时无需换码。</div>'+qrBlock('南山店-门店物料码','南山万象天地店',782,28,'今天 15:02')+'<table><tr><th>优先级</th><th>分配逻辑</th><th>当前结果</th></tr><tr><td>1</td><td>读取门店排班，分配当前在岗导购</td><td>江诗颖、王敏</td></tr><tr><td>2</td><td>未维护排班时按系统参数兜底</td><td>轮流分配</td></tr><tr><td>3</td><td>离职导购自动移出分配池</td><td>赵敏已移出</td></tr></table>')}
   function openCodeLifecycle(){showDrawer('活码生命周期','<div class="notice warning">关键约束：活码停用/销毁不影响存量客户和来源归因。来源门店、首次导购、入池模式写入后不可改。</div><table><tr><th>触发</th><th>活码结果</th><th>客户处理</th><th>来源锁定</th></tr><tr><td>添加接待导购</td><td><span class="tag green">在用</span></td><td>自动生成门店×导购码</td><td>写入时锁定</td></tr><tr><td>移除成员</td><td><span class="tag orange">停用可恢复</span></td><td>客户关系保留</td><td>不变</td></tr><tr><td>成员调店</td><td><span class="tag orange">原门店码停用</span></td><td>进交接池，纯手动</td><td>仍锁原门店</td></tr><tr><td>成员离职</td><td><span class="tag red">销毁不可恢复</span></td><td>强制交接，接收人不可空</td><td>不变</td></tr></table>')}
@@ -235,7 +235,7 @@
   function tagHtml(tags){return tags.map((t,i)=>'<span class="tag '+(i===1?'orange':i===2?'green':'')+'">'+t+'</span>').join('')}
   function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));document.getElementById('title').innerText=titleMap[id]||'原型';if(id==='customer')renderCustomerPage();if(id==='touch')renderTouchPage();ensurePageGuide(id);document.querySelector('.content').scrollTo(0,0)}
   function renderStoreConfig(){const cfg=appState.storeConfig;const staffRows=appState.staff.map(s=>'<tr><td>'+s.name+'</td><td>'+s.code+'</td><td>'+s.count+'</td><td><span class="tag '+s.statusClass+'">'+s.status+'</span></td><td>'+s.handling+'</td><td><button class="btn" onclick="openCode()">查看</button> <button class="btn" onclick="openCodeLifecycle()">生命周期</button></td></tr>').join('');document.getElementById('store-config').innerHTML='<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap"><button class="btn" onclick="backToStoreList()">返回门店列表</button><h2 style="margin:0;font-size:18px">门店私域配置：深圳南山万象天地店</h2></div>'+flashHtml()+'<div class="notice">业务单元只读，SCRM 只叠加私域配置。配置保存后会影响新入池客户的模式、欢迎语和客户群承接。</div><div class="card"><h3>业务单元信息</h3><p class="muted">内部编码：BU-KST-HN-001｜外部编码：POS-3201｜品牌：蔻斯汀｜区域：华南｜类型：直营｜自定义属性：购物中心店 / 一线城市 / 美妆集合</p></div><div class="grid grid-2"><div class="card"><h3>门店物料码（海报/收银台长期码）</h3>'+qrBlock('南山店-门店物料码','南山万象天地店',1240,28,'今天 15:02')+'<p class="muted">分配规则：排班优先；无排班时按系统参数轮流/负载均衡。导购离职只从分配池移出，海报无需更换。</p></div><div class="card"><h3>私域配置</h3><table><tr><th>配置项</th><th>当前值</th></tr><tr><td>默认入池模式</td><td><span class="tag green">'+cfg.entryMode+'</span></td></tr><tr><td>关注服务号引导</td><td>'+cfg.serviceGuide+'</td></tr><tr><td>门店客户群</td><td>'+cfg.group+'</td></tr><tr><td>默认欢迎语</td><td>'+cfg.welcome+'</td></tr></table><p><button class="btn primary" onclick="openStoreConfig()">编辑私域配置</button></p></div></div><div class="card"><h3>门店活码生命周期</h3><table><tr><th>导购(成员)</th><th>门店×导购活码</th><th>累计/今日</th><th>活码状态</th><th>客户处理</th><th>操作</th></tr>'+staffRows+'</table><p class="mini">添加成员后会自动生成该门店×导购活码，并加入物料码分配池。</p><p><button class="btn primary" onclick="openStaffAdd()">添加接待导购</button> <button class="btn" onclick="go(&quot;code&quot;)">查看客户</button></p></div>';appState.flash=''}
-  function openStorePage(){document.getElementById('store-list').style.display='none';document.getElementById('store-config').style.display='block';renderStoreConfig();go('store');document.getElementById('title').innerText='门店私域配置'}
+  function openStorePage(){const list=document.getElementById('store-list');const config=document.getElementById('store-config');if(list)list.style.display='none';if(config)config.style.display='block';renderStoreConfig();go('store');const title=document.getElementById('title');if(title)title.innerText='门店私域配置'}
   function openStoreConfig(){const cfg=appState.storeConfig;showDrawer('编辑门店私域配置','<table><tr><th>配置项</th><th>值</th></tr><tr><td>默认入池模式</td><td><select id="store-entry-mode" class="select"><option '+(cfg.entryMode.includes('企微')?'selected':'')+'>跟随全局 · 企微优先</option><option '+(cfg.entryMode==='关注优先'?'selected':'')+'>关注优先</option></select></td></tr><tr><td>关注服务号引导</td><td><select id="store-service-guide" class="select"><option '+(cfg.serviceGuide==='开启'?'selected':'')+'>开启</option><option '+(cfg.serviceGuide==='关闭'?'selected':'')+'>关闭</option></select></td></tr><tr><td>门店客户群</td><td><select id="store-group" class="select"><option>南山店会员福利群</option><option>618 试用活动群</option></select></td></tr><tr><td>默认欢迎语</td><td><select id="store-welcome" class="select"><option>门店默认欢迎语</option><option>南山试用活动欢迎语</option></select></td></tr></table><p><button class="btn primary" onclick="saveStoreConfig()">保存配置</button></p>')}
   function saveStoreConfig(){appState.storeConfig.entryMode=document.getElementById('store-entry-mode').value;appState.storeConfig.serviceGuide=document.getElementById('store-service-guide').value;appState.storeConfig.group=document.getElementById('store-group').value;appState.storeConfig.welcome=document.getElementById('store-welcome').value;appState.flash='已保存门店私域配置：后续新入池客户将按新的入池模式、欢迎语和客户群承接。';closeDrawer();openStorePage()}
   function openStaffAdd(){showDrawer('添加接待导购','<div class="notice">候选成员来自组织架构，并受当前操作者组织权限过滤。</div><table><tr><th>成员</th><th>组织</th><th>添加后动作</th></tr><tr><td><label><input type="radio" name="staff-add" value="刘雨" checked> 刘雨</label></td><td>华南直营 / 南山店</td><td>自动生成南山店-刘雨活码</td></tr><tr><td><label><input type="radio" name="staff-add" value="郑明"> 郑明</label></td><td>华南直营 / 南山店</td><td>自动加入物料码分配池</td></tr></table><p><button class="btn primary" onclick="addStoreStaff()">确认添加</button></p>')}
@@ -888,11 +888,14 @@
     document.getElementById('store-config').innerHTML='<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap"><button class="btn" onclick="backToStoreList()">返回门店列表</button><h2 style="margin:0;font-size:18px">门店私域配置：深圳南山万象天地店</h2></div>'+flashHtml()+'<div class="object-strip"><div class="object-chip"><b>1. 业务单元</b><span>来自底座，SCRM 引用</span></div><div class="object-chip"><b>2. 私域策略</b><span>决定新客入池和承接</span></div><div class="object-chip"><b>3. 二维码入口</b><span>物料码和导购码</span></div><div class="object-chip"><b>4. 活码生命周期</b><span>添加、暂停、移除、调店、离职</span></div></div><div class="card"><h3>1. 业务单元信息</h3><p class="muted">内部编码：BU-KST-HN-001｜外部编码：POS-3201｜品牌：蔻斯汀｜区域：华南｜类型：直营｜自定义属性：购物中心店 / 一线城市 / 美妆集合</p></div><div class="grid grid-2"><div class="card"><h3>2. 私域承接策略</h3><table><tr><th>配置项</th><th>当前值</th><th>影响</th></tr><tr><td>默认入池模式</td><td><span class="tag green">'+cfg.entryMode+'</span></td><td>新客先加企微还是先关注服务号</td></tr><tr><td>关注服务号引导</td><td>'+cfg.serviceGuide+'</td><td>用于 unionid 身份合并</td></tr><tr><td>门店客户群</td><td>'+cfg.group+'</td><td>欢迎语中的群承接入口</td></tr><tr><td>默认欢迎语</td><td>'+cfg.welcome+'</td><td>客户扫码后第一条承接内容</td></tr><tr><td>活码轮询</td><td>'+cfg.polling+'</td><td>决定物料码在可服务导购中的分配顺序</td></tr></table><p><button class="btn primary" onclick="openStoreConfig()">编辑私域配置</button></p></div><div class="card"><h3>3. 门店物料码（长期投放）</h3>'+qrBlockDownload('南山店-门店物料码','南山万象天地店',1240,28,'今天 15:02')+'<p class="muted">适合收银台、海报、包装。它不绑定单个导购，按配置的活码轮询策略分配；暂停使用、移除、调店或离职的导购不会被轮到。</p></div></div><div class="card"><div class="section-title"><div><h3>4.门店活码生命周期</h3><p>添加成员会生成导购活码；暂停和移除都要确认并留下操作时间。</p></div><div class="toolbar" style="margin:0"><button class="btn primary" onclick="openStaffAdd()">添加接待导购</button><button class="btn green" onclick="openHandover()">处理导购交接</button></div></div><div class="toolbar"><select id="staff-status-filter" class="select"><option '+(filters.status==='全部状态'?'selected':'')+'>全部状态</option><option '+(filters.status==='在职'?'selected':'')+'>在职</option><option '+(filters.status==='已移除'?'selected':'')+'>已移除</option><option '+(filters.status==='已离职'?'selected':'')+'>已离职</option><option '+(filters.status==='已调店'?'selected':'')+'>已调店</option><option '+(filters.status==='暂停使用'?'selected':'')+'>暂停使用</option></select><input id="staff-keyword" class="input" value="'+(filters.keyword||'')+'" placeholder="搜索导购/活码名称" /><button class="btn" onclick="searchStoreStaff()">查询</button><button class="btn" onclick="resetStoreStaffSearch()">重置</button></div><table><tr><th>导购</th><th>活码名称</th><th>累计/今日</th><th>状态</th><th>客户处理</th><th>操作</th></tr>'+staffRows+'</table><p class="mini">共 '+visibleStaff.length+' 条。暂停使用后保留客户关系；移除成员后导购码停用可恢复，来源归因仍不改写。</p><div class="toolbar" style="justify-content:flex-end;margin:10px 0 0"><button class="btn">上一页</button><span class="mini">第 1 / 1 页 · 每页 20 条</span><button class="btn">下一页</button></div></div>';appState.flash='';
   }
   function openStorePage(){
-    document.getElementById('store-list').style.display='none';
-    document.getElementById('store-config').style.display='block';
+    const list=document.getElementById('store-list');
+    const config=document.getElementById('store-config');
+    if(list)list.style.display='none';
+    if(config)config.style.display='block';
     renderStoreConfig();
     go('store');
-    document.getElementById('title').innerText='门店私域配置';
+    const title=document.getElementById('title');
+    if(title)title.innerText='门店私域配置';
   }
   function openStoreConfig(){
     ensureStoreRuntimeState();
@@ -1431,6 +1434,1324 @@
   setGroupSubnavCollapsed(true);
   enhanceStoreList();
   document.querySelectorAll('.page-guide,.workflow-guide').forEach(el=>el.remove())
+
+  const REAL_DATA_PLACEHOLDER='等待真实数据接入';
+  let realDataReady=false;
+  function apiJSON(path){
+    return fetch(path,{headers:{Accept:'application/json'},cache:'no-store'}).then(res=>{
+      if(!res.ok)throw new Error('HTTP '+res.status);
+      return res.json();
+    });
+  }
+  async function apiPaginatedAll(path,pageSize=100,maxPages=20){
+    const rows=[];
+    let total=0;
+    for(let page=1;page<=maxPages;page++){
+      const separator=path.includes('?')?'&':'?';
+      const payload=await apiJSON(path+separator+'page='+page+'&pageSize='+pageSize);
+      const items=pageItems(payload);
+      rows.push(...items);
+      total=Number(payload?.page?.total||rows.length);
+      if(!payload?.page?.hasNext)break;
+    }
+    return {data:rows,page:{total,pageSize,loaded:rows.length}};
+  }
+  function pageItems(payload){
+    if(Array.isArray(payload))return payload;
+    return Array.isArray(payload?.data)?payload.data:Array.isArray(payload?.data?.items)?payload.data.items:[];
+  }
+  function firstText(...values){
+    return values.map(value=>String(value??'').trim()).find(Boolean)||'';
+  }
+  function realCustomerFromAPI(row,index){
+    const name=firstText(row.name,'未命名客户');
+    const tags=Array.isArray(row.tags)&&row.tags.length?row.tags:(Array.isArray(row.wecomTags)&&row.wecomTags.length?row.wecomTags:['企微客户']);
+    const id=firstText(row.id,'real-customer-'+index);
+    const source=firstText(row.sourceStore,row.source,'monobase / 企微');
+    const owner=firstText(row.owner,'企微同步');
+    const signal=Array.isArray(row.signals)&&row.signals.length?row.signals[0]:'来自 monobase 底座同步';
+    return {
+      name,
+      avatar:name.slice(0,1)||'客',
+      wecom:firstText(row.wecom,row.wecomName,row.externalUserid,'-'),
+      mobile:firstText(row.mobile,'未绑定手机号'),
+      source,
+      sourceFull:firstText(row.sourceFull,source+'｜monobase-v2｜企微客户｜首次同步'),
+      owner,
+      relations:Array.isArray(row.relations)&&row.relations.length?row.relations.length+' 人':'1 人',
+      guideLinks:Array.isArray(row.relations)?row.relations:[],
+      tags,
+      stage:firstText(row.stage,'企微客户'),
+      next:firstText(row.nextFollowUp,'待跟进'),
+      timeline:Array.isArray(row.timeline)&&row.timeline.length?row.timeline:['底座同步入池：'+firstText(row.lastActive,'刚刚')],
+      intentScore:Number(row.intentScore||0),
+      dealStage:firstText(row.salesStage,'未建线索'),
+      dealAmount:firstText(row.dealAmount,'-'),
+      conversionSource:firstText(row.conversionSource,source),
+      signals:Array.isArray(row.signals)&&row.signals.length?row.signals:[signal]
+    };
+  }
+  function setCustomerAlias(key,value){
+    if(!value)return;
+    Object.defineProperty(appState.customers,key,{value,writable:true,configurable:true,enumerable:false});
+  }
+  function applyRealCustomers(rows){
+    const customers={};
+    rows.forEach((row,index)=>{customers[firstText(row.id,'real-customer-'+index)]=realCustomerFromAPI(row,index)});
+    appState.customers=customers;
+    const values=Object.values(customers);
+    setCustomerAlias('chen',values[0]);
+    setCustomerAlias('wang',values[1]||values[0]);
+    setCustomerAlias('li',values[2]||values[0]);
+  }
+  function applyRealTags(rows){
+    appState.managedTags=rows.map(row=>({
+      name:firstText(row.name,'未命名标签'),
+      group:firstText(row.group,'未分组'),
+      status:firstText(row.status,'正常'),
+      customers:Number(row.customers||0),
+      wecom:firstText(row.wecom,'-')
+    }));
+    const groups=new Map();
+    appState.managedTags.forEach(tag=>{
+      if(!groups.has(tag.group))groups.set(tag.group,{name:tag.group,stores:['全部门店'],tags:[],scenes:['客户池筛选'],order:groups.size+1});
+      groups.get(tag.group).tags.push(tag.name);
+    });
+    appState.tagGroups=[...groups.values()];
+  }
+  function updateDashboardKpis(customerTotal,tagTotal){
+    const nums=[...document.querySelectorAll('#dashboard .kpi .num')];
+    if(nums[0])nums[0].textContent=customerTotal;
+    if(nums[1])nums[1].textContent=tagTotal;
+    const trends=[...document.querySelectorAll('#dashboard .trend')];
+    if(trends[0])trends[0].textContent='monobase 底座真实客户';
+    if(trends[1])trends[1].textContent='真实标签字典';
+  }
+  function renderActiveRealPage(){
+    const active=document.querySelector('.page.active')?.id||'dashboard';
+    renderRealOnlyPage(active);
+  }
+  function realBadge(text,tone=''){
+    return '<span class="tag '+tone+'">'+escHtml(text||'-')+'</span>';
+  }
+  function realCustomerEntries(){
+    return Object.entries(appState.customers||{}).filter(([key])=>!['chen','wang','li'].includes(key));
+  }
+  function renderRealEmptyPage(id,title,description){
+    const page=document.getElementById(id);
+    if(!page)return;
+    page.innerHTML='<div class="card"><h3>'+escHtml(title)+'</h3><p class="muted">'+escHtml(description)+'</p></div>';
+  }
+  function renderRealDashboard(){
+    const page=document.getElementById('dashboard');
+    if(!page)return;
+    const totals=appState.realDataTotals||{customers:realCustomerEntries().length,tags:appState.managedTags?.length||0};
+    const states=appState.realSyncStates||[];
+    const users=appState.realWeComUsers||[];
+    const contactWays=appState.realContactWays||[];
+    const stateRows=states.length?states.map(item=>'<tr><td>'+escHtml(item.resource)+'</td><td>'+Number(item.lastTotal||0).toLocaleString()+'</td><td>'+Number(item.lastAdded||0).toLocaleString()+'</td><td>'+Number(item.lastUpdated||0).toLocaleString()+'</td><td>'+(item.lastError?realBadge(item.lastError,'red'):realBadge('正常','green'))+'</td><td>'+escHtml(item.lastSuccessAt||'-')+'</td></tr>').join(''):'<tr><td colspan="6">暂无同步状态</td></tr>';
+    const previewRows=realCustomerEntries().slice(0,20);
+    const customerRows=previewRows.map(([id,x])=>'<tr><td>'+escHtml(x.name)+'<br><span class="mini">ID: '+escHtml(id)+'</span></td><td>'+escHtml(x.wecom||'-')+'</td><td>'+escHtml(x.source||'-')+'</td><td>'+escHtml(x.stage||'-')+'</td><td>'+tagHtml(x.tags||[])+'</td></tr>').join('');
+    page.innerHTML='<div class="grid grid-4"><div class="card kpi"><div class="label">真实客户</div><div class="num">'+Number(totals.customers||0).toLocaleString()+'</div><div class="trend">monobase-v2 同步</div></div><div class="card kpi"><div class="label">真实成员</div><div class="num">'+Number(users.length||0).toLocaleString()+'</div><div class="trend">企业微信客户联系成员</div></div><div class="card kpi"><div class="label">真实活码</div><div class="num">'+Number(contactWays.length||0).toLocaleString()+'</div><div class="trend">企业微信联系我二维码</div></div><div class="card kpi"><div class="label">真实标签</div><div class="num">'+Number(totals.tags||0).toLocaleString()+'</div><div class="trend">SCRM 标签字典</div></div></div><div class="card"><h3>底座同步状态</h3><table><tr><th>资源</th><th>总数</th><th>新增</th><th>更新</th><th>状态</th><th>最近成功</th></tr>'+stateRows+'</table></div><div class="card"><div class="section-title"><div><h3>真实客户预览</h3><p>预览前 '+previewRows.length+' 条，共 '+Number(totals.customers||0).toLocaleString()+' 条；点“私域客户池”查看已加载全部真实客户。</p></div><button class="btn" onclick="go(&quot;customer&quot;)">查看全部</button></div><table><tr><th>客户</th><th>企微信息</th><th>来源</th><th>生命周期</th><th>标签</th></tr>'+customerRows+'</table></div>';
+  }
+  function renderRealCustomerPage(){
+    const page=document.getElementById('customer');
+    if(!page)return;
+    const rows=realCustomerEntries().map(([id,x])=>'<tr><td>'+escHtml(x.name)+'<br><span class="mini">'+escHtml(id)+'</span></td><td>'+escHtml(x.wecom||'-')+'</td><td>'+escHtml(x.source||'-')+'</td><td>'+escHtml(x.owner||'-')+'</td><td>'+escHtml(x.stage||'-')+'</td><td>'+tagHtml(x.tags||[])+'</td><td><button class="btn" onclick="openRealCustomer(&quot;'+escHtml(id)+'&quot;)">客户详情</button></td></tr>').join('');
+    page.innerHTML=flashHtml()+'<div class="toolbar"><button class="btn" onclick="loadRealSCRMData()">刷新真实数据</button><select class="select"><option>全部真实客户</option></select><input class="input" placeholder="搜索姓名/企微信息" disabled /></div><div class="card"><div class="section-title"><div><h3>真实客户池</h3><p>仅展示从 monobase-v2 底座同步到 jianghu-scrm 的真实数据，已隐藏原型测试数据。</p></div></div><table><tr><th>客户</th><th>企微信息</th><th>来源</th><th>服务归属</th><th>生命周期</th><th>标签</th><th>操作</th></tr>'+rows+'</table></div>';
+    appState.flash='';
+  }
+  function openRealCustomer(id){
+    const x=appState.customers[id];
+    if(!x)return;
+    showDrawer('真实客户详情：'+x.name,'<div class="profile"><div class="avatar">'+escHtml(x.avatar||x.name.slice(0,1)||'客')+'</div><div><h3 style="margin:0 0 6px">'+escHtml(x.name)+'</h3><div class="muted">企微：'+escHtml(x.wecom||'-')+'</div><p>'+tagHtml(x.tags||[])+'</p></div></div><table><tr><th>字段</th><th>真实值</th></tr><tr><td>客户 ID</td><td>'+escHtml(id)+'</td></tr><tr><td>来源</td><td>'+escHtml(x.sourceFull||x.source||'-')+'</td></tr><tr><td>服务归属</td><td>'+escHtml(x.owner||'-')+'</td></tr><tr><td>生命周期</td><td>'+escHtml(x.stage||'-')+'</td></tr><tr><td>最近同步</td><td>'+escHtml((x.timeline||[])[0]||'-')+'</td></tr></table>');
+  }
+  function renderRealSettingPage(){
+    const page=document.getElementById('setting');
+    if(!page)return;
+    const tags=appState.managedTags||[];
+    const tagRows=tags.map(tag=>'<tr><td>'+realBadge(tag.name)+'</td><td>'+escHtml(tag.group||'-')+'</td><td>'+realBadge(tag.status||'正常',tag.status==='停用'?'red':'green')+'</td><td>'+Number(tag.customers||0).toLocaleString()+'</td><td>'+escHtml(tag.wecom||'-')+'</td></tr>').join('');
+    const groupRows=(appState.tagGroups||[]).map(group=>'<tr><td>'+escHtml(group.name)+'</td><td>'+tagHtml(group.tags||[])+'</td><td>'+escHtml((group.stores||[]).join('、')||'全部门店')+'</td></tr>').join('');
+    page.innerHTML='<div class="setting-hero"><div><h2>真实标签</h2><p class="muted">当前只展示底座同步到 jianghu-scrm 的真实标签和标签组。</p></div><div class="setting-actions"><button class="btn" onclick="loadRealSCRMData()">刷新真实数据</button></div></div><div class="grid grid-2"><div class="card"><h3>真实标签</h3><table><tr><th>标签</th><th>标签组</th><th>状态</th><th>客户数</th><th>企微映射</th></tr>'+tagRows+'</table></div><div class="card"><h3>真实标签组</h3><table><tr><th>标签组</th><th>组内标签</th><th>范围</th></tr>'+groupRows+'</table></div></div>';
+  }
+  function renderRealCodePage(){
+    const page=document.getElementById('code');
+    if(!page)return;
+    const ways=appState.realContactWays||[];
+    const rows=ways.length?ways.map(way=>'<tr><td>'+escHtml(way.name||'-')+'<br><span class="mini">config_id: '+escHtml(way.configId||'-')+'</span></td><td>'+escHtml(way.state||'-')+'</td><td>'+escHtml((way.boundUserids||[]).join('、')||'-')+'</td><td>'+realBadge(way.status||'active','green')+'</td><td>'+Number(way.customerCount||0).toLocaleString()+'</td><td><button class="btn" onclick="openRealContactWay(&quot;'+escHtml(way.id)+'&quot;)">查看二维码</button></td></tr>').join(''):'<tr><td colspan="6">暂无真实联系我活码</td></tr>';
+    page.innerHTML='<div class="toolbar"><button class="btn" onclick="loadRealSCRMData()">刷新真实数据</button></div><div class="card"><div class="section-title"><div><h3>真实企业微信联系我活码</h3><p>来自企业微信客户联系接口，展示真实 config_id、二维码和绑定成员。</p></div></div><table><tr><th>活码</th><th>State</th><th>绑定成员</th><th>状态</th><th>客户数</th><th>操作</th></tr>'+rows+'</table></div>';
+  }
+  function openRealContactWay(id){
+    const way=(appState.realContactWays||[]).find(item=>item.id===id);
+    if(!way)return;
+    const img=way.qrCodeUrl?'<p><img src="'+escHtml(way.qrCodeUrl)+'" alt="企业微信联系我二维码" style="width:220px;height:220px;object-fit:contain;border:1px solid var(--border);border-radius:8px;background:#fff"></p>':'<p class="muted">暂无二维码链接</p>';
+    showDrawer('真实联系我活码：'+(way.name||''),img+'<table><tr><th>字段</th><th>真实值</th></tr><tr><td>config_id</td><td>'+escHtml(way.configId||'-')+'</td></tr><tr><td>state</td><td>'+escHtml(way.state||'-')+'</td></tr><tr><td>绑定成员</td><td>'+escHtml((way.boundUserids||[]).join('、')||'-')+'</td></tr><tr><td>二维码 URL</td><td>'+escHtml(way.qrCodeUrl||'-')+'</td></tr></table>');
+  }
+  function renderRealGuidePage(){
+    const page=document.getElementById('guide');
+    if(!page)return;
+    const users=appState.realWeComUsers||[];
+    const rows=users.length?users.map(user=>'<tr><td>'+escHtml(user.name||user.userid||'-')+'<br><span class="mini">userid: '+escHtml(user.userid||'-')+'</span></td><td>'+escHtml(user.departmentName||'-')+'</td><td>'+realBadge(user.roleType||'unknown',user.roleType==='guide'?'green':'')+'</td><td>'+escHtml(user.syncedAt||'-')+'</td></tr>').join(''):'<tr><td colspan="4">暂无真实企业微信成员</td></tr>';
+    page.innerHTML='<div class="toolbar"><button class="btn" onclick="loadRealSCRMData()">刷新真实数据</button></div><div class="card"><div class="section-title"><div><h3>真实企业微信成员</h3><p>当前应用没有通讯录详情权限，已用客户联系接口同步真实 userid；角色可后续调整为 sales / guide。</p></div></div><table><tr><th>成员</th><th>来源部门</th><th>业务角色</th><th>同步时间</th></tr>'+rows+'</table></div>';
+  }
+  function renderRealOnlyPage(id){
+    if(!realDataReady)return;
+    if(id==='dashboard')return renderRealDashboard();
+    if(id==='customer')return renderRealCustomerPage();
+    if(id==='setting')return renderRealSettingPage();
+    if(id==='code')return renderRealCodePage();
+    if(id==='store')return renderRealEmptyPage(id,'门店','当前没有真实门店私域配置数据，已隐藏原型测试门店。');
+    if(id==='guide')return renderRealGuidePage();
+    if(id==='touch')return renderRealEmptyPage(id,'触达运营','当前没有真实欢迎语、群发、SOP 或行为雷达数据，已隐藏原型测试触达数据。');
+    if(id==='group')return renderRealEmptyPage(id,'客户群运营','当前没有真实客户群数据，已隐藏原型测试群数据。');
+  }
+  async function loadRealSCRMData(){
+    try{
+      const [customers,tags,status,wecomUsers,contactWays]=await Promise.all([
+        apiPaginatedAll('/api/customers',100),
+        apiPaginatedAll('/api/tags',100),
+        apiJSON('/api/monobase/status').catch(()=>null),
+        apiJSON('/api/wecom/users').catch(()=>[]),
+        apiJSON('/api/wecom/contact-way').catch(()=>[])
+      ]);
+      const customerRows=pageItems(customers);
+      const tagRows=pageItems(tags);
+      if(!customerRows.length)throw new Error('customers empty');
+      applyRealCustomers(customerRows);
+      applyRealTags(tagRows);
+      realDataReady=true;
+      appState.realDataTotals={customers:customers.page?.total||customerRows.length,tags:tags.page?.total||tagRows.length};
+      appState.realSyncStates=status?.states||[];
+      appState.realDepartmentTotal=Number((status?.states||[]).find(item=>item.resource==='departments')?.lastTotal||0);
+      appState.realWeComUsers=Array.isArray(wecomUsers)?wecomUsers:[];
+      appState.realContactWays=Array.isArray(contactWays)?contactWays:[];
+      appState.flash='已加载真实数据：客户 '+appState.realDataTotals.customers+' 个，标签 '+appState.realDataTotals.tags+' 个。';
+      const meta=document.querySelector('.topbar .meta');
+      if(meta)meta.innerHTML='已连接真实数据 <span class="mini">客户 '+appState.realDataTotals.customers+' / 标签 '+appState.realDataTotals.tags+' / 成员 '+appState.realWeComUsers.length+' / 活码 '+appState.realContactWays.length+(status?.configured?' / 同步正常':'')+'</span>';
+      renderActiveRealPage();
+    }catch(err){
+      realDataReady=false;
+      console.warn('real SCRM data unavailable',err);
+      sanitizeDemoData(document);
+    }
+  }
+  let sanitizingDemoData=false;
+  function sanitizeDemoData(root=document){
+    if(realDataReady)return;
+    if(sanitizingDemoData)return;
+    if(root?.id==='data-quality-center'||root?.closest?.('#data-quality-center'))return;
+    if(root?.id==='customer-ops-center'||root?.closest?.('#customer-ops-center'))return;
+    sanitizingDemoData=true;
+    try{
+      root.querySelectorAll('table').forEach(table=>{
+        if(table.dataset.realDataEmpty==='1')return;
+        const firstRow=table.querySelector('tr');
+        if(!firstRow)return;
+        const columns=Math.max(1,firstRow.children.length||1);
+        [...table.querySelectorAll('tr')].slice(1).forEach(row=>row.remove());
+        const empty=document.createElement('tr');
+        empty.className='real-data-empty-row';
+        empty.innerHTML='<td colspan="'+columns+'">'+REAL_DATA_PLACEHOLDER+'</td>';
+        table.appendChild(empty);
+        table.dataset.realDataEmpty='1';
+      });
+      root.querySelectorAll('.kpi .num').forEach(el=>{el.textContent='0'});
+      root.querySelectorAll('.trend').forEach(el=>{el.textContent='等待真实数据'});
+      root.querySelectorAll('.bar').forEach(el=>{el.style.height='0%';});
+      root.querySelectorAll('.metric-list').forEach(list=>{
+        if(list.dataset.realDataEmpty==='1')return;
+        list.innerHTML='<div class="metric-row"><span>'+REAL_DATA_PLACEHOLDER+'</span><button class="btn">查看</button></div>';
+        list.dataset.realDataEmpty='1';
+      });
+      root.querySelectorAll('.timeline').forEach(list=>{
+        if(list.dataset.realDataEmpty==='1')return;
+        list.innerHTML='<div><b>'+REAL_DATA_PLACEHOLDER+'</b><span class="mini">真实客户事件接入后显示。</span></div>';
+        list.dataset.realDataEmpty='1';
+      });
+      root.querySelectorAll('.tag-group-list,.tag-pill-row,.chips').forEach(list=>{
+        if(list.dataset.realDataEmpty==='1')return;
+        list.innerHTML='<span class="tag">'+REAL_DATA_PLACEHOLDER+'</span>';
+        list.dataset.realDataEmpty='1';
+      });
+      root.querySelectorAll('input[value]').forEach(input=>input.value='');
+      root.querySelectorAll('textarea').forEach(input=>input.value='');
+    }finally{
+      sanitizingDemoData=false;
+    }
+  }
+  const originalGo=go;
+  go=function(id){
+    originalGo(id);
+    renderRealOnlyPage(id);
+    setTimeout(()=>sanitizeDemoData(document.getElementById(id)||document),0);
+  }
+  const originalShowDrawer=showDrawer;
+  showDrawer=function(title,html){
+    originalShowDrawer(title,html);
+    setTimeout(()=>sanitizeDemoData(document.getElementById('drawerBody')||document),0);
+  }
+  if(typeof showWideDrawer==='function'){
+    const originalShowWideDrawer=showWideDrawer;
+    showWideDrawer=function(title,html){
+      originalShowWideDrawer(title,html);
+      setTimeout(()=>sanitizeDemoData(document.getElementById('drawerBody')||document),0);
+    }
+  }
+  function apiPostJSON(path,payload={}){
+    return fetch(path,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload)}).then(async res=>{
+      if(!res.ok)throw new Error(await res.text()||('HTTP '+res.status));
+      return res.json();
+    });
+  }
+  function ensureSCRMCodePages(){
+    const nav=document.getElementById('nav');
+    const content=document.querySelector('.content');
+    if(nav&&!nav.querySelector('[data-page="hq-workbench"]')){
+      nav.insertAdjacentHTML('beforeend','<button data-page="hq-workbench">总部工作台</button><button data-page="wecom-assets">企业微信活码资产</button><button data-page="manager-codes">门店店长码</button><button data-page="assignment-records">客户分配记录</button><button data-page="data-quality-center">资料补全中心</button><button data-page="customer-ops-center">客户运营中心</button><button data-page="anomaly-monitor">异常监控</button>');
+    }
+    [['hq-workbench','总部工作台'],['wecom-assets','企业微信活码资产'],['manager-codes','门店店长码'],['assignment-records','客户分配记录'],['data-quality-center','资料补全中心'],['customer-ops-center','客户运营中心'],['anomaly-monitor','异常监控']].forEach(([id,title])=>{
+      titleMap[id]=title;
+      if(content&&!document.getElementById(id))content.insertAdjacentHTML('beforeend','<section id="'+id+'" class="page"></section>');
+    });
+  }
+  function codeAssetByConfigId(configId){
+    return (appState.realContactWays||[]).find(item=>item.configId===configId);
+  }
+  function bindingByConfigId(configId){
+    return (appState.scrmBindings||[]).find(item=>item.configId===configId);
+  }
+  function storeOptionsHtml(selected=''){
+    const stores=appState.realStores||[];
+    if(!stores.length)return '<option value="">暂无门店</option>';
+    return stores.map(store=>'<option value="'+escHtml(store.id)+'" '+(store.id===selected?'selected':'')+'>'+escHtml(store.name||store.storeName||store.id)+'</option>').join('');
+  }
+  function wecomUserOptionsHtml(selected=''){
+    const users=appState.realWeComUsers||[];
+    const options=users.map(user=>{
+      const id=user.userid||user.userId||user.UserID||'';
+      const name=user.name||id;
+      return '<option value="'+escHtml(id)+'" '+(id===selected?'selected':'')+'>'+escHtml(name+' · '+id)+'</option>';
+    }).join('');
+    return '<option value="">手动输入/未选择</option>'+options;
+  }
+  function guideNameFromPool(binding,userid){
+    const guide=(appState.scrmGuidePools?.[binding.storeId]||[]).find(item=>item.guideUserid===userid);
+    return guide?.guideName||userid||'-';
+  }
+  function nextGuideForBinding(binding){
+    const pool=(appState.scrmGuidePools?.[binding.storeId]||[]).filter(item=>item.status==='active'&&(Number(item.dailyLimit||0)<=0||Number(item.assignedToday||0)<Number(item.dailyLimit||0)));
+    if(!pool.length)return '-';
+    const index=Number(binding.nextIndex||0)%pool.length;
+    return guideNameFromPool(binding,pool[index]?.guideUserid);
+  }
+  function todayAssignmentsForBinding(binding){
+    const today=new Date().toISOString().slice(0,10);
+    return (appState.scrmAssignments||[]).filter(item=>item.bindingId===binding.id&&(item.addTime||item.createdAt||'').slice(0,10)===today).length;
+  }
+  function assignmentFilterQuery(filters={}){
+    const params=new URLSearchParams({page:'1',pageSize:'200'});
+    ['storeId','managerUserid','guideUserid','configId','status','start','end'].forEach(key=>{
+      const value=String(filters[key]||'').trim();
+      if(value)params.set(key,value);
+    });
+    return params.toString();
+  }
+  async function loadSCRMCodeData(filters=appState.assignmentFilters||{}){
+    const hasAssignmentFilters=Object.values(filters||{}).some(value=>String(value||'').trim());
+    const [bindings,assignments,allAssignments,stores,doctor,retries,integrationLog]=await Promise.all([
+      apiJSON('/api/scrm/contact-way-bindings').catch(()=>[]),
+      apiJSON('/api/scrm/customer-assignments?'+assignmentFilterQuery(filters)).catch(()=>({data:[]})),
+      hasAssignmentFilters?apiJSON('/api/scrm/customer-assignments?page=1&pageSize=200').catch(()=>({data:[]})):Promise.resolve(null),
+      apiJSON('/api/stores').catch(()=>[]),
+      apiJSON('/api/scrm/wecom/doctor').catch(err=>({status:'attention',error:err.message,checks:[]})),
+      apiJSON('/api/scrm/wecom/retries').catch(()=>[]),
+      apiJSON('/api/scrm/wecom/integration-log').catch(()=>null)
+    ]);
+    appState.scrmBindings=Array.isArray(bindings)?bindings:[];
+    appState.scrmAssignments=pageItems(assignments);
+    appState.scrmAllAssignments=hasAssignmentFilters?pageItems(allAssignments):appState.scrmAssignments;
+    appState.realStores=pageItems(stores);
+    appState.wecomDoctor=doctor;
+    appState.wecomRetryTasks=Array.isArray(retries)?retries:[];
+    appState.wecomIntegrationLog=integrationLog;
+    appState.scrmGuidePools={};
+    await Promise.all((appState.scrmBindings||[]).map(async binding=>{
+      appState.scrmGuidePools[binding.storeId]=await apiJSON('/api/scrm/stores/'+encodeURIComponent(binding.storeId)+'/guides').catch(()=>[]);
+    }));
+  }
+  async function refreshSCRMCodePages(activeId){
+    try{
+      await Promise.all([loadSCRMCodeData(),loadRealSCRMData().catch(()=>{})]);
+      appState.flash='已刷新总部工作台、企业微信活码资产、门店店长码、客户分配记录和异常监控。';
+      renderSCRMCodePage(activeId||document.querySelector('.page.active')?.id||'wecom-assets');
+    }catch(err){
+      appState.flash='刷新失败：'+err.message;
+      renderSCRMCodePage(activeId||'wecom-assets');
+    }
+  }
+  function allAssignments(){
+    return appState.scrmAllAssignments||appState.scrmAssignments||[];
+  }
+  function isToday(value){
+    if(!value)return false;
+    return String(value).slice(0,10)===new Date().toISOString().slice(0,10);
+  }
+  function groupCount(rows,keyFn){
+    const map=new Map();
+    rows.forEach(row=>{
+      const key=keyFn(row)||'-';
+      map.set(key,(map.get(key)||0)+1);
+    });
+    return [...map.entries()].sort((a,b)=>b[1]-a[1]);
+  }
+  function storeNameById(storeId){
+    const store=(appState.realStores||[]).find(item=>item.id===storeId);
+    return store?.name||store?.storeName||storeId||'-';
+  }
+  function storeRegion(store){
+    return store.region||store.brandRegion||store.area||'未分区';
+  }
+  function bindingForStore(storeId){
+    return (appState.scrmBindings||[]).find(binding=>binding.storeId===storeId);
+  }
+  function availableGuideCount(binding){
+    if(!binding)return 0;
+    return (appState.scrmGuidePools?.[binding.storeId]||[]).filter(guide=>guide.status==='active'&&(Number(guide.dailyLimit||0)<=0||Number(guide.assignedToday||0)<Number(guide.dailyLimit||0))).length;
+  }
+  function buildHQAnomalies(){
+    const anomalies=[];
+    const bindings=appState.scrmBindings||[];
+    (appState.realContactWays||[]).forEach(asset=>{
+      const binding=bindingByConfigId(asset.configId);
+      if(!binding)anomalies.push({level:'orange',type:'未绑定活码',scope:asset.configId||'-',message:'企业微信原始 config_id 还没有绑定为门店店长码。',action:'绑定为店长码',page:'wecom-assets'});
+      if(!asset.qrCodeUrl)anomalies.push({level:'red',type:'二维码异常',scope:asset.configId||'-',message:'企业微信活码缺少二维码 URL。',action:'查看资产',page:'wecom-assets'});
+      if(asset.status&&asset.status!=='active')anomalies.push({level:'orange',type:'资产状态',scope:asset.configId||'-',message:'企业微信活码状态不是 active：'+asset.status,action:'查看资产',page:'wecom-assets'});
+    });
+    (appState.realStores||[]).forEach(store=>{
+      if(!bindingForStore(store.id))anomalies.push({level:'orange',type:'门店未接入',scope:store.name||store.id,message:'门店还没有绑定店长码。',action:'查看门店店长码',page:'manager-codes'});
+    });
+    bindings.forEach(binding=>{
+      const pool=appState.scrmGuidePools?.[binding.storeId]||[];
+      if(binding.lastError)anomalies.push({level:'red',type:'企微接口异常',scope:binding.configId,message:binding.lastError,action:'查看店长码',page:'manager-codes'});
+      if(binding.status==='paused')anomalies.push({level:'orange',type:'店长码暂停',scope:binding.storeName||binding.configId,message:'门店店长码已暂停，客户添加后的轮询不会继续推进。',action:'启用店长码',page:'manager-codes'});
+      if(!pool.length)anomalies.push({level:'red',type:'导购池异常',scope:binding.storeName||binding.configId,message:'该门店店长码没有配置导购池。',action:'配置导购池',page:'manager-codes'});
+      if(pool.length&&!availableGuideCount(binding))anomalies.push({level:'red',type:'无可用导购',scope:binding.storeName||binding.configId,message:'导购池中没有 active 且未达到日上限的导购。',action:'调整导购池',page:'manager-codes'});
+      if(!binding.currentGuideUserid)anomalies.push({level:'orange',type:'未激活',scope:binding.storeName||binding.configId,message:'店长码还没有激活到第一位可用导购。',action:'激活店长码',page:'manager-codes'});
+    });
+    allAssignments().forEach(item=>{
+      if(item.status&&item.status!=='added')anomalies.push({level:'red',type:'分配异常',scope:item.externalUserid||item.configId||'-',message:'客户分配记录状态为 '+item.status,action:'查看记录',page:'assignment-records'});
+    });
+    (appState.wecomRetryTasks||[]).filter(task=>task.status!=='resolved').forEach(task=>{
+      anomalies.push({level:'red',type:'切换重试',scope:task.configId||task.bindingId,message:'update_contact_way 失败，目标导购 '+(task.targetGuideUserid||'-')+'；原因：'+(task.failedReason||'-'),action:'查看重试',page:'anomaly-monitor'});
+    });
+    dqGroups().filter(group=>group.topPriority==='P0'&&group.status==='pending').forEach(group=>{
+      anomalies.push({level:'red',type:'资料缺失',scope:group.targetName,message:group.missingFields.filter(field=>field.priority==='P0').map(field=>field.fieldLabel).join('、')+' 缺失，可能影响客户分配、门店管理或权限同步。',action:'去补全',page:'data-quality-center'});
+    });
+    ensureCustomerOpsState();
+    const opsExceptions=(appState.customerOps.exceptions||[]).filter(item=>item.status!=='resolved'&&item.status!=='ignored');
+    if(opsExceptions.length){
+      opsExceptions.forEach(item=>{
+        anomalies.push({level:item.severity==='P0'?'red':'orange',type:item.title||'客户运营异常',scope:item.customerName||item.storeName||item.id,message:item.description||item.suggestion||'客户需要运营介入。',action:'处理运营异常',page:'customer-ops-center'});
+      });
+    }else{
+      (appState.customerOps.tasks||[]).filter(task=>task.status==='overdue').forEach(task=>{
+        anomalies.push({level:'red',type:'跟进任务逾期',scope:task.title,message:'负责人 '+task.guide+' 未在 '+task.dueTime+' 前完成任务：'+task.description,action:'处理任务',page:'customer-ops-center'});
+      });
+      (appState.customerOps.customers||[]).filter(customer=>customer.stage==='first_follow_pending'||customer.stage==='dormant').forEach(customer=>{
+        anomalies.push({level:customer.stage==='first_follow_pending'?'red':'orange',type:'客户运营异常',scope:customer.name,message:customer.risk||'客户需要运营介入。',action:'查看客户',page:'customer-ops-center'});
+      });
+    }
+    return anomalies;
+  }
+  function renderRankRows(rows,emptyLabel){
+    return rows.length?rows.slice(0,8).map(([name,count],index)=>'<tr><td>'+Number(index+1)+'</td><td>'+escHtml(name)+'</td><td>'+Number(count).toLocaleString()+'</td></tr>').join(''):'<tr><td colspan="3">'+escHtml(emptyLabel)+'</td></tr>';
+  }
+  function renderDoctorRows(){
+    const checks=appState.wecomDoctor?.checks||[];
+    return checks.length?checks.map(check=>'<tr><td>'+escHtml(check.name)+'</td><td>'+realBadge(check.status==='ok'?'正常':'注意',check.status==='ok'?'green':'orange')+'</td><td>'+escHtml(check.message||'-')+'</td></tr>').join(''):'<tr><td colspan="3">暂无企业微信联调自检结果。</td></tr>';
+  }
+  function renderRetryRows(limit=5){
+    const tasks=appState.wecomRetryTasks||[];
+    return tasks.length?tasks.slice(0,limit).map(task=>'<tr><td>'+escHtml(task.configId||'-')+'</td><td>'+escHtml(task.targetGuideUserid||'-')+'</td><td>'+realBadge(task.status||'-',task.status==='resolved'?'green':'red')+'</td><td>'+escHtml(task.failedReason||'-')+'</td><td><button class="btn" onclick="retryWeComTask(&quot;'+escHtml(task.id)+'&quot;)">重试</button></td></tr>').join(''):'<tr><td colspan="5">暂无 update_contact_way 失败重试任务。</td></tr>';
+  }
+  const customerStageMap={
+    new_lead:'新线索',
+    added_wecom:'已加企微',
+    pending_assignment:'待分配',
+    assigned:'已分配',
+    first_follow_pending:'待首次跟进',
+    following:'跟进中',
+    high_intent:'高意向',
+    purchased:'已成交',
+    repurchase:'复购客户',
+    dormant:'沉睡客户',
+    lost:'流失客户',
+    blocked:'黑名单'
+  };
+  const customerStageFlow=['new_lead','added_wecom','pending_assignment','assigned','first_follow_pending','following','high_intent','purchased','repurchase','dormant','lost','blocked'];
+  const sopStatusMap={pending:'待处理',processing:'处理中',completed:'已完成',overdue:'已逾期',cancelled:'已取消',ignored:'已忽略'};
+  const sopPriorityTone={P0:'red',P1:'orange',P2:'teal'};
+  function ensureCustomerOpsState(){
+    if(appState.customerOps)return;
+    appState.customerOps={
+      mode:'hq',
+      filters:{stage:'all',tag:'all',status:'all',keyword:''},
+      customers:[
+        {id:'oc1',name:'陈女士',mobile:'138****8821',store:'深圳南山万象天地店',region:'华南',guide:'江诗颖',stage:'high_intent',source:'小红书',tags:['小红书来源','高意向','女装意向'],lastFollowUp:'2026-07-06 15:10',lastInteraction:'2026-07-06 15:28',dealStatus:'未成交',risk:'24小时内需二次跟进',timeline:['2026-07-06 14:28 扫码进入','2026-07-06 14:29 已加企业微信','2026-07-06 14:31 分配给导购江诗颖','2026-07-06 15:10 首次跟进，客户关注夏季连衣裙','2026-07-06 15:28 标记为高意向']},
+        {id:'oc2',name:'王女士',mobile:'136****9120',store:'广州天河代理店',region:'华南',guide:'张婷',stage:'purchased',source:'门店扫码',tags:['门店扫码','老客户','已成交'],lastFollowUp:'2026-07-05 20:10',lastInteraction:'2026-07-05 20:30',dealStatus:'已成交 ¥980',risk:'待售后回访',timeline:['2026-07-04 10:20 门店扫码入池','2026-07-04 10:23 分配给张婷','2026-07-05 20:10 完成成交','2026-07-05 20:30 生成售后回访任务']},
+        {id:'oc3',name:'李先生',mobile:'未绑定手机号',store:'深圳南山万象天地店',region:'华南',guide:'王敏',stage:'first_follow_pending',source:'门店物料码',tags:['待补资料','首次跟进'],lastFollowUp:'',lastInteraction:'2026-07-06 13:02',dealStatus:'未成交',risk:'超过30分钟未首次跟进',timeline:['2026-07-06 13:02 门店物料码入池','2026-07-06 13:05 完成分配','2026-07-06 13:35 首次跟进任务逾期']},
+        {id:'oc4',name:'赵女士',mobile:'',store:'杭州湖滨银泰店',region:'华东',guide:'刘雨',stage:'dormant',source:'抖音',tags:['抖音来源','童装意向','沉睡客户'],lastFollowUp:'2026-05-28 11:00',lastInteraction:'2026-06-01 09:10',dealStatus:'未成交',risk:'30天未互动',timeline:['2026-05-20 抖音表单入池','2026-05-21 标记童装意向','2026-05-28 最近一次跟进','2026-07-06 生成沉睡唤醒任务']}
+      ],
+      tasks:[
+        {id:'ot1',type:'新客户首次跟进',title:'首次跟进李先生',customerId:'oc3',store:'深圳南山万象天地店',guide:'王敏',priority:'P0',status:'overdue',dueTime:'2026-07-06 13:35',source:'客户分配',description:'客户已分配但超过30分钟未首次跟进。'},
+        {id:'ot2',type:'高意向客户回访',title:'回访陈女士连衣裙需求',customerId:'oc1',store:'深圳南山万象天地店',guide:'江诗颖',priority:'P1',status:'pending',dueTime:'2026-07-06 18:00',source:'SOP',description:'客户打开活动链接并被标记为高意向，需要二次触达。'},
+        {id:'ot3',type:'成交客户售后回访',title:'王女士成交后售后回访',customerId:'oc2',store:'广州天河代理店',guide:'张婷',priority:'P2',status:'pending',dueTime:'2026-07-08 11:00',source:'成交回写',description:'成交后第3天确认体验并推荐搭配。'},
+        {id:'ot4',type:'沉睡客户唤醒',title:'赵女士30天未互动唤醒',customerId:'oc4',store:'杭州湖滨银泰店',guide:'刘雨',priority:'P1',status:'pending',dueTime:'2026-07-06 20:00',source:'自动规则',description:'客户超过30天未互动，建议使用童装上新话术。'}
+      ],
+      materials:[
+        {id:'om1',title:'新客欢迎 + 需求确认',type:'首次跟进话术',stage:'first_follow_pending',tags:['首次跟进'],status:'已启用',content:'您好，我是门店顾问。看到您刚添加企业微信，我可以先了解一下您最近想看的品类和预算，帮您更快筛选。'},
+        {id:'om2',title:'高意向连衣裙逼单',type:'高意向跟进话术',stage:'high_intent',tags:['高意向','女装意向'],status:'已启用',content:'这款连衣裙今天门店还有试穿名额，老客价可以保留到今晚。我帮您约一个到店时间？'},
+        {id:'om3',title:'成交后售后回访',type:'售后回访话术',stage:'purchased',tags:['已成交'],status:'已启用',content:'您上次购买的商品体验怎么样？如果尺码或搭配有问题，我可以帮您一起调整。'},
+        {id:'om4',title:'沉睡客户唤醒',type:'沉睡唤醒话术',stage:'dormant',tags:['沉睡客户'],status:'已启用',content:'我们最近上新了几款适合您之前关注风格的款式，老客户有专属试穿福利。'}
+      ],
+      logs:[
+        {time:'2026-07-06 15:28',operator:'江诗颖',action:'阶段流转',target:'陈女士',detail:'跟进中 -> 高意向'},
+        {time:'2026-07-06 13:35',operator:'系统',action:'任务逾期',target:'李先生',detail:'首次跟进任务超时进入异常监控'}
+	      ]
+	    };
+	  }
+  function opsApiHeaders(){
+    ensureCustomerOpsState();
+    const mode=appState.customerOps.mode||'hq';
+    if(mode==='store')return {'Accept':'application/json','X-SCRM-Role':'store_manager','X-SCRM-Store-ID':'s1'};
+    if(mode==='guide')return {'Accept':'application/json','X-SCRM-Role':'guide','X-SCRM-Guide-ID':'g1'};
+    return {'Accept':'application/json','X-SCRM-Role':'hq_admin'};
+  }
+  function opsJSON(path,options={}){
+    const headers={...opsApiHeaders(),...(options.headers||{})};
+    return fetch(path,{...options,headers,cache:'no-store'}).then(async res=>{
+      if(!res.ok)throw new Error(await res.text()||('HTTP '+res.status));
+      return res.json();
+    });
+  }
+  function opsWriteJSON(path,method,payload={}){
+    return opsJSON(path,{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  }
+  function mapOpsCustomer(row){
+    return {
+      id:row.id,
+      name:row.name||row.nickname||row.id,
+      mobile:row.mobile||'',
+      store:row.storeName||'-',
+      region:row.regionName||'-',
+      guide:row.ownerGuideName||'-',
+      stage:row.lifecycleStage||'new_lead',
+      source:row.sourceChannel||'-',
+      tags:Array.isArray(row.tags)?row.tags:[],
+      lastFollowUp:row.lastFollowUpTime||'',
+      lastInteraction:row.lastInteractionTime||'',
+      dealStatus:row.dealStatus||'-',
+      risk:row.risk||'',
+      timeline:Array.isArray(row.timeline)?row.timeline:[]
+    };
+  }
+  function mapOpsTask(row){
+    return {
+      id:row.id,
+      type:row.taskType||row.type||'-',
+      title:row.title||'-',
+      customerId:row.customerId||'',
+      store:row.storeName||'-',
+      guide:row.assignedToName||'-',
+      priority:row.priority||'P2',
+      status:row.status||'pending',
+      dueTime:row.dueTime||'-',
+      source:row.source||'-',
+      description:row.description||''
+    };
+  }
+  function mapOpsMaterial(row){
+    return {
+      id:row.id,
+      title:row.title||'-',
+      type:row.materialType||'-',
+      stage:row.applicableStage||'following',
+      tags:Array.isArray(row.applicableTags)?row.applicableTags:[],
+      status:row.status==='enabled'?'已启用':(row.status||'已启用'),
+      content:row.content||''
+    };
+  }
+  function mapOpsTimeline(row){
+    return `${row.createdAt||''} ${row.title||row.eventType||''}${row.content?'：'+row.content:''}`.trim();
+  }
+  function applyCustomerOpsBootstrap(payload){
+    ensureCustomerOpsState();
+    appState.customerOps.customers=(payload.customers||[]).map(mapOpsCustomer);
+    appState.customerOps.tasks=(payload.tasks||[]).map(mapOpsTask);
+    appState.customerOps.materials=(payload.materials||[]).map(mapOpsMaterial);
+    appState.customerOps.tags=payload.tags||[];
+    appState.customerOps.exceptions=payload.exceptions||[];
+  }
+  async function refreshCustomerOpsFromAPI(){
+    ensureCustomerOpsState();
+    const payload=await opsJSON('/api/customer-ops/bootstrap');
+    applyCustomerOpsBootstrap(payload);
+    renderCustomerOpsCenterPage();
+  }
+  async function loadOpsCustomerDetail(customerId){
+    const payload=await opsJSON('/api/customers/'+encodeURIComponent(customerId));
+    const customer=mapOpsCustomer(payload.customer||{});
+    customer.timeline=(payload.timeline||[]).map(mapOpsTimeline);
+    return {
+      customer,
+      tasks:(payload.tasks||[]).map(mapOpsTask),
+      materials:(payload.materials||[]).map(mapOpsMaterial),
+      followups:payload.followups||[]
+    };
+  }
+  function opsCustomerById(id){ensureCustomerOpsState();return appState.customerOps.customers.find(item=>item.id===id)}
+  function opsTaskById(id){ensureCustomerOpsState();return appState.customerOps.tasks.find(item=>item.id===id)}
+  function opsNow(){return new Date().toLocaleString('zh-CN',{hour12:false})}
+  function opsBadge(text,tone=''){return '<span class="tag '+tone+'">'+escHtml(text||'-')+'</span>'}
+  function opsStageBadge(stage){
+    const tone=stage==='high_intent'?'orange':stage==='purchased'||stage==='repurchase'?'green':stage==='dormant'||stage==='lost'||stage==='blocked'?'red':'';
+    return opsBadge(customerStageMap[stage]||stage,tone);
+  }
+  function opsFilteredCustomers(){
+    ensureCustomerOpsState();
+    const f=appState.customerOps.filters;
+    return appState.customerOps.customers.filter(customer=>{
+      const text=(customer.name+customer.mobile+customer.store+customer.guide+customer.source+customer.tags.join(',')).toLowerCase();
+      return (f.stage==='all'||customer.stage===f.stage)
+        && (f.tag==='all'||customer.tags.includes(f.tag))
+        && (!f.keyword||text.includes(String(f.keyword).toLowerCase()));
+    });
+  }
+  function opsSummary(){
+    ensureCustomerOpsState();
+    const customers=appState.customerOps.customers;
+    const tasks=appState.customerOps.tasks;
+    return {
+      total:customers.length,
+      highIntent:customers.filter(item=>item.stage==='high_intent').length,
+      dormant:customers.filter(item=>item.stage==='dormant').length,
+      pendingTasks:tasks.filter(item=>item.status==='pending'||item.status==='processing').length,
+      overdueTasks:tasks.filter(item=>item.status==='overdue').length,
+      completionRate:Math.round(tasks.filter(item=>item.status==='completed').length*100/Math.max(1,tasks.length))
+    };
+  }
+  function renderCustomerOpsCenterPage(){
+    ensureCustomerOpsState();
+    const page=document.getElementById('customer-ops-center');
+    if(!page)return;
+    const summary=opsSummary();
+    const f=appState.customerOps.filters;
+    const allTags=[...new Set(appState.customerOps.customers.flatMap(item=>item.tags))];
+    const stageRows=customerStageFlow.map(stage=>{
+      const count=appState.customerOps.customers.filter(item=>item.stage===stage).length;
+      return '<tr><td>'+opsStageBadge(stage)+'</td><td>'+count+'</td><td>'+(count?'<button class="btn" onclick="filterOpsStage(&quot;'+stage+'&quot;)">下钻</button>':'-')+'</td></tr>';
+    }).join('');
+    const customerRows=opsFilteredCustomers().map(customer=>{
+      return '<tr><td><b>'+escHtml(customer.name)+'</b><br><span class="mini">'+escHtml(customer.mobile||'-')+'</span></td><td>'+escHtml(customer.store)+'<br><span class="mini">'+escHtml(customer.guide)+'</span></td><td>'+opsStageBadge(customer.stage)+'</td><td>'+customer.tags.map(tag=>opsBadge(tag,tag.includes('高意向')?'orange':tag.includes('沉睡')?'red':'')).join('')+'</td><td>'+escHtml(customer.lastFollowUp||'待跟进')+'</td><td>'+escHtml(customer.risk||'-')+'</td><td><button class="btn primary" onclick="openOpsCustomer(&quot;'+escHtml(customer.id)+'&quot;)">运营详情</button> <button class="btn" onclick="openOpsFollowUp(&quot;'+escHtml(customer.id)+'&quot;)">记跟进</button></td></tr>';
+    }).join('')||'<tr><td colspan="7">当前筛选下没有客户。</td></tr>';
+    const taskRows=appState.customerOps.tasks.map(task=>{
+      const customer=opsCustomerById(task.customerId)||{};
+      return '<tr><td>'+opsBadge(task.priority,sopPriorityTone[task.priority])+'</td><td><b>'+escHtml(task.title)+'</b><br><span class="mini">'+escHtml(task.type)+' · '+escHtml(task.source)+'</span></td><td>'+escHtml(customer.name||'-')+'</td><td>'+escHtml(task.store)+'<br><span class="mini">'+escHtml(task.guide)+'</span></td><td>'+escHtml(task.dueTime)+'</td><td>'+opsBadge(sopStatusMap[task.status]||task.status,task.status==='overdue'?'red':task.status==='completed'?'green':'orange')+'</td><td><button class="btn" onclick="openOpsTask(&quot;'+escHtml(task.id)+'&quot;)">处理</button></td></tr>';
+    }).join('');
+    const materialRows=appState.customerOps.materials.map(material=>'<tr><td><b>'+escHtml(material.title)+'</b><br><span class="mini">'+escHtml(material.type)+'</span></td><td>'+opsStageBadge(material.stage)+'</td><td>'+material.tags.map(tag=>opsBadge(tag)).join('')+'</td><td>'+opsBadge(material.status,'green')+'</td><td><button class="btn" onclick="openOpsMaterial(&quot;'+escHtml(material.id)+'&quot;)">查看话术</button></td></tr>').join('');
+    page.innerHTML=flashHtml()+'<div class="notice">客户运营中心把“客户来了以后怎么运营”串成一条主链路：生命周期阶段、标签画像、跟进记录、SOP 任务、推荐话术和运营看板。</div><div class="toolbar"><button class="btn '+(appState.customerOps.mode==='hq'?'primary':'')+'" onclick="setOpsMode(&quot;hq&quot;)">总部视角</button><button class="btn '+(appState.customerOps.mode==='store'?'primary':'')+'" onclick="setOpsMode(&quot;store&quot;)">门店视角</button><button class="btn '+(appState.customerOps.mode==='guide'?'primary':'')+'" onclick="setOpsMode(&quot;guide&quot;)">导购视角</button><button class="btn green" onclick="openOpsCreateTask()">总部派发任务</button></div><div class="grid grid-4"><div class="card kpi"><div class="label">客户总数</div><div class="num">'+summary.total+'</div><div class="trend">'+(appState.customerOps.mode==='hq'?'全局':'当前数据范围')+'</div></div><div class="card kpi"><div class="label">高意向客户</div><div class="num">'+summary.highIntent+'</div><div class="trend">今日优先跟进</div></div><div class="card kpi"><div class="label">待处理任务</div><div class="num">'+summary.pendingTasks+'</div><div class="trend">SOP 自动生成</div></div><div class="card kpi"><div class="label">逾期任务</div><div class="num">'+summary.overdueTasks+'</div><div class="trend" style="color:var(--red)">进入异常监控</div></div></div><div class="grid grid-2"><div class="card"><div class="section-title"><div><h3>生命周期分布</h3><p>阶段可配置，关键流转写入客户时间线。</p></div></div><table><tr><th>阶段</th><th>客户数</th><th>下钻</th></tr>'+stageRows+'</table></div><div class="card"><div class="section-title"><div><h3>运营规则闭环</h3><p>客户动作会触发任务，任务完成回写客户时间线。</p></div></div><table><tr><th>触发</th><th>动作</th><th>结果</th></tr><tr><td>加企微并完成分配</td><td>生成首次跟进任务</td><td>逾期进异常</td></tr><tr><td>标记高意向</td><td>生成24小时回访任务</td><td>推荐高意向话术</td></tr><tr><td>成交</td><td>生成售后/复购任务</td><td>更新成交阶段</td></tr><tr><td>30天未互动</td><td>生成沉睡唤醒任务</td><td>触发风险标签</td></tr></table></div></div><div class="toolbar"><select id="ops-stage-filter" class="select"><option value="all">全部阶段</option>'+customerStageFlow.map(stage=>'<option value="'+stage+'">'+customerStageMap[stage]+'</option>').join('')+'</select><select id="ops-tag-filter" class="select"><option value="all">全部标签</option>'+allTags.map(tag=>'<option>'+escHtml(tag)+'</option>').join('')+'</select><input id="ops-keyword-filter" class="input" value="'+escHtml(f.keyword||'')+'" placeholder="搜索客户/门店/导购"><button class="btn primary" onclick="applyOpsFilters()">查询</button><button class="btn" onclick="resetOpsFilters()">重置</button></div><div class="card"><div class="section-title"><div><h3>客户运营列表</h3><p>展示客户阶段、画像标签、最近跟进、风险提示和下一步动作。</p></div></div><table><tr><th>客户</th><th>门店/导购</th><th>阶段</th><th>画像标签</th><th>最近跟进</th><th>风险提示</th><th>操作</th></tr>'+customerRows+'</table></div><div class="card"><div class="section-title"><div><h3>SOP 任务中心</h3><p>支持逾期、负责人、优先级和处理日志。</p></div></div><table><tr><th>优先级</th><th>任务</th><th>客户</th><th>门店/导购</th><th>截止时间</th><th>状态</th><th>操作</th></tr>'+taskRows+'</table></div><div class="card"><div class="section-title"><div><h3>素材库 / 话术库</h3><p>总部维护，门店和导购按客户阶段调用。</p></div><button class="btn" onclick="openOpsMaterialCreate()">新增素材</button></div><table><tr><th>素材</th><th>适用阶段</th><th>适用标签</th><th>状态</th><th>操作</th></tr>'+materialRows+'</table></div>';
+    setSelectValue('ops-stage-filter',f.stage);
+    setSelectValue('ops-tag-filter',f.tag);
+    appState.flash='';
+  }
+  function setOpsMode(mode){
+    ensureCustomerOpsState();
+    appState.customerOps.mode=mode;
+    appState.flash=mode==='hq'?'已切换总部视角：查看全局客户运营。':mode==='store'?'已切换门店视角：聚焦本店任务和客户。':'已切换导购视角：聚焦我的客户和任务。';
+    renderCustomerOpsCenterPage();
+    refreshCustomerOpsFromAPI().catch(err=>{
+      appState.flash='视角已切换，接口刷新失败：'+err.message;
+      renderCustomerOpsCenterPage();
+    });
+  }
+  function filterOpsStage(stage){ensureCustomerOpsState();appState.customerOps.filters.stage=stage;renderCustomerOpsCenterPage()}
+  function applyOpsFilters(){ensureCustomerOpsState();appState.customerOps.filters={stage:document.getElementById('ops-stage-filter')?.value||'all',tag:document.getElementById('ops-tag-filter')?.value||'all',status:'all',keyword:document.getElementById('ops-keyword-filter')?.value||''};renderCustomerOpsCenterPage()}
+  function resetOpsFilters(){ensureCustomerOpsState();appState.customerOps.filters={stage:'all',tag:'all',status:'all',keyword:''};renderCustomerOpsCenterPage()}
+  async function openOpsCustomer(customerId){
+    const fallback=opsCustomerById(customerId);
+    if(!fallback)return;
+    showWideDrawer('客户运营详情：'+fallback.name,'<div class="drawer-form"><div class="notice">正在读取客户详情、时间线、关联任务和推荐素材...</div></div>');
+    let detail;
+    try{
+      detail=await loadOpsCustomerDetail(customerId);
+    }catch(err){
+      appState.flash='客户详情接口暂不可用，已展示本地快照：'+err.message;
+      detail={customer:fallback,tasks:appState.customerOps.tasks.filter(task=>task.customerId===fallback.id),materials:appState.customerOps.materials.filter(item=>item.stage===fallback.stage||item.tags.some(tag=>fallback.tags.includes(tag))),followups:[]};
+    }
+    const customer=detail.customer;
+    const recommended=(detail.materials||[]).slice(0,3);
+    const relatedTasks=detail.tasks||[];
+    const timeline=customer.timeline&&customer.timeline.length?customer.timeline:['暂无客户运营留痕'];
+    showWideDrawer('客户运营详情：'+customer.name,'<div class="drawer-form"><div class="profile"><div class="avatar">'+escHtml(customer.name.slice(0,1))+'</div><div><h3 style="margin:0 0 6px">'+escHtml(customer.name)+'</h3><div class="muted">'+escHtml(customer.mobile||'-')+'｜'+escHtml(customer.store)+'｜导购：'+escHtml(customer.guide)+'</div><p>'+customer.tags.map(tag=>opsBadge(tag,tag.includes('高意向')?'orange':tag.includes('沉睡')?'red':'')).join('')+'</p></div></div><table><tr><th>字段</th><th>值</th></tr><tr><td>来源渠道</td><td>'+escHtml(customer.source)+'</td></tr><tr><td>生命周期</td><td>'+opsStageBadge(customer.stage)+'</td></tr><tr><td>最近跟进</td><td>'+escHtml(customer.lastFollowUp||'待跟进')+'</td></tr><tr><td>最近互动</td><td>'+escHtml(customer.lastInteraction||'-')+'</td></tr><tr><td>成交状态</td><td>'+escHtml(customer.dealStatus||'-')+'</td></tr><tr><td>风险提示</td><td>'+escHtml(customer.risk||'-')+'</td></tr></table><div class="form-row"><b>阶段流转</b><div><select id="ops-next-stage" class="select">'+customerStageFlow.map(stage=>'<option value="'+stage+'" '+(stage===customer.stage?'selected':'')+'>'+customerStageMap[stage]+'</option>').join('')+'</select><button class="btn primary" onclick="saveOpsStage(&quot;'+escHtml(customer.id)+'&quot;)">保存阶段</button></div></div><div class="form-row"><b>客户标签</b><div><input id="ops-new-tag" class="input" placeholder="输入新标签，例如 复购潜力"><button class="btn" onclick="saveOpsTag(&quot;'+escHtml(customer.id)+'&quot;)">添加标签</button></div></div><h3>生命周期时间线</h3><div class="timeline">'+timeline.map(item=>'<div><b>'+escHtml(item)+'</b><span class="mini">客户运营留痕</span></div>').join('')+'</div><h3>关联任务</h3><table><tr><th>任务</th><th>截止</th><th>状态</th></tr>'+(relatedTasks.length?relatedTasks.map(task=>'<tr><td>'+escHtml(task.title)+'</td><td>'+escHtml(task.dueTime)+'</td><td>'+opsBadge(sopStatusMap[task.status]||task.status,task.status==='overdue'?'red':task.status==='completed'?'green':'orange')+'</td></tr>').join(''):'<tr><td colspan="3">暂无关联任务。</td></tr>')+'</table><h3>推荐话术</h3>'+(recommended.length?recommended.map(item=>'<div class="notice"><b>'+escHtml(item.title)+'</b><p>'+escHtml(item.content)+'</p><button class="btn" onclick="copyOpsText(&quot;'+escHtml(item.content)+'&quot;)">复制话术</button></div>').join(''):'<div class="notice">当前阶段暂无推荐话术。</div>')+'<div class="drawer-footer"><button class="btn" onclick="openOpsFollowUp(&quot;'+escHtml(customer.id)+'&quot;)">新增跟进</button><button class="btn" onclick="closeDrawer()">关闭</button></div></div>');
+  }
+  async function saveOpsStage(customerId){
+    const customer=opsCustomerById(customerId);
+    const next=document.getElementById('ops-next-stage')?.value||customer?.stage||'following';
+    try{
+      await opsWriteJSON('/api/customers/'+encodeURIComponent(customerId)+'/stage','PATCH',{stage:next,reason:'运营中心手动调整',operatorName:'总部管理员 张三'});
+      closeDrawer();
+      appState.flash='已更新 '+(customer?.name||customerId)+' 的生命周期阶段，并写入后端时间线。';
+      await refreshCustomerOpsFromAPI();
+    }catch(err){
+      appState.flash='阶段保存失败：'+err.message;
+      renderCustomerOpsCenterPage();
+    }
+  }
+  async function saveOpsTag(customerId){
+    const tagName=(document.getElementById('ops-new-tag')?.value||'').trim();
+    if(!tagName)return;
+    try{
+      await opsWriteJSON('/api/customers/'+encodeURIComponent(customerId)+'/tags','POST',{name:tagName,category:'手动标签',source:'manual',operatorName:'总部管理员 张三'});
+      appState.flash='已给客户添加标签：'+tagName;
+      await refreshCustomerOpsFromAPI();
+      openOpsCustomer(customerId);
+    }catch(err){
+      appState.flash='标签保存失败：'+err.message;
+      renderCustomerOpsCenterPage();
+    }
+  }
+  function openOpsFollowUp(customerId){
+    const customer=opsCustomerById(customerId);
+    if(!customer)return;
+    showWideDrawer('新增跟进：'+customer.name,'<div class="drawer-form"><div class="form-row"><b>跟进类型</b><select id="ops-follow-type" class="select"><option>首次沟通</option><option>日常回访</option><option>高意向跟进</option><option>售后回访</option><option>沉睡唤醒</option><option>复购推荐</option><option>资料补全</option></select></div><div class="form-row"><b>跟进内容</b><textarea id="ops-follow-content">客户关注夏季连衣裙，已发送门店试穿邀请。</textarea></div><div class="form-row"><b>跟进结果</b><select id="ops-follow-result" class="select"><option>需继续跟进</option><option>已成交</option><option>无响应</option><option>已解决</option></select></div><div class="form-row"><b>下次跟进</b><input id="ops-next-follow-time" class="input" type="datetime-local"></div><div class="drawer-footer"><button class="btn" onclick="closeDrawer()">取消</button><button class="btn primary" onclick="saveOpsFollowUp(&quot;'+escHtml(customer.id)+'&quot;)">保存跟进</button></div></div>');
+  }
+  async function saveOpsFollowUp(customerId){
+    const customer=opsCustomerById(customerId);
+    if(!customer)return;
+    const type=document.getElementById('ops-follow-type')?.value||'日常回访';
+    const content=document.getElementById('ops-follow-content')?.value||'';
+    const result=document.getElementById('ops-follow-result')?.value||'需继续跟进';
+    const nextTime=(document.getElementById('ops-next-follow-time')?.value||'').replace('T',' ');
+    try{
+      await opsWriteJSON('/api/customers/'+encodeURIComponent(customerId)+'/follow-ups','POST',{followUpType:type,content,result,nextFollowUpTime:nextTime,stageAfter:result==='已成交'?'purchased':'',createdBy:customer.guide});
+      closeDrawer();
+      appState.flash='已保存 '+customer.name+' 的跟进记录，客户时间线已更新。';
+      await refreshCustomerOpsFromAPI();
+    }catch(err){
+      appState.flash='跟进保存失败：'+err.message;
+      renderCustomerOpsCenterPage();
+    }
+  }
+  function openOpsTask(taskId){
+    const task=opsTaskById(taskId);
+    const customer=task?opsCustomerById(task.customerId):null;
+    if(!task)return;
+    showWideDrawer('处理任务：'+task.title,'<div class="drawer-form"><table><tr><th>任务类型</th><td>'+escHtml(task.type)+'</td></tr><tr><th>客户</th><td>'+escHtml(customer?.name||'-')+'</td></tr><tr><th>负责人</th><td>'+escHtml(task.guide)+'</td></tr><tr><th>截止时间</th><td>'+escHtml(task.dueTime)+'</td></tr><tr><th>说明</th><td>'+escHtml(task.description)+'</td></tr></table><div class="form-row"><b>处理结果</b><textarea id="ops-task-result">已完成客户触达，并记录下一步跟进计划。</textarea></div><div class="drawer-footer"><button class="btn" onclick="setOpsTaskStatus(&quot;'+escHtml(task.id)+'&quot;,&quot;ignored&quot;)">忽略</button><button class="btn" onclick="setOpsTaskStatus(&quot;'+escHtml(task.id)+'&quot;,&quot;processing&quot;)">处理中</button><button class="btn primary" onclick="completeOpsTask(&quot;'+escHtml(task.id)+'&quot;)">完成任务</button></div></div>');
+  }
+  async function completeOpsTask(taskId){
+    const task=opsTaskById(taskId);
+    if(!task)return;
+    try{
+      await opsWriteJSON('/api/sop-tasks/'+encodeURIComponent(taskId)+'/complete','POST',{remark:document.getElementById('ops-task-result')?.value||'已完成客户触达'});
+      closeDrawer();
+      appState.flash='任务已完成，并回写客户时间线。';
+      await refreshCustomerOpsFromAPI();
+    }catch(err){
+      appState.flash='任务完成失败：'+err.message;
+      renderCustomerOpsCenterPage();
+    }
+  }
+  async function setOpsTaskStatus(taskId,status){
+    const task=opsTaskById(taskId);
+    if(!task)return;
+    const action=status==='processing'?'process':status==='ignored'?'ignore':'process';
+    try{
+      await opsWriteJSON('/api/sop-tasks/'+encodeURIComponent(taskId)+'/'+action,'POST',{remark:document.getElementById('ops-task-result')?.value||status});
+      closeDrawer();
+      appState.flash='任务状态已更新：'+(sopStatusMap[status]||status);
+      await refreshCustomerOpsFromAPI();
+    }catch(err){
+      appState.flash='任务状态保存失败：'+err.message;
+      renderCustomerOpsCenterPage();
+    }
+  }
+  function openOpsCreateTask(){
+    ensureCustomerOpsState();
+    showWideDrawer('总部派发任务','<div class="drawer-form"><div class="form-row"><b>客户</b><select id="ops-create-customer" class="select">'+appState.customerOps.customers.map(customer=>'<option value="'+customer.id+'">'+escHtml(customer.name+' / '+customer.store)+'</option>').join('')+'</select></div><div class="form-row"><b>任务类型</b><select id="ops-create-type" class="select"><option>总部派发任务</option><option>高意向客户回访</option><option>沉睡客户唤醒</option><option>资料补全</option></select></div><div class="form-row"><b>任务标题</b><input id="ops-create-title" class="input" value="总部重点客户跟进"></div><div class="form-row"><b>优先级</b><select id="ops-create-priority" class="select"><option>P1</option><option>P0</option><option>P2</option></select></div><div class="form-row"><b>截止时间</b><input id="ops-create-due" class="input" type="datetime-local"></div><div class="drawer-footer"><button class="btn" onclick="closeDrawer()">取消</button><button class="btn primary" onclick="saveOpsCreateTask()">派发任务</button></div></div>');
+  }
+  async function saveOpsCreateTask(){
+    const customer=opsCustomerById(document.getElementById('ops-create-customer')?.value||'');
+    if(!customer)return;
+    const title=document.getElementById('ops-create-title')?.value||'总部派发任务';
+    try{
+      await opsWriteJSON('/api/sop-tasks','POST',{taskType:document.getElementById('ops-create-type')?.value||'总部派发任务',title,customerId:customer.id,priority:document.getElementById('ops-create-priority')?.value||'P1',dueTime:(document.getElementById('ops-create-due')?.value||'').replace('T',' ')||'2026-07-07 18:00',source:'总部派发',description:'总部派发给门店/导购的重点运营任务。'});
+      closeDrawer();
+      appState.flash='总部任务已派发给 '+customer.guide+'。';
+      await refreshCustomerOpsFromAPI();
+    }catch(err){
+      appState.flash='任务派发失败：'+err.message;
+      renderCustomerOpsCenterPage();
+    }
+  }
+  function openOpsMaterial(materialId){
+    const material=appState.customerOps.materials.find(item=>item.id===materialId);
+    if(!material)return;
+    showDrawer('话术素材：'+material.title,'<div class="notice"><b>'+escHtml(material.type)+'</b><p>'+escHtml(material.content)+'</p></div><table><tr><th>适用阶段</th><td>'+opsStageBadge(material.stage)+'</td></tr><tr><th>适用标签</th><td>'+material.tags.map(tag=>opsBadge(tag)).join('')+'</td></tr><tr><th>状态</th><td>'+opsBadge(material.status,'green')+'</td></tr></table><p><button class="btn primary" onclick="copyOpsText(&quot;'+escHtml(material.content)+'&quot;)">复制话术</button></p>');
+  }
+  function copyOpsText(text){
+    navigator.clipboard?.writeText(text);
+    appState.flash='已复制话术，可粘贴到企业微信沟通窗口。';
+    closeDrawer();
+    renderCustomerOpsCenterPage();
+  }
+  function openOpsMaterialCreate(){
+    showWideDrawer('新增素材','<div class="drawer-form"><div class="form-row"><b>标题</b><input id="ops-material-title" class="input" value="高意向客户到店邀约"></div><div class="form-row"><b>类型</b><select id="ops-material-type" class="select"><option>高意向跟进话术</option><option>首次跟进话术</option><option>沉睡唤醒话术</option><option>售后回访话术</option><option>朋友圈文案</option></select></div><div class="form-row"><b>适用阶段</b><select id="ops-material-stage" class="select">'+customerStageFlow.map(stage=>'<option value="'+stage+'">'+customerStageMap[stage]+'</option>').join('')+'</select></div><div class="form-row"><b>内容</b><textarea id="ops-material-content">我帮您预留了门店试穿名额，今天到店还能叠加老客专属权益。</textarea></div><div class="drawer-footer"><button class="btn" onclick="closeDrawer()">取消</button><button class="btn primary" onclick="saveOpsMaterial()">保存素材</button></div></div>');
+  }
+  async function saveOpsMaterial(){
+    try{
+      await opsWriteJSON('/api/materials','POST',{title:document.getElementById('ops-material-title')?.value||'未命名素材',materialType:document.getElementById('ops-material-type')?.value||'话术',applicableStage:document.getElementById('ops-material-stage')?.value||'following',applicableTags:['总部素材'],status:'enabled',content:document.getElementById('ops-material-content')?.value||'',createdBy:'总部运营'});
+      closeDrawer();
+      appState.flash='素材已保存，门店和导购可在客户详情中调用。';
+      await refreshCustomerOpsFromAPI();
+    }catch(err){
+      appState.flash='素材保存失败：'+err.message;
+      renderCustomerOpsCenterPage();
+    }
+  }
+  const dataQualityRules=[
+    {targetType:'store',fieldKey:'storeName',fieldLabel:'门店名称',level:'required',priority:'P0',scoreWeight:18,inputType:'text',impact:'缺少门店名称会导致后台无法识别门店。'},
+    {targetType:'store',fieldKey:'storeCode',fieldLabel:'门店编号',level:'required',priority:'P0',scoreWeight:16,inputType:'text',impact:'缺少门店编号会影响门店数据同步和业绩归属。'},
+    {targetType:'store',fieldKey:'regionId',fieldLabel:'所属区域',level:'required',priority:'P0',scoreWeight:16,inputType:'select',options:['华南','华东','华北','西南'],impact:'缺少区域会影响区域统计、权限范围和区域负责人管理。'},
+    {targetType:'store',fieldKey:'managerId',fieldLabel:'店长',level:'required',priority:'P0',scoreWeight:20,inputType:'select',options:['王店长','刘店长','陈店长'],impact:'门店没有绑定店长，无法建立门店管理关系和客户分配责任。'},
+    {targetType:'store',fieldKey:'status',fieldLabel:'门店状态',level:'required',priority:'P0',scoreWeight:12,inputType:'select',options:['营业中','暂停营业','筹备中'],impact:'缺少门店状态可能导致停业门店继续承接客户。'},
+    {targetType:'store',fieldKey:'address',fieldLabel:'门店地址',level:'important',priority:'P1',scoreWeight:8,inputType:'text',impact:'缺少地址会影响区域统计、到店引导和客户到店转化。'},
+    {targetType:'store',fieldKey:'phone',fieldLabel:'门店电话',level:'important',priority:'P1',scoreWeight:6,inputType:'text',impact:'缺少门店电话会影响客户咨询和异常联系。'},
+    {targetType:'store',fieldKey:'businessHours',fieldLabel:'营业时间',level:'optional',priority:'P2',scoreWeight:4,inputType:'text',impact:'缺少营业时间会影响门店服务排班和到店提醒。'},
+    {targetType:'manager',fieldKey:'name',fieldLabel:'姓名',level:'required',priority:'P0',scoreWeight:18,inputType:'text',impact:'缺少姓名会导致门店负责人身份不可识别。'},
+    {targetType:'manager',fieldKey:'mobile',fieldLabel:'手机号',level:'required',priority:'P1',scoreWeight:18,inputType:'text',impact:'缺少手机号会影响异常通知和店长联系。'},
+    {targetType:'manager',fieldKey:'wecomUserId',fieldLabel:'企业微信 userId',level:'required',priority:'P0',scoreWeight:20,inputType:'text',impact:'缺少企业微信 userId 会影响身份同步和企业微信侧权限关联。'},
+    {targetType:'manager',fieldKey:'storeId',fieldLabel:'所属门店',level:'required',priority:'P0',scoreWeight:18,inputType:'select',options:['深圳南山万象天地店','广州天河代理店','杭州湖滨银泰店'],impact:'缺少所属门店会导致店长无法管理门店导购。'},
+    {targetType:'manager',fieldKey:'role',fieldLabel:'角色',level:'required',priority:'P0',scoreWeight:14,inputType:'select',options:['店长','区域店长','见习店长'],impact:'缺少角色会影响后台权限分配。'},
+    {targetType:'manager',fieldKey:'status',fieldLabel:'账号状态',level:'required',priority:'P0',scoreWeight:12,inputType:'select',options:['启用','停用','待激活'],impact:'缺少账号状态会影响权限启停和任务派发。'},
+    {targetType:'guide',fieldKey:'name',fieldLabel:'姓名',level:'required',priority:'P0',scoreWeight:14,inputType:'text',impact:'缺少姓名会导致导购身份不可识别。'},
+    {targetType:'guide',fieldKey:'mobile',fieldLabel:'手机号',level:'important',priority:'P1',scoreWeight:10,inputType:'text',impact:'缺少手机号会影响导购联系和异常通知。'},
+    {targetType:'guide',fieldKey:'wecomUserId',fieldLabel:'企业微信 userId',level:'required',priority:'P0',scoreWeight:22,inputType:'text',impact:'缺少企业微信 userId 会导致无法自动分配客户和同步好友关系。'},
+    {targetType:'guide',fieldKey:'storeId',fieldLabel:'所属门店',level:'required',priority:'P0',scoreWeight:18,inputType:'select',options:['深圳南山万象天地店','广州天河代理店','杭州湖滨银泰店'],impact:'缺少所属门店会导致导购无法参与门店客户承接。'},
+    {targetType:'guide',fieldKey:'canReceiveCustomer',fieldLabel:'是否可接待客户',level:'required',priority:'P0',scoreWeight:14,inputType:'select',options:['是','否'],impact:'缺少接待状态时，系统无法判断是否可分配客户。'},
+    {targetType:'guide',fieldKey:'status',fieldLabel:'账号状态',level:'required',priority:'P0',scoreWeight:12,inputType:'select',options:['启用','停用','待激活'],impact:'缺少账号状态会影响客户分配和权限启停。'},
+    {targetType:'guide',fieldKey:'receiveLimit',fieldLabel:'接待上限',level:'important',priority:'P1',scoreWeight:6,inputType:'number',impact:'缺少接待上限可能导致客户分配过载。'},
+    {targetType:'guide',fieldKey:'specialty',fieldLabel:'擅长品类',level:'optional',priority:'P2',scoreWeight:4,inputType:'text',impact:'缺少擅长品类会影响精细化分配和推荐。'},
+    {targetType:'customer',fieldKey:'name',fieldLabel:'客户名称或昵称',level:'required',priority:'P0',scoreWeight:14,inputType:'text',impact:'缺少客户名称或昵称会影响客户识别和跟进记录。'},
+    {targetType:'customer',fieldKey:'sourceChannel',fieldLabel:'来源渠道',level:'required',priority:'P0',scoreWeight:16,inputType:'select',options:['小红书','抖音','门店自然到访','朋友圈','社群','直播'],impact:'缺少来源渠道会导致投放效果和渠道归因无法统计。'},
+    {targetType:'customer',fieldKey:'ownerGuideId',fieldLabel:'跟进导购',level:'required',priority:'P0',scoreWeight:18,inputType:'select',options:['江诗颖','王敏','张婷'],impact:'缺少跟进导购会导致客户无人承接。'},
+    {targetType:'customer',fieldKey:'status',fieldLabel:'客户状态',level:'required',priority:'P0',scoreWeight:12,inputType:'select',options:['新客','跟进中','已成交','沉睡','售后'],impact:'缺少客户状态会影响客户生命周期判断。'},
+    {targetType:'customer',fieldKey:'addWecomTime',fieldLabel:'加企微时间',level:'required',priority:'P0',scoreWeight:12,inputType:'datetime',impact:'缺少加企微时间会影响转化周期和跟进时效统计。'},
+    {targetType:'customer',fieldKey:'mobile',fieldLabel:'手机号',level:'important',priority:'P1',scoreWeight:8,inputType:'text',impact:'缺少手机号会影响电话、短信触达和会员识别。'},
+    {targetType:'customer',fieldKey:'tags',fieldLabel:'客户标签',level:'important',priority:'P1',scoreWeight:8,inputType:'tags',impact:'缺少标签会影响客户分层、复购运营和精准营销。'},
+    {targetType:'customer',fieldKey:'intentionLevel',fieldLabel:'意向等级',level:'important',priority:'P1',scoreWeight:5,inputType:'select',options:['高意向','中意向','低意向','待判断'],impact:'缺少意向等级会影响跟进优先级判断。'},
+    {targetType:'customer',fieldKey:'lastFollowUpTime',fieldLabel:'最近跟进时间',level:'important',priority:'P1',scoreWeight:5,inputType:'datetime',impact:'缺少最近跟进时间会导致无法判断客户是否被冷落。'},
+    {targetType:'customer',fieldKey:'birthday',fieldLabel:'生日',level:'optional',priority:'P2',scoreWeight:1,inputType:'date',impact:'缺少生日会影响会员关怀和活动触达。'},
+    {targetType:'customer',fieldKey:'preference',fieldLabel:'偏好',level:'optional',priority:'P2',scoreWeight:1,inputType:'text',impact:'缺少偏好会影响精细化推荐。'},
+    {targetType:'customer',fieldKey:'size',fieldLabel:'尺码',level:'optional',priority:'P2',scoreWeight:1,inputType:'text',impact:'缺少尺码会影响服装推荐效率。'},
+    {targetType:'customer',fieldKey:'remark',fieldLabel:'备注',level:'optional',priority:'P2',scoreWeight:1,inputType:'text',impact:'缺少备注会影响客户上下文沉淀。'}
+  ];
+  const dataQualityTypeLabel={store:'门店',manager:'店长',guide:'导购',customer:'客户'};
+  const dataQualityPriorityTone={P0:'red',P1:'orange',P2:'teal'};
+  function ensureDataQualityState(){
+    if(appState.dataQualityRecords)return;
+    appState.dataQualityRecords={
+      store:[
+        {id:'s1',storeName:'深圳南山万象天地店',storeCode:'BU-KST-HN-001',regionId:'华南',regionName:'华南',managerId:'王店长',managerName:'王店长',status:'营业中',address:'深圳南山区万象天地',phone:'0755-88886666',businessHours:'10:00-22:00'},
+        {id:'s2',storeName:'广州天河代理店',storeCode:'BU-BA-HN-014',regionId:'华南',regionName:'华南',managerId:'',managerName:'',status:'营业中',address:'',phone:'020-66668888',businessHours:''},
+        {id:'s3',storeName:'杭州湖滨银泰店',storeCode:'BU-BB-HD-006',regionId:'',regionName:'',managerId:'刘店长',managerName:'刘店长',status:'',address:'杭州湖滨银泰',phone:'',businessHours:'10:00-22:00'}
+      ],
+      manager:[
+        {id:'m1',name:'王店长',mobile:'',wecomUserId:'wang_manager',storeId:'s1',storeName:'深圳南山万象天地店',role:'店长',status:'启用'},
+        {id:'m2',name:'刘店长',mobile:'13800001111',wecomUserId:'',storeId:'s3',storeName:'杭州湖滨银泰店',role:'店长',status:'启用'}
+      ],
+      guide:[
+        {id:'g1',name:'江诗颖',mobile:'13900001234',wecomUserId:'jiangshiying',storeId:'s1',storeName:'深圳南山万象天地店',canReceiveCustomer:true,status:'启用',receiveLimit:50,specialty:'护肤'},
+        {id:'g2',name:'王敏',mobile:'',wecomUserId:'',storeId:'s1',storeName:'深圳南山万象天地店',canReceiveCustomer:true,status:'启用',receiveLimit:'',specialty:''},
+        {id:'g3',name:'张婷',mobile:'13700005678',wecomUserId:'zhangting',storeId:'',storeName:'',canReceiveCustomer:'',status:'启用',receiveLimit:40,specialty:'彩妆'}
+      ],
+      customer:[
+        {id:'c1',name:'陈女士',sourceChannel:'新品试用活动',ownerGuideId:'g1',ownerGuideName:'江诗颖',storeId:'s1',storeName:'深圳南山万象天地店',status:'新客',addWecomTime:'2026-07-06 14:28',mobile:'138****8821',tags:['线下门店','高意向'],intentionLevel:'高意向',lastFollowUpTime:'2026-07-06 15:10',birthday:'',preference:'新品试用',size:'',remark:'对新品试用感兴趣'},
+        {id:'c2',name:'李先生',sourceChannel:'',ownerGuideId:'',ownerGuideName:'',storeId:'s1',storeName:'深圳南山万象天地店',status:'新客识别',addWecomTime:'2026-07-06 13:02',mobile:'未绑定手机号',tags:['待补资料'],intentionLevel:'',lastFollowUpTime:'',birthday:'',preference:'',size:'',remark:''},
+        {id:'c3',name:'赵女士',sourceChannel:'小红书',ownerGuideId:'g2',ownerGuideName:'王敏',storeId:'s1',storeName:'深圳南山万象天地店',status:'跟进中',addWecomTime:'2026-07-06 12:40',mobile:'',tags:[],intentionLevel:'中意向',lastFollowUpTime:'',birthday:'',preference:'童装',size:'',remark:''}
+      ]
+    };
+    appState.dataQualityLogs=[
+      {time:'2026-07-06 10:30',operator:'总部管理员 张三',targetType:'guide',targetName:'李四',fieldLabel:'企业微信 userId',oldValue:'空',newValue:'lisi001'}
+    ];
+    appState.dataQualityFilters={targetType:'all',priority:'all',status:'pending',region:'all',store:'all',field:'',keyword:''};
+    appState.dataQualityIssueStatus={};
+  }
+  function dqRulesFor(type){return dataQualityRules.filter(rule=>rule.targetType===type)}
+  function dqValue(record,fieldKey){
+    if(fieldKey==='name'&&record.nickname&&!record.name)return record.nickname;
+    return record[fieldKey];
+  }
+  function dqMissing(value){
+    if(Array.isArray(value))return value.length===0;
+    if(typeof value==='boolean')return false;
+    if(value===0)return false;
+    const text=String(value??'').trim();
+    return !text||text==='-'||text==='空'||text==='未绑定手机号'||text==='待指派';
+  }
+  function dqSnapshot(type,record){
+    const rules=dqRulesFor(type);
+    const total=rules.reduce((sum,rule)=>sum+rule.scoreWeight,0);
+    const missing=rules.filter(rule=>dqMissing(dqValue(record,rule.fieldKey)));
+    const lost=missing.reduce((sum,rule)=>sum+rule.scoreWeight,0);
+    const score=Math.max(0,Math.round((total-lost)*100/total));
+    return {
+      score,
+      status:score>=90?'complete':score>=70?'basic':score>=50?'incomplete':'critical',
+      missingRequired:missing.filter(rule=>rule.level==='required').length,
+      missingImportant:missing.filter(rule=>rule.level==='important').length,
+      missingOptional:missing.filter(rule=>rule.level==='optional').length
+    };
+  }
+  function dqGroups(){
+    ensureDataQualityState();
+    const groups=[];
+    Object.entries(appState.dataQualityRecords).forEach(([type,records])=>{
+      records.forEach(record=>{
+        const snapshot=dqSnapshot(type,record);
+        const missing=dqRulesFor(type).filter(rule=>dqMissing(dqValue(record,rule.fieldKey))).map(rule=>{
+          const id=type+':'+record.id+':'+rule.fieldKey;
+          return {...rule,id,status:appState.dataQualityIssueStatus[id]||'pending'};
+        });
+        if(!missing.length)return;
+        const priority=missing.some(rule=>rule.priority==='P0')?'P0':missing.some(rule=>rule.priority==='P1')?'P1':'P2';
+        const status=missing.some(rule=>rule.status==='pending')?'pending':missing[0].status;
+        groups.push({
+          groupId:type+':'+record.id,
+          targetType:type,
+          targetId:record.id,
+          targetName:record.storeName||record.name||record.nickname||record.id,
+          regionName:record.regionName||record.regionId||'',
+          storeName:record.storeName||record.sourceStore||'',
+          completenessScore:snapshot.score,
+          snapshotStatus:snapshot.status,
+          missingFields:missing,
+          topPriority:priority,
+          status,
+          businessImpact:missing[0]?.impact||'-'
+        });
+      });
+    });
+    return groups.sort((a,b)=>({P0:0,P1:1,P2:2}[a.topPriority]-{P0:0,P1:1,P2:2}[b.topPriority]||a.completenessScore-b.completenessScore));
+  }
+  function dqFilteredGroups(){
+    const filters=appState.dataQualityFilters||{};
+    return dqGroups().filter(group=>{
+      const fieldText=group.missingFields.map(field=>field.fieldLabel).join(',');
+      const haystack=(group.targetName+group.regionName+group.storeName+fieldText+group.businessImpact).toLowerCase();
+      return (filters.targetType==='all'||group.targetType===filters.targetType)
+        && (filters.priority==='all'||group.topPriority===filters.priority)
+        && (filters.status==='all'||group.status===filters.status)
+        && (filters.region==='all'||group.regionName===filters.region)
+        && (filters.store==='all'||group.storeName===filters.store||group.targetName===filters.store)
+        && (!filters.field||fieldText.includes(filters.field))
+        && (!filters.keyword||haystack.includes(String(filters.keyword).toLowerCase()));
+    });
+  }
+  function dqSummary(){
+    ensureDataQualityState();
+    const snapshots=[];
+    Object.entries(appState.dataQualityRecords).forEach(([type,records])=>records.forEach(record=>snapshots.push({type,...dqSnapshot(type,record)})));
+    const avg=items=>items.length?Math.round(items.reduce((sum,item)=>sum+item.score,0)/items.length):100;
+    const groups=dqGroups();
+    return {
+      overall:avg(snapshots),
+      store:avg(snapshots.filter(item=>item.type==='store')),
+      manager:avg(snapshots.filter(item=>item.type==='manager')),
+      guide:avg(snapshots.filter(item=>item.type==='guide')),
+      customer:avg(snapshots.filter(item=>item.type==='customer')),
+      p0:groups.filter(group=>group.topPriority==='P0'&&group.status==='pending').length,
+      pending:groups.filter(group=>group.status==='pending').length,
+      resolvedToday:(appState.dataQualityLogs||[]).length
+    };
+  }
+  function dqBadge(text,tone=''){return '<span class="tag '+tone+'">'+escHtml(text)+'</span>'}
+  function renderDataQualityCenterPage(){
+    ensureDataQualityState();
+    const page=document.getElementById('data-quality-center');
+    if(!page)return;
+    const summary=dqSummary();
+    const filters=appState.dataQualityFilters;
+    const groups=dqFilteredGroups();
+    const regions=[...new Set(Object.values(appState.dataQualityRecords).flat().map(item=>item.regionName||item.regionId).filter(Boolean))];
+    const stores=[...new Set(Object.values(appState.dataQualityRecords).flat().map(item=>item.storeName).filter(Boolean))];
+    const rows=groups.map(group=>{
+      const fields=group.missingFields.map(field=>dqBadge(field.fieldLabel,dataQualityPriorityTone[field.priority])).join('');
+      return '<tr><td><input type="checkbox" class="dq-select" value="'+escHtml(group.groupId)+'"></td><td>'+dataQualityTypeLabel[group.targetType]+'</td><td><b>'+escHtml(group.targetName)+'</b><br><span class="mini">'+escHtml(group.regionName||group.storeName||'-')+'</span></td><td>'+escHtml(group.storeName||group.regionName||'-')+'</td><td>'+fields+'</td><td>'+dqBadge(group.topPriority,dataQualityPriorityTone[group.topPriority])+'</td><td>'+group.completenessScore+'%</td><td>'+escHtml(group.businessImpact)+'</td><td>'+dqBadge(group.status==='pending'?'待补全':group.status==='unable_to_resolve'?'无法补全':'已忽略',group.status==='pending'?'orange':'')+'</td><td><button class="btn primary" onclick="openDataQualityComplete(&quot;'+escHtml(group.groupId)+'&quot;)">去补全</button> <button class="btn" onclick="setDataQualityGroupStatus(&quot;'+escHtml(group.groupId)+'&quot;,&quot;ignored&quot;)">忽略</button></td></tr>';
+    }).join('')||'<tr><td colspan="10">当前筛选下没有待补全资料。</td></tr>';
+    const logs=(appState.dataQualityLogs||[]).slice(0,8).map(log=>'<tr><td>'+escHtml(log.time)+'</td><td>'+escHtml(log.operator)+'</td><td>'+escHtml(dataQualityTypeLabel[log.targetType]||log.targetType)+'</td><td>'+escHtml(log.targetName)+'</td><td>'+escHtml(log.fieldLabel)+'</td><td>'+escHtml(log.oldValue)+'</td><td>'+escHtml(log.newValue)+'</td></tr>').join('')||'<tr><td colspan="7">暂无补全记录。</td></tr>';
+    page.innerHTML=flashHtml()+'<div class="notice">资料补全中心自动识别门店、店长、导购、客户的基础信息缺失，优先处理会影响分配、承接、统计和权限的 P0/P1 问题。</div><div class="grid grid-4"><div class="card kpi"><div class="label">整体完整率</div><div class="num">'+summary.overall+'%</div><div class="trend">门店 '+summary.store+'% / 客户 '+summary.customer+'%</div></div><div class="card kpi"><div class="label">P0 严重缺失</div><div class="num">'+summary.p0+'</div><div class="trend" style="color:var(--red)">影响分配或权限</div></div><div class="card kpi"><div class="label">待补全对象</div><div class="num">'+summary.pending+'</div><div class="trend" style="color:var(--orange)">按对象聚合显示</div></div><div class="card kpi"><div class="label">今日已补全</div><div class="num">'+summary.resolvedToday+'</div><div class="trend">写入操作日志</div></div></div><div class="grid grid-4"><div class="card kpi"><div class="label">门店完整率</div><div class="num">'+summary.store+'%</div></div><div class="card kpi"><div class="label">店长完整率</div><div class="num">'+summary.manager+'%</div></div><div class="card kpi"><div class="label">导购完整率</div><div class="num">'+summary.guide+'%</div></div><div class="card kpi"><div class="label">客户完整率</div><div class="num">'+summary.customer+'%</div></div></div><div class="toolbar"><select id="dq-type-filter" class="select"><option value="all">全部对象</option><option value="store">门店</option><option value="manager">店长</option><option value="guide">导购</option><option value="customer">客户</option></select><select id="dq-priority-filter" class="select"><option value="all">全部等级</option><option value="P0">P0</option><option value="P1">P1</option><option value="P2">P2</option></select><select id="dq-status-filter" class="select"><option value="pending">待补全</option><option value="unable_to_resolve">无法补全</option><option value="ignored">已忽略</option><option value="all">全部状态</option></select><select id="dq-region-filter" class="select"><option value="all">全部区域</option>'+regions.map(region=>'<option>'+escHtml(region)+'</option>').join('')+'</select><select id="dq-store-filter" class="select"><option value="all">全部门店</option>'+stores.map(store=>'<option>'+escHtml(store)+'</option>').join('')+'</select><input id="dq-field-filter" class="input" value="'+escHtml(filters.field||'')+'" placeholder="缺失字段"><input id="dq-keyword-filter" class="input" value="'+escHtml(filters.keyword||'')+'" placeholder="搜索对象/影响"><button class="btn primary" onclick="applyDataQualityFilters()">查询</button><button class="btn" onclick="resetDataQualityFilters()">重置</button><button class="btn green" onclick="openDataQualityBatch()">批量补全</button></div><div class="card"><div class="section-title"><div><h3>缺失信息列表</h3><p>按对象聚合缺失字段，保存后自动重新计算完整度。</p></div></div><table><tr><th><input type="checkbox" onclick="toggleDataQualitySelectAll(this)"></th><th>对象类型</th><th>对象名称</th><th>所属门店/区域</th><th>缺失字段</th><th>严重等级</th><th>完整度</th><th>业务影响</th><th>状态</th><th>操作</th></tr>'+rows+'</table></div><div class="card"><div class="section-title"><div><h3>补全记录</h3><p>记录操作人、时间、对象、字段、原值和新值，用于问题追溯。</p></div></div><table><tr><th>时间</th><th>操作人</th><th>对象类型</th><th>对象</th><th>字段</th><th>原值</th><th>新值</th></tr>'+logs+'</table></div>';
+    setSelectValue('dq-type-filter',filters.targetType);
+    setSelectValue('dq-priority-filter',filters.priority);
+    setSelectValue('dq-status-filter',filters.status);
+    setSelectValue('dq-region-filter',filters.region);
+    setSelectValue('dq-store-filter',filters.store);
+    appState.flash='';
+  }
+  function setSelectValue(id,value){const el=document.getElementById(id);if(el)el.value=value}
+  function applyDataQualityFilters(){
+    appState.dataQualityFilters={targetType:document.getElementById('dq-type-filter')?.value||'all',priority:document.getElementById('dq-priority-filter')?.value||'all',status:document.getElementById('dq-status-filter')?.value||'pending',region:document.getElementById('dq-region-filter')?.value||'all',store:document.getElementById('dq-store-filter')?.value||'all',field:document.getElementById('dq-field-filter')?.value||'',keyword:document.getElementById('dq-keyword-filter')?.value||''};
+    renderDataQualityCenterPage();
+  }
+  function resetDataQualityFilters(){appState.dataQualityFilters={targetType:'all',priority:'all',status:'pending',region:'all',store:'all',field:'',keyword:''};renderDataQualityCenterPage()}
+  function toggleDataQualitySelectAll(box){document.querySelectorAll('.dq-select').forEach(item=>{item.checked=box.checked})}
+  function dqGroupById(groupId){return dqGroups().find(group=>group.groupId===groupId)}
+  function dqRecord(type,id){return (appState.dataQualityRecords?.[type]||[]).find(item=>item.id===id)}
+  function dqInputHtml(rule){
+    const id='dq-field-'+rule.fieldKey;
+    if(rule.inputType==='select')return '<select id="'+id+'" class="select">'+(rule.options||[]).map(option=>'<option>'+escHtml(option)+'</option>').join('')+'</select>';
+    if(rule.inputType==='number')return '<input id="'+id+'" class="input" type="number" value="50">';
+    if(rule.inputType==='date')return '<input id="'+id+'" class="input" type="date">';
+    if(rule.inputType==='datetime')return '<input id="'+id+'" class="input" type="datetime-local">';
+    if(rule.inputType==='tags')return '<input id="'+id+'" class="input" value="小红书客户,女装意向" placeholder="多个标签用逗号分隔">';
+    return '<input id="'+id+'" class="input" placeholder="请输入'+escHtml(rule.fieldLabel)+'">';
+  }
+  function openDataQualityComplete(groupId){
+    const group=dqGroupById(groupId);
+    if(!group)return;
+    const fields=group.missingFields.map(rule=>'<div class="form-row"><b>'+escHtml(rule.fieldLabel)+'</b><div>'+dqInputHtml(rule)+'<div class="inline-note">'+dqBadge(rule.priority,dataQualityPriorityTone[rule.priority])+' '+escHtml(rule.impact)+'</div></div></div>').join('');
+    showWideDrawer('资料补全：'+group.targetName,'<div class="drawer-form"><div class="notice">保存后会立即重新校验该对象完整度；已经补齐的字段会从待补全列表移除。</div><table><tr><th>对象类型</th><td>'+dataQualityTypeLabel[group.targetType]+'</td></tr><tr><th>当前完整度</th><td>'+group.completenessScore+'%</td></tr><tr><th>缺失字段</th><td>'+group.missingFields.map(field=>escHtml(field.fieldLabel)).join('、')+'</td></tr></table>'+fields+'<div class="drawer-footer"><button class="btn" onclick="setDataQualityGroupStatus(&quot;'+escHtml(groupId)+'&quot;,&quot;unable_to_resolve&quot;)">暂时无法补全</button><button class="btn" onclick="closeDrawer()">取消</button><button class="btn primary" onclick="saveDataQualityComplete(&quot;'+escHtml(groupId)+'&quot;)">保存并重新校验</button></div></div>');
+  }
+  function saveDataQualityComplete(groupId){
+    const group=dqGroupById(groupId);
+    const record=dqRecord(group.targetType,group.targetId);
+    if(!group||!record)return;
+    group.missingFields.forEach(rule=>{
+      const el=document.getElementById('dq-field-'+rule.fieldKey);
+      if(!el)return;
+      const oldValue=dqValue(record,rule.fieldKey);
+      let value=el.value;
+      if(rule.inputType==='tags')value=value.split(',').map(item=>item.trim()).filter(Boolean);
+      if(rule.inputType==='number')value=Number(value||0);
+      if(rule.fieldKey==='canReceiveCustomer')value=value==='是';
+      record[rule.fieldKey]=value;
+      if(rule.fieldKey==='storeId'&&typeof value==='string')record.storeName=value;
+      if(rule.fieldKey==='managerId'&&typeof value==='string')record.managerName=value;
+      if(rule.fieldKey==='ownerGuideId'&&typeof value==='string')record.ownerGuideName=value;
+      appState.dataQualityLogs.unshift({time:new Date().toLocaleString('zh-CN',{hour12:false}),operator:'总部管理员 张三',targetType:group.targetType,targetName:group.targetName,fieldLabel:rule.fieldLabel,oldValue:Array.isArray(oldValue)?oldValue.join('、'):(oldValue||'空'),newValue:Array.isArray(value)?value.join('、'):value});
+      delete appState.dataQualityIssueStatus[rule.id];
+    });
+    closeDrawer();
+    appState.flash='已保存 '+group.targetName+' 的资料，并完成重新校验。';
+    renderDataQualityCenterPage();
+  }
+  function setDataQualityGroupStatus(groupId,status){
+    const group=dqGroupById(groupId);
+    if(!group)return;
+    group.missingFields.forEach(rule=>{appState.dataQualityIssueStatus[rule.id]=status});
+    appState.dataQualityLogs.unshift({time:new Date().toLocaleString('zh-CN',{hour12:false}),operator:'总部管理员 张三',targetType:group.targetType,targetName:group.targetName,fieldLabel:'缺失问题状态',oldValue:'pending',newValue:status==='unable_to_resolve'?'无法补全':'已忽略'});
+    closeDrawer();
+    appState.flash=status==='unable_to_resolve'?'已标记无法补全，可后续重新处理。':'已忽略该对象的当前缺失项。';
+    renderDataQualityCenterPage();
+  }
+  function openDataQualityBatch(){
+    const selected=[...document.querySelectorAll('.dq-select:checked')].map(item=>item.value);
+    if(!selected.length){appState.flash='请先勾选需要批量补全的对象。';renderDataQualityCenterPage();return}
+    showWideDrawer('批量补全','<div class="drawer-form"><div class="notice">已选择 '+selected.length+' 个对象。系统只会给存在该字段的对象写入值，并记录补全日志。</div><div class="form-row"><b>批量字段</b><select id="dq-batch-field" class="select"><option value="storeId">所属门店</option><option value="regionId">所属区域</option><option value="managerId">店长</option><option value="canReceiveCustomer">是否可接待客户</option><option value="receiveLimit">接待上限</option><option value="tags">客户标签</option></select></div><div class="form-row"><b>字段值</b><input id="dq-batch-value" class="input" value="深圳南山万象天地店"></div><div class="drawer-footer"><button class="btn" onclick="closeDrawer()">取消</button><button class="btn primary" onclick="saveDataQualityBatch(&quot;'+selected.join(',')+'&quot;)">保存批量补全</button></div></div>');
+  }
+  function saveDataQualityBatch(groupIdsText){
+    const field=document.getElementById('dq-batch-field')?.value||'';
+    const raw=document.getElementById('dq-batch-value')?.value||'';
+    const groupIds=groupIdsText.split(',').filter(Boolean);
+    let count=0;
+    groupIds.forEach(groupId=>{
+      const group=dqGroupById(groupId);
+      const record=group?dqRecord(group.targetType,group.targetId):null;
+      if(!record||!dqRulesFor(group.targetType).some(rule=>rule.fieldKey===field))return;
+      const rule=dqRulesFor(group.targetType).find(item=>item.fieldKey===field)||{fieldLabel:field};
+      const oldValue=dqValue(record,field);
+      let value=field==='tags'?raw.split(',').map(item=>item.trim()).filter(Boolean):raw;
+      if(field==='receiveLimit')value=Number(raw||0);
+      if(field==='canReceiveCustomer')value=raw==='是'||raw==='true'||raw==='1';
+      record[field]=value;
+      if(field==='storeId')record.storeName=raw;
+      if(field==='regionId')record.regionName=raw;
+      if(field==='managerId')record.managerName=raw;
+      count++;
+      appState.dataQualityLogs.unshift({time:new Date().toLocaleString('zh-CN',{hour12:false}),operator:'总部管理员 张三',targetType:group.targetType,targetName:group.targetName,fieldLabel:rule.fieldLabel,oldValue:Array.isArray(oldValue)?oldValue.join('、'):(oldValue||'空'),newValue:Array.isArray(value)?value.join('、'):value});
+    });
+    closeDrawer();
+    appState.flash='已批量补全 '+count+' 个对象，列表已重新校验。';
+    renderDataQualityCenterPage();
+  }
+  function renderHeadquartersWorkbenchPage(){
+    const page=document.getElementById('hq-workbench');
+    if(!page)return;
+    const assignments=allAssignments();
+    const todayAssignments=assignments.filter(item=>isToday(item.addTime||item.createdAt));
+    const assets=appState.realContactWays||[];
+    const bindings=appState.scrmBindings||[];
+    const stores=appState.realStores||[];
+    const anomalies=buildHQAnomalies();
+    const boundAssets=assets.filter(asset=>bindingByConfigId(asset.configId)).length;
+    const activeBindings=bindings.filter(binding=>binding.status==='active').length;
+    const storeRows=stores.map(store=>{
+      const binding=bindingForStore(store.id);
+      const pool=binding?(appState.scrmGuidePools?.[binding.storeId]||[]):[];
+      const today=todayAssignments.filter(item=>item.storeId===store.id).length;
+      const total=assignments.filter(item=>item.storeId===store.id).length;
+      const status=binding?(binding.status==='active'?realBadge('运行中','green'):realBadge(binding.status||'paused','orange')):realBadge('未接入','orange');
+      return '<tr><td>'+escHtml(storeRegion(store))+'</td><td><b>'+escHtml(store.name||store.storeName||store.id)+'</b><br><span class="mini">'+escHtml(store.internalCode||store.externalCode||store.id)+'</span></td><td>'+escHtml(binding?.managerUserid||'-')+'</td><td>'+escHtml(binding?.configId||'-')+'</td><td>'+pool.length+'</td><td>'+today+'</td><td>'+total+'</td><td>'+status+'</td></tr>';
+    }).join('')||'<tr><td colspan="8">暂无门店数据。</td></tr>';
+    const regionRows=renderRankRows(groupCount(stores,storeRegion).map(([region])=>[region,stores.filter(store=>storeRegion(store)===region).length]),'暂无区域数据。');
+    const storeRank=renderRankRows(groupCount(assignments,item=>item.storeName||storeNameById(item.storeId)),'暂无客户分配数据。');
+    const guideRank=renderRankRows(groupCount(assignments,item=>item.guideUserid),'暂无导购承接数据。');
+    const qrRank=renderRankRows(groupCount(assignments,item=>item.configId),'暂无二维码使用数据。');
+    page.innerHTML=flashHtml()+'<div class="notice">总部模式负责统一管理企业微信活码资产、门店、店长码、导购池、分配规则、异常和数据；门店店长只负责本门店导购池和日常分配，导购只负责自己的客户承接。</div><div class="toolbar"><button class="btn" onclick="refreshSCRMCodePages(&quot;hq-workbench&quot;)">刷新总部数据</button><button class="btn" onclick="go(&quot;wecom-assets&quot;)">企业微信活码资产</button><button class="btn" onclick="go(&quot;manager-codes&quot;)">门店店长码</button><button class="btn danger" onclick="go(&quot;anomaly-monitor&quot;)">异常监控</button></div><div class="grid grid-4"><div class="card kpi"><div class="label">门店接入</div><div class="num">'+activeBindings+'/'+stores.length+'</div><div class="trend">运行中店长码 / 全部门店</div></div><div class="card kpi"><div class="label">活码包装</div><div class="num">'+boundAssets+'/'+assets.length+'</div><div class="trend">已包装 config_id / 原始资产</div></div><div class="card kpi"><div class="label">今日新增</div><div class="num">'+todayAssignments.length+'</div><div class="trend">企业微信回调分配客户</div></div><div class="card kpi"><div class="label">异常待处理</div><div class="num">'+anomalies.length+'</div><div class="trend">未接入、无导购池、接口错误</div></div></div><div class="grid grid-2"><div class="card"><h3>企业微信真实联调自检</h3><table><tr><th>检查项</th><th>状态</th><th>说明</th></tr>'+renderDoctorRows()+'</table></div><div class="card"><h3>update_contact_way 重试队列</h3><table><tr><th>config_id</th><th>目标导购</th><th>状态</th><th>失败原因</th><th>操作</th></tr>'+renderRetryRows(3)+'</table></div></div><div class="grid grid-2"><div class="card"><h3>总部 / 门店 / 导购权限边界</h3><table><tr><th>角色</th><th>可见范围</th><th>核心动作</th></tr><tr><td>总部管理员</td><td>全部门店、二维码、规则、异常和数据</td><td>统一绑定、批量启停、规则配置、异常处理</td></tr><tr><td>区域经理</td><td>所属区域门店</td><td>区域监督、区域规则覆盖、区域排行</td></tr><tr><td>门店店长</td><td>本门店店长码和导购池</td><td>配置导购池、激活、切换、暂停导购</td></tr><tr><td>导购</td><td>自己的客户和任务</td><td>承接客户、跟进、标签和 SOP</td></tr></table></div><div class="card"><h3>统一分配规则</h3><table><tr><th>规则项</th><th>当前口径</th></tr><tr><td>默认轮询方式</td><td>按 sort_order 顺序轮询</td></tr><tr><td>跳过不可用导购</td><td>跳过 inactive 导购</td></tr><tr><td>跳过达到日上限导购</td><td>daily_limit 大于 0 且已达上限会跳过</td></tr><tr><td>手动切换权限</td><td>总部和门店店长可操作</td></tr><tr><td>规则优先级</td><td>门店规则 &gt; 区域规则 &gt; 总部规则</td></tr></table></div></div><div class="grid grid-4"><div class="card"><h3>区域覆盖</h3><table><tr><th>排名</th><th>区域</th><th>门店数</th></tr>'+regionRows+'</table></div><div class="card"><h3>门店获客排行</h3><table><tr><th>排名</th><th>门店</th><th>分配数</th></tr>'+storeRank+'</table></div><div class="card"><h3>导购承接排行</h3><table><tr><th>排名</th><th>导购</th><th>承接数</th></tr>'+guideRank+'</table></div><div class="card"><h3>二维码使用排行</h3><table><tr><th>排名</th><th>config_id</th><th>客户数</th></tr>'+qrRank+'</table></div></div><div class="card"><div class="section-title"><div><h3>总部门店接入总表</h3><p>总部看全部门店；区域经理和门店店长后续通过 RBAC 自动收窄范围。</p></div><button class="btn" onclick="go(&quot;manager-codes&quot;)">管理店长码</button></div><table><tr><th>区域</th><th>门店</th><th>店长</th><th>config_id</th><th>导购池</th><th>今日新增</th><th>累计新增</th><th>运行状态</th></tr>'+storeRows+'</table></div>';
+    appState.flash='';
+  }
+  function renderAnomalyMonitorPage(){
+    const page=document.getElementById('anomaly-monitor');
+    if(!page)return;
+    const anomalies=buildHQAnomalies();
+    const rows=anomalies.length?anomalies.map(item=>'<tr><td>'+realBadge(item.level==='red'?'高':'中',item.level)+'</td><td>'+escHtml(item.type)+'</td><td>'+escHtml(item.scope)+'</td><td>'+escHtml(item.message)+'</td><td><button class="btn" onclick="go(&quot;'+escHtml(item.page)+'&quot;)">'+escHtml(item.action)+'</button></td></tr>').join(''):'<tr><td colspan="5">暂无总部异常。已接入资产、店长码、导购池和回调分配记录当前没有发现待处理项。</td></tr>';
+    const byType=groupCount(anomalies,item=>item.type);
+    const typeRows=renderRankRows(byType,'暂无异常分类。');
+    page.innerHTML=flashHtml()+'<div class="notice">异常监控集中看总部最关心的风险：未绑定活码、门店未接入、导购池缺失、无可用导购、update_contact_way 错误、回调分配异常。</div><div class="toolbar"><button class="btn" onclick="refreshSCRMCodePages(&quot;anomaly-monitor&quot;)">刷新异常</button><button class="btn" onclick="go(&quot;hq-workbench&quot;)">总部工作台</button><button class="btn" onclick="go(&quot;wecom-assets&quot;)">活码资产池</button></div><div class="grid grid-4"><div class="card kpi"><div class="label">异常总数</div><div class="num">'+anomalies.length+'</div><div class="trend">总部待处理事项</div></div><div class="card kpi"><div class="label">高优先级</div><div class="num">'+anomalies.filter(item=>item.level==='red').length+'</div><div class="trend">会影响客户正常分配</div></div><div class="card kpi"><div class="label">未包装活码</div><div class="num">'+anomalies.filter(item=>item.type==='未绑定活码').length+'</div><div class="trend">原始资产未形成门店能力</div></div><div class="card kpi"><div class="label">导购池异常</div><div class="num">'+anomalies.filter(item=>item.type==='导购池异常'||item.type==='无可用导购').length+'</div><div class="trend">门店承接能力缺口</div></div></div><div class="grid grid-2"><div class="card"><h3>异常分类</h3><table><tr><th>排名</th><th>异常类型</th><th>数量</th></tr>'+typeRows+'</table></div><div class="card"><h3>总部处理顺序</h3><table><tr><th>优先级</th><th>处理对象</th></tr><tr><td>1</td><td>企微接口异常、二维码缺失、无可用导购</td></tr><tr><td>2</td><td>门店未接入、导购池未配置、店长码未激活</td></tr><tr><td>3</td><td>未包装活码、暂停状态、分配规则待统一</td></tr></table></div></div><div class="card"><div class="section-title"><div><h3>update_contact_way 重试队列</h3><p>切换下一位失败时会记录目标导购、目标 state 和失败原因，可手动重试。</p></div></div><table><tr><th>config_id</th><th>目标导购</th><th>状态</th><th>失败原因</th><th>操作</th></tr>'+renderRetryRows(100)+'</table></div><div class="card"><div class="section-title"><div><h3>异常明细</h3><p>总部统一看，区域和门店后续按权限自动过滤。</p></div></div><table><tr><th>优先级</th><th>类型</th><th>对象</th><th>说明</th><th>处理</th></tr>'+rows+'</table></div>';
+    appState.flash='';
+  }
+  function renderWeComAssetsPage(){
+    const page=document.getElementById('wecom-assets');
+    if(!page)return;
+    const bindings=appState.scrmBindings||[];
+    const rows=(appState.realContactWays||[]).map(way=>{
+      const binding=bindings.find(item=>item.configId===way.configId);
+      const wrapped=binding?realBadge('已包装','green'):realBadge('未包装','orange');
+      const op=binding?'<button class="btn" onclick="go(&quot;manager-codes&quot;)">查看店长码</button>':'<button class="btn primary" onclick="openBindManagerCode(&quot;'+escHtml(way.configId)+'&quot;)">绑定为店长码</button>';
+      const qr=way.qrCodeUrl?'<button class="btn" onclick="openRealContactWay(&quot;'+escHtml(way.id)+'&quot;)">查看二维码</button>':'-';
+      return '<tr><td><b>'+escHtml(way.configId||'-')+'</b><br><span class="mini">'+escHtml(way.name||way.remark||'企微联系我二维码')+'</span></td><td>'+qr+'</td><td>'+escHtml(way.state||'-')+'</td><td>'+escHtml((way.boundUserids||[]).join('、')||'-')+'</td><td>'+escHtml(way.departmentId||'-')+'</td><td>'+wrapped+'</td><td>'+escHtml(way.createdAt||'-')+'</td><td>'+realBadge(way.status||'active','green')+'</td><td><button class="btn" onclick="copyText(&quot;'+escHtml(way.configId||'')+'&quot;)">复制 config_id</button> '+op+'</td></tr>';
+    }).join('')||'<tr><td colspan="9">暂无企业微信原始活码资产，请先同步企微联系我二维码。</td></tr>';
+    page.innerHTML='<div class="notice">企业微信活码资产是原始二维码/config_id 资产池，只负责看见企业微信已有「联系我」二维码。这里不会生成新的企业微信二维码；业务包装请在“门店店长码”完成。</div><div class="toolbar"><button class="btn" onclick="refreshSCRMCodePages(&quot;wecom-assets&quot;)">刷新资产</button><button class="btn" onclick="go(&quot;manager-codes&quot;)">查看门店店长码</button></div><div class="card"><div class="section-title"><div><h3>企微联系我二维码</h3><p>原始 config_id、二维码 URL、state、当前绑定成员和包装状态。</p></div></div><table><tr><th>config_id / 备注</th><th>二维码</th><th>state</th><th>当前绑定成员 user</th><th>当前绑定部门 party</th><th>包装状态</th><th>同步时间</th><th>状态</th><th>操作</th></tr>'+rows+'</table></div>';
+  }
+  function renderManagerCodesPage(){
+    const page=document.getElementById('manager-codes');
+    if(!page)return;
+    const rows=(appState.scrmBindings||[]).map(binding=>{
+      const asset=codeAssetByConfigId(binding.configId)||{};
+      const pool=appState.scrmGuidePools?.[binding.storeId]||[];
+      const current=guideNameFromPool(binding,binding.currentGuideUserid)||binding.currentGuideUserid||'未激活';
+      const statusButton=binding.status==='paused'?'<button class="btn green" onclick="setManagerCodeStatus(&quot;'+escHtml(binding.id)+'&quot;,&quot;enable&quot;)">启用</button>':'<button class="btn danger" onclick="setManagerCodeStatus(&quot;'+escHtml(binding.id)+'&quot;,&quot;pause&quot;)">暂停</button>';
+      return '<tr><td><b>'+escHtml(binding.storeName||'-')+'</b><br><span class="mini">店长：'+escHtml(binding.managerUserid||'-')+'</span></td><td>'+escHtml(binding.configId)+'</td><td>'+(binding.qrCodeUrl||asset.qrCodeUrl?'<button class="btn" onclick="openBindingQRCode(&quot;'+escHtml(binding.id)+'&quot;)">查看二维码</button>':'-')+'</td><td>'+escHtml(current)+'</td><td>'+escHtml(nextGuideForBinding(binding))+'</td><td>'+pool.length+'</td><td>'+todayAssignmentsForBinding(binding)+'</td><td>'+Number(binding.customerCount||0).toLocaleString()+'</td><td>'+escHtml(binding.lastSwitchedAt||'-')+'</td><td>'+realBadge(binding.status||'active',binding.status==='active'?'green':'orange')+'<br><span class="mini">next_index '+Number(binding.nextIndex||0)+'</span></td><td><button class="btn" onclick="openGuidePool(&quot;'+escHtml(binding.id)+'&quot;)">配置导购池</button> <button class="btn primary" onclick="activateManagerCode(&quot;'+escHtml(binding.id)+'&quot;)">激活</button> <button class="btn" onclick="switchManagerCodeNext(&quot;'+escHtml(binding.id)+'&quot;)">切换下一位</button> <button class="btn" onclick="openAssignmentRecords(&quot;'+escHtml(binding.configId)+'&quot;)">查看记录</button> '+statusButton+'</td></tr>';
+    }).join('')||'<tr><td colspan="11">暂无门店店长码。请先到“企业微信活码资产”选择已有 config_id 绑定为店长码。</td></tr>';
+    page.innerHTML='<div class="notice">本模块不会生成新的企业微信二维码。系统只绑定企业微信已有联系我二维码的 config_id，并在客户添加成功后，通过 update_contact_way 更新同一个 config_id 背后的导购成员和 state，实现门店导购轮询分配。</div><div class="toolbar"><button class="btn" onclick="refreshSCRMCodePages(&quot;manager-codes&quot;)">刷新店长码</button><button class="btn" onclick="go(&quot;wecom-assets&quot;)">去绑定原始活码</button><button class="btn" onclick="go(&quot;assignment-records&quot;)">客户分配记录</button></div><div class="card"><div class="section-title"><div><h3>门店店长码</h3><p>SCRM 对某个企业微信 config_id 做的业务包装：门店、店长、导购池、当前导购和轮询状态。</p></div></div><table><tr><th>门店 / 店长</th><th>原始 config_id</th><th>原始二维码</th><th>当前导购</th><th>下一个导购</th><th>导购池</th><th>今日分配</th><th>累计分配</th><th>最近切换</th><th>状态</th><th>操作</th></tr>'+rows+'</table></div>';
+  }
+  function renderAssignmentRecordsPage(){
+    const page=document.getElementById('assignment-records');
+    if(!page)return;
+    const filters=appState.assignmentFilters||{};
+    const storeOptions='<option value="">全部门店</option>'+(appState.realStores||[]).map(store=>'<option value="'+escHtml(store.id)+'" '+(filters.storeId===store.id?'selected':'')+'>'+escHtml(store.name||store.storeName||store.id)+'</option>').join('');
+    const configOptions='<option value="">全部 config_id</option>'+(appState.scrmBindings||[]).map(binding=>'<option value="'+escHtml(binding.configId)+'" '+(filters.configId===binding.configId?'selected':'')+'>'+escHtml(binding.configId)+'</option>').join('');
+    const rows=(appState.scrmAssignments||[]).map(item=>'<tr><td>'+escHtml(item.externalUserid||'-')+'</td><td>'+escHtml(item.storeName||item.storeCode||item.storeId||'-')+'</td><td>'+escHtml(item.managerUserid||'-')+'</td><td>'+escHtml(item.guideUserid||'-')+'</td><td>'+escHtml(item.configId||'-')+'</td><td>'+escHtml(item.state||'-')+'</td><td>'+escHtml(item.eventType||'-')+'</td><td>'+escHtml(item.addTime||'-')+'</td><td>'+realBadge(item.status||'-',item.status==='added'?'green':'')+'</td><td>'+escHtml(item.createdAt||'-')+'</td></tr>').join('')||'<tr><td colspan="10">暂无客户分配记录。客户通过店长码添加导购后，企业微信回调会写入这里。</td></tr>';
+    page.innerHTML='<div class="notice">客户分配记录用于排查：客户实际添加到了哪个导购、来自哪个门店店长码、当时的 state 是什么，以及回调是否成功处理。</div><div class="toolbar"><button class="btn" onclick="refreshSCRMCodePages(&quot;assignment-records&quot;)">刷新记录</button><span class="mini">筛选条件</span><select id="assignment-store-filter" class="select">'+storeOptions+'</select><input id="assignment-manager-filter" class="input" value="'+escHtml(filters.managerUserid||'')+'" placeholder="店长 userid"><input id="assignment-guide-filter" class="input" value="'+escHtml(filters.guideUserid||'')+'" placeholder="导购 userid"><select id="assignment-config-filter" class="select">'+configOptions+'</select><input id="assignment-start-filter" class="input" type="datetime-local" value="'+escHtml(filters.start||'')+'"><input id="assignment-end-filter" class="input" type="datetime-local" value="'+escHtml(filters.end||'')+'"><select id="assignment-status-filter" class="select"><option value="">全部状态</option><option value="added" '+(filters.status==='added'?'selected':'')+'>added</option><option value="failed" '+(filters.status==='failed'?'selected':'')+'>failed</option></select><button class="btn primary" onclick="applyAssignmentRecordFilters()">查询</button><button class="btn" onclick="resetAssignmentRecordFilters()">重置</button></div><div class="card"><div class="section-title"><div><h3>客户分配记录</h3><p>展示 external_userid、门店、店长、导购、config_id、state、添加时间和回调状态。</p></div></div><table><tr><th>external_userid</th><th>门店</th><th>店长</th><th>导购</th><th>config_id</th><th>state</th><th>事件</th><th>添加时间</th><th>状态</th><th>创建时间</th></tr>'+rows+'</table></div>';
+  }
+  function renderSCRMCodePage(id){
+    if(id==='hq-workbench')return renderHeadquartersWorkbenchPage();
+    if(id==='wecom-assets')return renderWeComAssetsPage();
+    if(id==='manager-codes')return renderManagerCodesPage();
+    if(id==='assignment-records')return renderAssignmentRecordsPage();
+    if(id==='data-quality-center')return renderDataQualityCenterPage();
+    if(id==='customer-ops-center'){
+      renderCustomerOpsCenterPage();
+      refreshCustomerOpsFromAPI().catch(err=>{appState.flash='客户运营接口暂不可用，已展示本地原型数据：'+err.message;renderCustomerOpsCenterPage();});
+      return;
+    }
+    if(id==='anomaly-monitor')return renderAnomalyMonitorPage();
+  }
+  function openBindManagerCode(configId){
+    const way=codeAssetByConfigId(configId)||{};
+    showWideDrawer('绑定为门店店长码','<div class="drawer-form"><div class="notice">这里只包装企业微信已有 config_id，不生成新二维码。二维码图片和 config_id 保持不变。</div><div class="form-row"><b>原始 config_id</b><div><input id="bind-config-id" class="input" value="'+escHtml(configId)+'" readonly><div class="inline-note">来自企业微信原始联系我二维码资产。</div></div></div><div class="form-row"><b>门店</b><select id="bind-store-id" class="select">'+storeOptionsHtml()+'</select></div><div class="form-row"><b>店长 userid</b><div><select id="bind-manager-select" class="select" onchange="document.getElementById(&quot;bind-manager-userid&quot;).value=this.value">'+wecomUserOptionsHtml((way.boundUserids||[])[0]||'')+'</select><input id="bind-manager-userid" class="input" style="margin-top:8px" value="'+escHtml((way.boundUserids||[])[0]||'')+'" placeholder="例如 zhangsan"></div></div><div class="form-row"><b>包装名称/备注</b><input id="bind-remark" class="input" value="'+escHtml(way.name||way.remark||'门店店长码')+'"></div><div class="drawer-footer"><button class="btn" onclick="closeDrawer()">取消</button><button class="btn primary" onclick="saveManagerCodeBinding()">确认绑定</button></div></div>');
+  }
+  async function saveManagerCodeBinding(){
+    try{
+      const storeId=document.getElementById('bind-store-id')?.value||'';
+      const store=(appState.realStores||[]).find(item=>item.id===storeId)||{};
+      const configId=document.getElementById('bind-config-id')?.value||'';
+      const way=codeAssetByConfigId(configId)||{};
+      await apiPostJSON('/api/scrm/contact-way-bindings',{storeId:store.id,storeCode:store.id||store.internalCode||store.storeCode,storeName:store.name||store.storeName||store.id,managerUserid:document.getElementById('bind-manager-userid')?.value||'',configId,qrCodeUrl:way.qrCodeUrl||'',remark:document.getElementById('bind-remark')?.value||''});
+      closeDrawer();
+      await refreshSCRMCodePages('manager-codes');
+      appState.flash='已绑定为门店店长码：只保存 config_id + 门店 + 店长业务关系，没有生成新二维码。';
+      renderManagerCodesPage();
+    }catch(err){
+      appState.flash='绑定失败：'+err.message;
+      renderWeComAssetsPage();
+    }
+  }
+  function openBindingQRCode(bindingId){
+    const binding=(appState.scrmBindings||[]).find(item=>item.id===bindingId);
+    if(!binding)return;
+    const url=binding.qrCodeUrl||codeAssetByConfigId(binding.configId)?.qrCodeUrl||'';
+    showDrawer('原始企业微信二维码',(url?'<p><img src="'+escHtml(url)+'" alt="企业微信原二维码" style="width:220px;height:220px;object-fit:contain;border:1px solid var(--border);border-radius:8px;background:#fff"></p>':'<p class="muted">暂无二维码 URL</p>')+'<table><tr><th>字段</th><th>值</th></tr><tr><td>config_id</td><td>'+escHtml(binding.configId)+'</td></tr><tr><td>说明</td><td>二维码图片不变，SCRM 只切换同一个 config_id 背后的导购成员和 state。</td></tr></table>');
+  }
+  function guidePoolRowsHtml(bindingId){
+    const binding=(appState.scrmBindings||[]).find(item=>item.id===bindingId)||{};
+    const pool=appState.scrmGuidePools?.[binding.storeId]||[];
+    const rows=[...pool,{guideUserid:'',guideName:'',sortOrder:pool.length+1,status:'active',dailyLimit:0,assignedToday:0}];
+    return rows.map((guide,index)=>'<tr data-guide-row><td><input class="input" data-field="guideUserid" value="'+escHtml(guide.guideUserid||'')+'" placeholder="guide_userid"></td><td><input class="input" data-field="guideName" value="'+escHtml(guide.guideName||'')+'" placeholder="导购姓名"></td><td><input class="input" data-field="sortOrder" type="number" value="'+Number(guide.sortOrder||index+1)+'"></td><td><select class="select" data-field="status"><option value="active" '+(guide.status!=='inactive'?'selected':'')+'>active</option><option value="inactive" '+(guide.status==='inactive'?'selected':'')+'>inactive</option></select></td><td><input class="input" data-field="dailyLimit" type="number" value="'+Number(guide.dailyLimit||0)+'"></td><td>'+Number(guide.assignedToday||0)+'</td><td><button class="btn danger" onclick="this.closest(&quot;tr&quot;).remove()">删除</button></td></tr>').join('');
+  }
+  function openGuidePool(bindingId){
+    const binding=(appState.scrmBindings||[]).find(item=>item.id===bindingId);
+    if(!binding)return;
+    showWideDrawer('配置导购池：'+binding.storeName,'<div class="drawer-form"><div class="notice">导购池按 sort_order 轮询。达到 daily_limit 或 inactive 的导购会被跳过。</div><table id="guide-pool-table" data-binding-id="'+escHtml(bindingId)+'"><tr><th>guide_userid</th><th>guide_name</th><th>sort_order</th><th>status</th><th>daily_limit</th><th>assigned_today</th><th>操作</th></tr>'+guidePoolRowsHtml(bindingId)+'</table><div class="drawer-footer"><button class="btn" onclick="addGuidePoolRow()">新增导购</button><button class="btn primary" onclick="saveGuidePool()">保存导购池</button></div></div>');
+  }
+  function addGuidePoolRow(){
+    const table=document.getElementById('guide-pool-table');
+    if(!table)return;
+    const index=table.querySelectorAll('[data-guide-row]').length+1;
+    table.insertAdjacentHTML('beforeend','<tr data-guide-row><td><input class="input" data-field="guideUserid" placeholder="guide_userid"></td><td><input class="input" data-field="guideName" placeholder="导购姓名"></td><td><input class="input" data-field="sortOrder" type="number" value="'+index+'"></td><td><select class="select" data-field="status"><option value="active">active</option><option value="inactive">inactive</option></select></td><td><input class="input" data-field="dailyLimit" type="number" value="0"></td><td>0</td><td><button class="btn danger" onclick="this.closest(&quot;tr&quot;).remove()">删除</button></td></tr>');
+  }
+  async function saveGuidePool(){
+    const table=document.getElementById('guide-pool-table');
+    if(!table)return;
+    const binding=(appState.scrmBindings||[]).find(item=>item.id===table.dataset.bindingId);
+    if(!binding)return;
+    const guides=[...table.querySelectorAll('[data-guide-row]')].map(row=>({
+      guideUserid:row.querySelector('[data-field="guideUserid"]')?.value.trim()||'',
+      guideName:row.querySelector('[data-field="guideName"]')?.value.trim()||'',
+      sortOrder:Number(row.querySelector('[data-field="sortOrder"]')?.value||0),
+      status:row.querySelector('[data-field="status"]')?.value||'active',
+      dailyLimit:Number(row.querySelector('[data-field="dailyLimit"]')?.value||0)
+    })).filter(item=>item.guideUserid);
+    try{
+      await apiPostJSON('/api/scrm/stores/'+encodeURIComponent(binding.storeId)+'/guides',{guides});
+      closeDrawer();
+      await refreshSCRMCodePages('manager-codes');
+      appState.flash='导购池已保存。轮询顺序按 sort_order 执行。';
+      renderManagerCodesPage();
+    }catch(err){
+      appState.flash='保存导购池失败：'+err.message;
+      renderManagerCodesPage();
+    }
+  }
+  async function activateManagerCode(bindingId){
+    try{
+      await apiPostJSON('/api/scrm/contact-way-bindings/'+encodeURIComponent(bindingId)+'/activate');
+      await refreshSCRMCodePages('manager-codes');
+      appState.flash='已将原企业微信二维码绑定到第一位可用导购。没有生成新二维码。';
+      renderManagerCodesPage();
+    }catch(err){
+      appState.flash='激活失败：'+err.message;
+      renderManagerCodesPage();
+    }
+  }
+  async function switchManagerCodeNext(bindingId){
+    try{
+      await apiPostJSON('/api/scrm/contact-way-bindings/'+encodeURIComponent(bindingId)+'/switch-next');
+      await refreshSCRMCodePages('manager-codes');
+      appState.flash='已更新同一个 config_id 背后的导购成员；二维码图片不变，仅切换企微联系我配置背后的 user/state。';
+      renderManagerCodesPage();
+    }catch(err){
+      appState.flash='切换失败：'+err.message;
+      renderManagerCodesPage();
+    }
+  }
+  async function setManagerCodeStatus(bindingId,action){
+    try{
+      await apiPostJSON('/api/scrm/contact-way-bindings/'+encodeURIComponent(bindingId)+'/'+action);
+      await refreshSCRMCodePages('manager-codes');
+      appState.flash=(action==='pause'?'已暂停门店店长码：':'已启用门店店长码：')+'只更新 SCRM 包装状态，不生成新二维码，原 config_id 和二维码 URL 不变。';
+      renderManagerCodesPage();
+    }catch(err){
+      appState.flash=(action==='pause'?'暂停失败：':'启用失败：')+err.message;
+      renderManagerCodesPage();
+    }
+  }
+  async function retryWeComTask(taskId){
+    try{
+      await apiPostJSON('/api/scrm/wecom/retries/'+encodeURIComponent(taskId)+'/retry');
+      await refreshSCRMCodePages('anomaly-monitor');
+      appState.flash='已重试 update_contact_way；二维码 URL 和 config_id 不变。';
+      renderAnomalyMonitorPage();
+    }catch(err){
+      appState.flash='重试失败：'+err.message;
+      renderAnomalyMonitorPage();
+    }
+  }
+  async function openAssignmentRecords(configId){
+    try{
+      appState.assignmentFilters={configId:configId||''};
+      await loadSCRMCodeData(appState.assignmentFilters);
+      go('assignment-records');
+    }catch(err){
+      appState.flash='加载分配记录失败：'+err.message;
+      renderManagerCodesPage();
+    }
+  }
+  async function applyAssignmentRecordFilters(){
+    try{
+      appState.assignmentFilters={
+        storeId:document.getElementById('assignment-store-filter')?.value||'',
+        managerUserid:document.getElementById('assignment-manager-filter')?.value||'',
+        guideUserid:document.getElementById('assignment-guide-filter')?.value||'',
+        configId:document.getElementById('assignment-config-filter')?.value||'',
+        start:document.getElementById('assignment-start-filter')?.value||'',
+        end:document.getElementById('assignment-end-filter')?.value||'',
+        status:document.getElementById('assignment-status-filter')?.value||''
+      };
+      await loadSCRMCodeData(appState.assignmentFilters);
+      renderAssignmentRecordsPage();
+    }catch(err){
+      appState.flash='筛选分配记录失败：'+err.message;
+      renderAssignmentRecordsPage();
+    }
+  }
+  async function resetAssignmentRecordFilters(){
+    try{
+      appState.assignmentFilters={};
+      await loadSCRMCodeData(appState.assignmentFilters);
+      renderAssignmentRecordsPage();
+    }catch(err){
+      appState.flash='重置分配记录筛选失败：'+err.message;
+      renderAssignmentRecordsPage();
+    }
+  }
+  function copyText(text){
+    navigator.clipboard?.writeText(text);
+    appState.flash='已复制 config_id：'+text;
+    renderWeComAssetsPage();
+  }
+  function renderDevStatusBadge(){
+    let badge=document.getElementById('dev-status-badge');
+    if(!badge){
+      badge=document.createElement('div');
+      badge.id='dev-status-badge';
+      document.body.appendChild(badge);
+    }
+    const status=appState.systemStatus||{};
+    const database=status.database||{};
+    const connected=!!database.connected;
+    const mode=status.mode||status.storage||'memory';
+    badge.className='dev-status-badge '+(status.status==='ok'?'ok':'warn');
+    badge.innerHTML='<b>后端 '+escHtml(mode)+'</b> · API '+escHtml(status.status||'checking')+(mode==='postgres'?' · DB '+(connected?'connected':'offline'):'')+'<br><span>迁移 '+escHtml(status.appliedMigrationVersion||status.migrationVersion||'-')+'</span>';
+  }
+  async function refreshSystemStatus(){
+    try{
+      const res=await fetch('/api/system/status',{cache:'no-store'});
+      if(!res.ok)throw new Error('HTTP '+res.status);
+      appState.systemStatus=await res.json();
+    }catch(err){
+      appState.systemStatus={status:'degraded',mode:'unknown',database:{connected:false,error:err.message},migrationVersion:'-'};
+    }
+    renderDevStatusBadge();
+  }
+  const originalRenderRealOnlyPage=renderRealOnlyPage;
+  renderRealOnlyPage=function(id){
+    if(id==='hq-workbench'||id==='wecom-assets'||id==='manager-codes'||id==='assignment-records'||id==='data-quality-center'||id==='customer-ops-center'||id==='anomaly-monitor')return renderSCRMCodePage(id);
+    return originalRenderRealOnlyPage(id);
+  }
+  ensureSCRMCodePages();
+  refreshSystemStatus();
+  loadSCRMCodeData().catch(()=>{});
+  loadRealSCRMData();
 </script>
 </body>
 </html>

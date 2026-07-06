@@ -64,5 +64,20 @@ export const api = {
   autoTagRules: () => request('/api/tag-rules/auto'),
   saveAutoTagRule: (payload) => postJSON('/api/tag-rules/auto', payload),
   preTagRules: () => request('/api/tag-rules/pre'),
-  savePreTagRule: (payload) => postJSON('/api/tag-rules/pre', payload)
+  savePreTagRule: (payload) => postJSON('/api/tag-rules/pre', payload),
+  wecomConfig: () => request('/api/wecom/config'),
+  saveWecomConfig: (payload) => postJSON('/api/wecom/config', payload),
+  testWecomConnection: () => postJSON('/api/wecom/test-connection'),
+  syncWecomUsers: () => postJSON('/api/wecom/users/sync'),
+  wecomUsers: (params = '') => request(`/api/wecom/users${params}`),
+  updateWecomUserRole: (userid, roleType) => patchJSON(`/api/wecom/users/${encodeURIComponent(userid)}/role`, { roleType }),
+  wecomContactWays: () => request('/api/wecom/contact-way'),
+  createWecomContactWay: (payload) => postJSON('/api/wecom/contact-way', payload),
+  wecomContactWayStats: (id) => request(`/api/wecom/contact-way/${encodeURIComponent(id)}/stats`),
+  scrmContactWayBindings: () => request('/api/scrm/contact-way-bindings'),
+  bindScrmContactWay: (payload) => postJSON('/api/scrm/contact-way-bindings', payload),
+  saveScrmStoreGuides: (storeId, payload) => postJSON(`/api/scrm/stores/${encodeURIComponent(storeId)}/guides`, payload),
+  scrmStoreGuides: (storeId) => request(`/api/scrm/stores/${encodeURIComponent(storeId)}/guides`),
+  activateScrmContactWayBinding: (bindingId) => postJSON(`/api/scrm/contact-way-bindings/${encodeURIComponent(bindingId)}/activate`),
+  switchNextScrmContactWayBinding: (bindingId) => postJSON(`/api/scrm/contact-way-bindings/${encodeURIComponent(bindingId)}/switch-next`)
 }
