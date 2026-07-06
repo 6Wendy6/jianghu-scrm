@@ -591,7 +591,7 @@ func (api *API) updateWeComContactWay(ctx context.Context, configID, remark stri
 		return err
 	}
 	if resp.ErrCode != 0 {
-		return fmt.Errorf("wecom update_contact_way errcode=%d errmsg=%s", resp.ErrCode, resp.ErrMsg)
+		return wecomAPIError("update_contact_way", resp.ErrCode, resp.ErrMsg)
 	}
 	return nil
 }
@@ -605,6 +605,9 @@ func (api *API) fetchWeComContactWay(ctx context.Context, configID string) (map[
 	var resp map[string]any
 	if err := postWeComJSON(ctx, wecomAPIBase+"/cgi-bin/externalcontact/get_contact_way?access_token="+url.QueryEscape(token), reqBody, &resp); err != nil {
 		return nil, err
+	}
+	if errCode := intFromAny(resp["errcode"]); errCode != 0 {
+		return nil, wecomAPIError("get_contact_way", errCode, stringFromAny(resp["errmsg"]))
 	}
 	return resp, nil
 }

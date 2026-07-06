@@ -40,6 +40,7 @@ func newOpsDBTestServer(t *testing.T) (*API, http.Handler) {
 	api := newAPI()
 	api.db = db
 	api.storageMode = "postgres"
+	api.secretCipher = newSecretCipher("db-test-secret-key")
 	mux := http.NewServeMux()
 	api.register(mux)
 	return api, mux

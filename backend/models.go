@@ -159,11 +159,15 @@ type API struct {
 	events           []EventEnvelope
 	tasks            []TaskRecord
 	taskItems        []TaskItemRecord
+	wecomConfigV2    *WeComIntegrationConfig
+	wecomTokens      map[string]WeComTokenRecord
+	wecomChecks      []WeComPermissionCheck
 	db               *sql.DB
 	storageMode      string
 	cache            cacheStore
 	metrics          *apiMetrics
 	wecomSynced      bool
+	wecomClient      WeComClient
 	secretCipher     secretCipher
 	config           Config
 }

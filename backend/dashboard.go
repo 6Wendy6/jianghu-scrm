@@ -99,6 +99,7 @@ func (api *API) systemStatusHandler(w http.ResponseWriter, r *http.Request) erro
 	stats := api.db.Stats()
 	database["pool"] = map[string]any{"openConnections": stats.OpenConnections, "inUse": stats.InUse, "idle": stats.Idle, "waitCount": stats.WaitCount}
 	status["database"] = database
+	status["wecom"] = api.scrmWeComSystemSummary(ctx)
 	return writeJSON(w, status)
 }
 

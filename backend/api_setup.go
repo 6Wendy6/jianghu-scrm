@@ -9,6 +9,8 @@ import (
 func newAPI() *API {
 	now := "2026-06-25 10:30"
 	api := &API{}
+	api.wecomTokens = map[string]WeComTokenRecord{}
+	api.wecomClient = realWeComClient{}
 	api.stores = []Store{
 		{ID: "s1", Name: "深圳南山万象天地店", InternalCode: "BU-KST-HN-001", ExternalCode: "POS-3201", Brand: "蔻斯汀", Region: "华南", BrandRegion: "蔻斯汀 / 华南", Type: "直营", GuideCount: 8, PoolCount: 326, Config: StoreConfig{EntryMode: "跟随全局 · 企微优先", ServiceGuide: "开启", Group: "南山店会员福利群", Welcome: "门店默认欢迎语", Polling: "按顺序轮巡"}},
 		{ID: "s2", Name: "广州天河代理店", InternalCode: "BU-BA-HN-014", ExternalCode: "POS-5108", Brand: "品牌 A", Region: "华南", BrandRegion: "品牌 A / 华南", Type: "代理", GuideCount: 5, PoolCount: 188, Config: StoreConfig{EntryMode: "关注优先", ServiceGuide: "开启", Group: "618 试用活动群", Welcome: "天河关注优先欢迎语", Polling: "按新导购优先（入职2个月内保护期）"}},
@@ -102,6 +104,12 @@ func (api *API) register(mux *http.ServeMux) {
 	mux.HandleFunc("/api/wecom/contact-way/", api.withJSON(api.wecomContactWayActionHandler))
 	mux.HandleFunc("/api/wecom/callback", api.wecomCallbackHandler)
 	mux.HandleFunc("/api/wecom/callback/", api.wecomCallbackHandler)
+	mux.HandleFunc("/api/scrm/wecom/config", api.withJSON(api.scrmWeComConfigHandler))
+	mux.HandleFunc("/api/scrm/wecom/status", api.withJSON(api.scrmWeComStatusHandler))
+	mux.HandleFunc("/api/scrm/wecom/error-dictionary", api.withJSON(api.scrmWeComErrorDictionaryHandler))
+	mux.HandleFunc("/api/scrm/wecom/test-token", api.withJSON(api.scrmWeComTestTokenHandler))
+	mux.HandleFunc("/api/scrm/wecom/permission-check", api.withJSON(api.scrmWeComPermissionCheckHandler))
+	mux.HandleFunc("/api/scrm/wecom/permission-checks", api.withJSON(api.scrmWeComPermissionChecksHandler))
 	mux.HandleFunc("/api/scrm/wecom/doctor", api.withJSON(api.scrmWeComDoctorHandler))
 	mux.HandleFunc("/api/scrm/wecom/retries", api.withJSON(api.scrmWeComRetryTasksHandler))
 	mux.HandleFunc("/api/scrm/wecom/retries/", api.withJSON(api.scrmWeComRetryTaskActionHandler))
@@ -134,7 +142,11 @@ func (api *API) withJSON(next func(http.ResponseWriter, *http.Request) error) ht
 				status = http.StatusForbidden
 			}
 			w.WriteHeader(status)
-			_ = json.NewEncoder(w).Encode(map[string]string{"error": err.Error()})
+			requestID := requestIDFromContext(r.Context())
+			if requestID == "" {
+				requestID = r.Header.Get("X-Request-ID")
+			}
+			_ = json.NewEncoder(w).Encode(apiErrorResponse(err, requestID))
 		}
 	}
 }

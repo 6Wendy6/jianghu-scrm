@@ -1703,6 +1703,12 @@
       return res.json();
     });
   }
+  function apiPutJSON(path,payload={}){
+    return fetch(path,{method:'PUT',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload)}).then(async res=>{
+      if(!res.ok)throw new Error(await res.text()||('HTTP '+res.status));
+      return res.json();
+    });
+  }
   function ensureSCRMCodePages(){
     const nav=document.getElementById('nav');
     const content=document.querySelector('.content');
@@ -1758,14 +1764,17 @@
   }
   async function loadSCRMCodeData(filters=appState.assignmentFilters||{}){
     const hasAssignmentFilters=Object.values(filters||{}).some(value=>String(value||'').trim());
-    const [bindings,assignments,allAssignments,stores,doctor,retries,integrationLog]=await Promise.all([
+    const [bindings,assignments,allAssignments,stores,doctor,retries,integrationLog,wecomStatus,wecomConfig,wecomPermissionChecks]=await Promise.all([
       apiJSON('/api/scrm/contact-way-bindings').catch(()=>[]),
       apiJSON('/api/scrm/customer-assignments?'+assignmentFilterQuery(filters)).catch(()=>({data:[]})),
       hasAssignmentFilters?apiJSON('/api/scrm/customer-assignments?page=1&pageSize=200').catch(()=>({data:[]})):Promise.resolve(null),
       apiJSON('/api/stores').catch(()=>[]),
       apiJSON('/api/scrm/wecom/doctor').catch(err=>({status:'attention',error:err.message,checks:[]})),
       apiJSON('/api/scrm/wecom/retries').catch(()=>[]),
-      apiJSON('/api/scrm/wecom/integration-log').catch(()=>null)
+      apiJSON('/api/scrm/wecom/integration-log').catch(()=>null),
+      apiJSON('/api/scrm/wecom/status').catch(err=>({status:'attention',error:err.message,configured:false,tokens:{},permissionChecks:{}})),
+      apiJSON('/api/scrm/wecom/config').catch(()=>({configured:false})),
+      apiJSON('/api/scrm/wecom/permission-checks').catch(()=>[])
     ]);
     appState.scrmBindings=Array.isArray(bindings)?bindings:[];
     appState.scrmAssignments=pageItems(assignments);
@@ -1774,6 +1783,9 @@
     appState.wecomDoctor=doctor;
     appState.wecomRetryTasks=Array.isArray(retries)?retries:[];
     appState.wecomIntegrationLog=integrationLog;
+    appState.wecomIntegrationStatus=wecomStatus;
+    appState.wecomConfig=wecomConfig;
+    appState.wecomPermissionChecks=Array.isArray(wecomPermissionChecks)?wecomPermissionChecks:[];
     appState.scrmGuidePools={};
     await Promise.all((appState.scrmBindings||[]).map(async binding=>{
       appState.scrmGuidePools[binding.storeId]=await apiJSON('/api/scrm/stores/'+encodeURIComponent(binding.storeId)+'/guides').catch(()=>[]);
@@ -1873,6 +1885,42 @@
   function renderRetryRows(limit=5){
     const tasks=appState.wecomRetryTasks||[];
     return tasks.length?tasks.slice(0,limit).map(task=>'<tr><td>'+escHtml(task.configId||'-')+'</td><td>'+escHtml(task.targetGuideUserid||'-')+'</td><td>'+realBadge(task.status||'-',task.status==='resolved'?'green':'red')+'</td><td>'+escHtml(task.failedReason||'-')+'</td><td><button class="btn" onclick="retryWeComTask(&quot;'+escHtml(task.id)+'&quot;)">重试</button></td></tr>').join(''):'<tr><td colspan="5">暂无 update_contact_way 失败重试任务。</td></tr>';
+  }
+  const wecomTokenLabels={contact_token:'通讯录 token',customer_token:'客户联系 token',app_token:'应用 token'};
+  const wecomCheckLabels={contact_token:'通讯录 token',customer_token:'客户联系 token',app_token:'应用 token',department_read:'部门读取',user_read:'成员读取',customer_contact_basic:'客户联系基础权限',customer_group_sync:'客户群同步检测',contact_way_sync:'活码同步检测'};
+  function wecomStatusBadge(status){
+    const tone=status==='passed'||status==='ok'||status==='valid'?'green':status==='failed'||status==='invalid'?'red':status==='planned'||status==='not_checked'?'orange':'';
+    const label={passed:'通过',failed:'失败',not_checked:'未检测',planned:'规划中',ok:'正常',invalid:'无效',valid:'有效',attention:'注意'}[status]||status||'-';
+    return realBadge(label,tone);
+  }
+  function wecomTokenRows(){
+    const tokens=appState.wecomIntegrationStatus?.tokens||{};
+    return ['contact_token','customer_token','app_token'].map(type=>{
+      const item=tokens[type]||{};
+      const status=item.valid?'valid':item.cached?'invalid':'not_checked';
+      return '<tr><td>'+wecomTokenLabels[type]+'</td><td>'+wecomStatusBadge(status)+'</td><td>'+escHtml(item.expiresAt||'-')+'</td><td><button class="btn" onclick="testWeComToken(&quot;'+type+'&quot;)">测试</button></td></tr>';
+    }).join('');
+  }
+  function wecomPermissionRows(limit=8){
+    const checks=appState.wecomPermissionChecks||[];
+    if(!checks.length)return '<tr><td colspan="5">暂无权限检测记录。保存配置并完成 token 测试后可执行检测。</td></tr>';
+    return checks.slice(0,limit).map(check=>'<tr><td>'+escHtml(wecomCheckLabels[check.checkType]||check.checkType)+'</td><td>'+wecomStatusBadge(check.status)+'</td><td>'+escHtml(check.localCode||check.errcode||'-')+'</td><td>'+escHtml(check.suggestion||check.errmsg||'-')+'</td><td>'+escHtml(check.checkedAt||'-')+'</td></tr>').join('');
+  }
+  function renderWeComIntegrationCenter(){
+    const status=appState.wecomIntegrationStatus||{};
+    const cfgPayload=appState.wecomConfig?.config||status.config||{};
+    const configured=!!(appState.wecomConfig?.configured||status.configured);
+    const failed=Number(status.permissionChecks?.failed||0);
+    const overallTone=status.status==='ok'?'green':failed>0?'red':'orange';
+    const configRows=[
+      ['corpId',cfgPayload.corpIdMasked||cfgPayload.corpId||'-'],
+      ['contact_secret',cfgPayload.contactSecretConfigured?'已配置':'未配置'],
+      ['customer_secret',cfgPayload.customerSecretConfigured?'已配置':'未配置'],
+      ['agentId',cfgPayload.agentIdMasked||cfgPayload.agentId||'-'],
+      ['agent_secret',cfgPayload.agentSecretConfigured?'已配置':'未配置'],
+      ['回调 token / AESKey',(cfgPayload.callbackTokenConfigured?'token 已配置':'token 未配置')+' / '+(cfgPayload.encodingAesKeyConfigured?'AESKey 已配置':'AESKey 未配置')]
+    ].map(row=>'<tr><td>'+escHtml(row[0])+'</td><td>'+escHtml(row[1])+'</td></tr>').join('');
+    return '<div class="card"><div class="section-title"><div><h3>企业微信集成中心</h3><p>Phase 2B 只做配置、token 与权限检测闭环，不做客户/客户群/活码全量同步。</p></div><div><button class="btn primary" onclick="openWeComConfigDrawer()">配置</button> <button class="btn" onclick="testWeComToken(&quot;all&quot;)">测试全部 token</button> <button class="btn green" onclick="runWeComPermissionCheck()">权限检测</button></div></div><div class="grid grid-3"><div><table><tr><th colspan="2">配置状态 '+realBadge(configured?'已配置':'未配置',configured?'green':'orange')+'</th></tr>'+configRows+'</table></div><div><table><tr><th>token</th><th>状态</th><th>过期时间</th><th>操作</th></tr>'+wecomTokenRows()+'</table></div><div><table><tr><th>运行状态</th><th>结果</th></tr><tr><td>整体</td><td>'+realBadge(status.status||'attention',overallTone)+'</td></tr><tr><td>运行模式</td><td>'+escHtml(status.mode||'memory')+'</td></tr><tr><td>dry-run</td><td>'+escHtml(String(!!status.dryRun))+'</td></tr><tr><td>失败检测</td><td>'+failed+'</td></tr></table></div></div><div style="margin-top:14px"><table><tr><th>检测项</th><th>状态</th><th>错误码</th><th>建议</th><th>检测时间</th></tr>'+wecomPermissionRows(6)+'</table></div></div>';
   }
   const customerStageMap={
     new_lead:'新线索',
@@ -2506,7 +2554,8 @@
     const storeRank=renderRankRows(groupCount(assignments,item=>item.storeName||storeNameById(item.storeId)),'暂无客户分配数据。');
     const guideRank=renderRankRows(groupCount(assignments,item=>item.guideUserid),'暂无导购承接数据。');
     const qrRank=renderRankRows(groupCount(assignments,item=>item.configId),'暂无二维码使用数据。');
-    page.innerHTML=flashHtml()+'<div class="notice">总部模式负责统一管理企业微信活码资产、门店、店长码、导购池、分配规则、异常和数据；门店店长只负责本门店导购池和日常分配，导购只负责自己的客户承接。</div><div class="toolbar"><button class="btn" onclick="refreshSCRMCodePages(&quot;hq-workbench&quot;)">刷新总部数据</button><button class="btn" onclick="go(&quot;wecom-assets&quot;)">企业微信活码资产</button><button class="btn" onclick="go(&quot;manager-codes&quot;)">门店店长码</button><button class="btn danger" onclick="go(&quot;anomaly-monitor&quot;)">异常监控</button></div><div class="grid grid-4"><div class="card kpi"><div class="label">门店接入</div><div class="num">'+activeBindings+'/'+stores.length+'</div><div class="trend">运行中店长码 / 全部门店</div></div><div class="card kpi"><div class="label">活码包装</div><div class="num">'+boundAssets+'/'+assets.length+'</div><div class="trend">已包装 config_id / 原始资产</div></div><div class="card kpi"><div class="label">今日新增</div><div class="num">'+todayAssignments.length+'</div><div class="trend">企业微信回调分配客户</div></div><div class="card kpi"><div class="label">异常待处理</div><div class="num">'+anomalies.length+'</div><div class="trend">未接入、无导购池、接口错误</div></div></div><div class="grid grid-2"><div class="card"><h3>企业微信真实联调自检</h3><table><tr><th>检查项</th><th>状态</th><th>说明</th></tr>'+renderDoctorRows()+'</table></div><div class="card"><h3>update_contact_way 重试队列</h3><table><tr><th>config_id</th><th>目标导购</th><th>状态</th><th>失败原因</th><th>操作</th></tr>'+renderRetryRows(3)+'</table></div></div><div class="grid grid-2"><div class="card"><h3>总部 / 门店 / 导购权限边界</h3><table><tr><th>角色</th><th>可见范围</th><th>核心动作</th></tr><tr><td>总部管理员</td><td>全部门店、二维码、规则、异常和数据</td><td>统一绑定、批量启停、规则配置、异常处理</td></tr><tr><td>区域经理</td><td>所属区域门店</td><td>区域监督、区域规则覆盖、区域排行</td></tr><tr><td>门店店长</td><td>本门店店长码和导购池</td><td>配置导购池、激活、切换、暂停导购</td></tr><tr><td>导购</td><td>自己的客户和任务</td><td>承接客户、跟进、标签和 SOP</td></tr></table></div><div class="card"><h3>统一分配规则</h3><table><tr><th>规则项</th><th>当前口径</th></tr><tr><td>默认轮询方式</td><td>按 sort_order 顺序轮询</td></tr><tr><td>跳过不可用导购</td><td>跳过 inactive 导购</td></tr><tr><td>跳过达到日上限导购</td><td>daily_limit 大于 0 且已达上限会跳过</td></tr><tr><td>手动切换权限</td><td>总部和门店店长可操作</td></tr><tr><td>规则优先级</td><td>门店规则 &gt; 区域规则 &gt; 总部规则</td></tr></table></div></div><div class="grid grid-4"><div class="card"><h3>区域覆盖</h3><table><tr><th>排名</th><th>区域</th><th>门店数</th></tr>'+regionRows+'</table></div><div class="card"><h3>门店获客排行</h3><table><tr><th>排名</th><th>门店</th><th>分配数</th></tr>'+storeRank+'</table></div><div class="card"><h3>导购承接排行</h3><table><tr><th>排名</th><th>导购</th><th>承接数</th></tr>'+guideRank+'</table></div><div class="card"><h3>二维码使用排行</h3><table><tr><th>排名</th><th>config_id</th><th>客户数</th></tr>'+qrRank+'</table></div></div><div class="card"><div class="section-title"><div><h3>总部门店接入总表</h3><p>总部看全部门店；区域经理和门店店长后续通过 RBAC 自动收窄范围。</p></div><button class="btn" onclick="go(&quot;manager-codes&quot;)">管理店长码</button></div><table><tr><th>区域</th><th>门店</th><th>店长</th><th>config_id</th><th>导购池</th><th>今日新增</th><th>累计新增</th><th>运行状态</th></tr>'+storeRows+'</table></div>';
+    const wecomCenter=renderWeComIntegrationCenter();
+    page.innerHTML=flashHtml()+'<div class="notice">总部模式负责统一管理企业微信活码资产、门店、店长码、导购池、分配规则、异常和数据；门店店长只负责本门店导购池和日常分配，导购只负责自己的客户承接。</div><div class="toolbar"><button class="btn" onclick="refreshSCRMCodePages(&quot;hq-workbench&quot;)">刷新总部数据</button><button class="btn" onclick="go(&quot;wecom-assets&quot;)">企业微信活码资产</button><button class="btn" onclick="go(&quot;manager-codes&quot;)">门店店长码</button><button class="btn danger" onclick="go(&quot;anomaly-monitor&quot;)">异常监控</button></div>'+wecomCenter+'<div class="grid grid-4"><div class="card kpi"><div class="label">门店接入</div><div class="num">'+activeBindings+'/'+stores.length+'</div><div class="trend">运行中店长码 / 全部门店</div></div><div class="card kpi"><div class="label">活码包装</div><div class="num">'+boundAssets+'/'+assets.length+'</div><div class="trend">已包装 config_id / 原始资产</div></div><div class="card kpi"><div class="label">今日新增</div><div class="num">'+todayAssignments.length+'</div><div class="trend">企业微信回调分配客户</div></div><div class="card kpi"><div class="label">异常待处理</div><div class="num">'+anomalies.length+'</div><div class="trend">未接入、无导购池、接口错误</div></div></div><div class="grid grid-2"><div class="card"><h3>企业微信真实联调自检</h3><table><tr><th>检查项</th><th>状态</th><th>说明</th></tr>'+renderDoctorRows()+'</table></div><div class="card"><h3>update_contact_way 重试队列</h3><table><tr><th>config_id</th><th>目标导购</th><th>状态</th><th>失败原因</th><th>操作</th></tr>'+renderRetryRows(3)+'</table></div></div><div class="grid grid-2"><div class="card"><h3>总部 / 门店 / 导购权限边界</h3><table><tr><th>角色</th><th>可见范围</th><th>核心动作</th></tr><tr><td>总部管理员</td><td>全部门店、二维码、规则、异常和数据</td><td>统一绑定、批量启停、规则配置、异常处理</td></tr><tr><td>区域经理</td><td>所属区域门店</td><td>区域监督、区域规则覆盖、区域排行</td></tr><tr><td>门店店长</td><td>本门店店长码和导购池</td><td>配置导购池、激活、切换、暂停导购</td></tr><tr><td>导购</td><td>自己的客户和任务</td><td>承接客户、跟进、标签和 SOP</td></tr></table></div><div class="card"><h3>统一分配规则</h3><table><tr><th>规则项</th><th>当前口径</th></tr><tr><td>默认轮询方式</td><td>按 sort_order 顺序轮询</td></tr><tr><td>跳过不可用导购</td><td>跳过 inactive 导购</td></tr><tr><td>跳过达到日上限导购</td><td>daily_limit 大于 0 且已达上限会跳过</td></tr><tr><td>手动切换权限</td><td>总部和门店店长可操作</td></tr><tr><td>规则优先级</td><td>门店规则 &gt; 区域规则 &gt; 总部规则</td></tr></table></div></div><div class="grid grid-4"><div class="card"><h3>区域覆盖</h3><table><tr><th>排名</th><th>区域</th><th>门店数</th></tr>'+regionRows+'</table></div><div class="card"><h3>门店获客排行</h3><table><tr><th>排名</th><th>门店</th><th>分配数</th></tr>'+storeRank+'</table></div><div class="card"><h3>导购承接排行</h3><table><tr><th>排名</th><th>导购</th><th>承接数</th></tr>'+guideRank+'</table></div><div class="card"><h3>二维码使用排行</h3><table><tr><th>排名</th><th>config_id</th><th>客户数</th></tr>'+qrRank+'</table></div></div><div class="card"><div class="section-title"><div><h3>总部门店接入总表</h3><p>总部看全部门店；区域经理和门店店长后续通过 RBAC 自动收窄范围。</p></div><button class="btn" onclick="go(&quot;manager-codes&quot;)">管理店长码</button></div><table><tr><th>区域</th><th>门店</th><th>店长</th><th>config_id</th><th>导购池</th><th>今日新增</th><th>累计新增</th><th>运行状态</th></tr>'+storeRows+'</table></div>';
     appState.flash='';
   }
   function renderAnomalyMonitorPage(){
@@ -2674,6 +2723,68 @@
     }catch(err){
       appState.flash='重试失败：'+err.message;
       renderAnomalyMonitorPage();
+    }
+  }
+  function apiErrorText(err){
+    const raw=String(err?.message||err||'');
+    try{
+      const body=JSON.parse(raw);
+      return [body.code,body.message,body.details?.suggestion].filter(Boolean).join('｜')||raw;
+    }catch(_){
+      return raw;
+    }
+  }
+  function openWeComConfigDrawer(){
+    const cfg=appState.wecomConfig?.config||appState.wecomIntegrationStatus?.config||{};
+    const enabled=cfg.enabled!==false;
+    showWideDrawer('企业微信接入配置','<div class="drawer-form"><div class="notice">Secret 留空会保留后端已有密文；页面不会展示完整 secret 或 access_token。</div><div class="form-row"><b>corpId</b><input id="wecom-corp-id" class="input" value="'+escHtml(cfg.corpId||'')+'" placeholder="wwxxxxxxxx"></div><div class="form-row"><b>通讯录 secret</b><input id="wecom-contact-secret" class="input" type="password" placeholder="'+(cfg.contactSecretConfigured?'已配置，留空不变':'请输入通讯录 secret')+'"></div><div class="form-row"><b>客户联系 secret</b><input id="wecom-customer-secret" class="input" type="password" placeholder="'+(cfg.customerSecretConfigured?'已配置，留空不变':'请输入客户联系 secret')+'"></div><div class="form-row"><b>应用 agentId</b><input id="wecom-agent-id" class="input" value="'+escHtml(cfg.agentId||'')+'" placeholder="1000001"></div><div class="form-row"><b>应用 secret</b><input id="wecom-agent-secret" class="input" type="password" placeholder="'+(cfg.agentSecretConfigured?'已配置，留空不变':'请输入应用 secret')+'"></div><div class="form-row"><b>回调 token</b><input id="wecom-callback-token" class="input" type="password" placeholder="'+(cfg.callbackTokenConfigured?'已配置':'可选')+'"></div><div class="form-row"><b>EncodingAESKey</b><input id="wecom-encoding-key" class="input" type="password" placeholder="'+(cfg.encodingAesKeyConfigured?'已配置':'可选')+'"></div><div class="form-row"><b>启用配置</b><label class="check-card"><input id="wecom-enabled" type="checkbox" '+(enabled?'checked':'')+'>启用企业微信配置检测</label></div><div class="drawer-footer"><button class="btn" onclick="closeDrawer()">取消</button><button class="btn primary" onclick="saveWeComIntegrationConfig()">保存配置</button></div></div>');
+  }
+  async function saveWeComIntegrationConfig(){
+    try{
+      const payload={
+        corpId:document.getElementById('wecom-corp-id')?.value.trim()||'',
+        contactSecret:document.getElementById('wecom-contact-secret')?.value||'',
+        customerSecret:document.getElementById('wecom-customer-secret')?.value||'',
+        agentId:document.getElementById('wecom-agent-id')?.value.trim()||'',
+        agentSecret:document.getElementById('wecom-agent-secret')?.value||'',
+        callbackToken:document.getElementById('wecom-callback-token')?.value||'',
+        encodingAesKey:document.getElementById('wecom-encoding-key')?.value||'',
+        enabled:!!document.getElementById('wecom-enabled')?.checked
+      };
+      await apiPutJSON('/api/scrm/wecom/config',payload);
+      closeDrawer();
+      await loadSCRMCodeData();
+      appState.flash='企业微信配置已保存，secret 已脱敏存储；下一步可测试 token。';
+      renderHeadquartersWorkbenchPage();
+    }catch(err){
+      appState.flash='保存企微配置失败：'+apiErrorText(err);
+      renderHeadquartersWorkbenchPage();
+    }
+  }
+  async function testWeComToken(tokenType){
+    try{
+      const result=await apiPostJSON('/api/scrm/wecom/test-token',{tokenType});
+      await loadSCRMCodeData();
+      const count=(result.results||[]).length;
+      appState.flash=(tokenType==='all'?'全部 token':'Token')+' 测试完成：'+count+' 项，响应未返回 access_token 明文。';
+      renderHeadquartersWorkbenchPage();
+    }catch(err){
+      await loadSCRMCodeData().catch(()=>{});
+      appState.flash='Token 测试失败：'+apiErrorText(err);
+      renderHeadquartersWorkbenchPage();
+    }
+  }
+  async function runWeComPermissionCheck(){
+    try{
+      const result=await apiPostJSON('/api/scrm/wecom/permission-check',{});
+      await loadSCRMCodeData();
+      const failed=(result.checks||[]).filter(item=>item.status==='failed').length;
+      appState.flash=failed?'权限检测完成，发现 '+failed+' 个失败项，已写入异常监控。':'权限检测完成，当前核心接入权限通过。';
+      renderHeadquartersWorkbenchPage();
+    }catch(err){
+      await loadSCRMCodeData().catch(()=>{});
+      appState.flash='权限检测失败：'+apiErrorText(err);
+      renderHeadquartersWorkbenchPage();
     }
   }
   async function openAssignmentRecords(configId){

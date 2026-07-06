@@ -14,6 +14,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -236,6 +237,11 @@ func (api *API) wecomTestConnectionHandler(w http.ResponseWriter, r *http.Reques
 	token, err := api.wecomAccessToken(r.Context(), true)
 	if err != nil {
 		log.Printf("wecom test connection failed: %v\n", err)
+		if errors.Is(err, sql.ErrNoRows) {
+			return newCodedError("WECOM_CONFIG_MISSING", "未找到企业微信配置，请先保存 corpId/secret/callback 配置", errBadRequest, map[string]any{
+				"suggestion": "在企业微信集成中心保存配置后再执行连接测试",
+			})
+		}
 		return fmt.Errorf("%w: %v", errBadRequest, err)
 	}
 	if token == "" {
@@ -723,7 +729,7 @@ func (api *API) wecomAccessToken(ctx context.Context, force bool) (string, error
 	}
 	if resp.ErrCode != 0 {
 		log.Printf("wecom access token api failed corp_id=%s errcode=%d errmsg=%s\n", cfg.CorpID, resp.ErrCode, resp.ErrMsg)
-		return "", fmt.Errorf("wecom errcode=%d errmsg=%s", resp.ErrCode, resp.ErrMsg)
+		return "", wecomAPIError("gettoken", resp.ErrCode, resp.ErrMsg)
 	}
 	expiresAt := time.Now().Add(time.Duration(max(60, resp.ExpiresIn-300)) * time.Second)
 	_, err = api.db.ExecContext(ctx, `

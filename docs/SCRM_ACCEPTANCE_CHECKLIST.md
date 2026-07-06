@@ -289,6 +289,60 @@ X-SCRM-Guide-ID: guide-jiang
 | 5 | 检查缺失表 | 正常情况下 `missingRequiredTables=[]` | 通过 / 失败 |
 | 6 | 打开前端原型 | 右下角状态提示显示当前模式和迁移信息 | 通过 / 失败 |
 
+## 场景 7：企业微信集成中心底座检查
+
+### 验收目标
+
+验证真实企业微信接入前，系统可以检查配置、access_token 缓存、权限、错误解释、重试任务和集成状态。
+
+### 前置条件
+
+- 后端以 PostgreSQL 模式启动。
+- 已执行 `npm run db:migrate`。
+- 可先不配置真实企业微信 secret；未配置时应返回 attention 和下一步建议。
+
+### 涉及页面
+
+- 总部工作台。
+- 异常监控。
+- 系统状态或接口调试页面。
+
+### 涉及接口
+
+- `GET /api/scrm/wecom/config`
+- `PUT /api/scrm/wecom/config`
+- `POST /api/scrm/wecom/test-token`
+- `POST /api/scrm/wecom/permission-check`
+- `GET /api/scrm/wecom/permission-checks`
+- `GET /api/scrm/wecom/status`
+- `GET /api/scrm/wecom/error-dictionary`
+- `GET /api/scrm/wecom/doctor`
+- `GET /api/scrm/wecom/retries`
+- `GET /api/system/status`
+
+### 操作步骤与预期结果
+
+| 步骤 | 操作 | 预期结果 | 结果 |
+| --- | --- | --- | --- |
+| 1 | 调用 `/api/scrm/wecom/status` | 返回配置脱敏信息、token 状态、资产数量、retry 摘要和 nextSteps | 通过 / 失败 |
+| 2 | 未配置企微时查看结果 | `status=attention`，提示保存 corpId/secret/callback 配置 | 通过 / 失败 |
+| 3 | `PUT /api/scrm/wecom/config` 保存 corpId、secret、agentId 和启用状态 | 返回 `status=ok`，再次 `GET` 时只看到脱敏和已配置标记，不返回 secret 明文 | 通过 / 失败 |
+| 4 | `POST /api/scrm/wecom/test-token` 测试单个或全部 token | 成功时只返回 token 类型、状态、过期时间；失败时返回结构化错误码和建议 | 通过 / 失败 |
+| 5 | `POST /api/scrm/wecom/permission-check` | 记录 contact/customer/app token、部门读取、成员读取、客户联系基础权限；暂未做的同步项标记 planned/not_checked | 通过 / 失败 |
+| 6 | `GET /api/scrm/wecom/permission-checks` | 返回最近权限检测历史，包含 status、errcode、localCode、suggestion、checkedAt | 通过 / 失败 |
+| 7 | 制造 60011、60020 或 token 错误 | 返回本地错误码，并在异常监控生成/更新企微接入异常 | 通过 / 失败 |
+| 8 | 调用 `/api/scrm/wecom/error-dictionary` | 返回常见错误码、业务含义和处理建议 | 通过 / 失败 |
+| 9 | 调用 `/api/scrm/wecom/doctor` | 返回配置、token、get_contact_way、update_contact_way dry-run 检查结果 | 通过 / 失败 |
+| 10 | 调用 `/api/system/status` | 返回 `wecom` 摘要，包含 configured、tokens、permissionChecks、assets、retry | 通过 / 失败 |
+
+### 验收结论
+
+| 项目 | 记录 |
+| --- | --- |
+| 是否通过 |  |
+| 失败步骤 |  |
+| 备注 |  |
+
 ### 验收结论
 
 | 项目 | 记录 |

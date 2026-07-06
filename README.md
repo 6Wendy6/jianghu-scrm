@@ -243,6 +243,24 @@ npm run test:backend
 
 大批量业务测试优先使用异步接口，避免把请求线程长期占住。
 
+### 企业微信集成中心
+
+当前阶段只做真实企业微信接入前的底座检查，不做完整客户同步。核心目标是让配置、token、权限、活码更新、回调和错误原因可检查、可解释、可恢复。
+
+- `GET /api/scrm/wecom/config`: 读取企业微信接入配置，返回时会隐藏 secret、回调 token 和 AESKey。
+- `PUT /api/scrm/wecom/config`: 保存 `corpId`、通讯录 secret、客户联系 secret、应用 agentId/secret、回调 token、EncodingAESKey 和启用状态；secret 留空会保留已有密文。
+- `POST /api/scrm/wecom/test-token`: 测试通讯录、客户联系或应用 token，缓存 token 但响应不返回 access_token 明文。
+- `POST /api/scrm/wecom/permission-check`: 检测 token、部门读取、成员读取和客户联系基础权限；失败项会写入异常监控。
+- `GET /api/scrm/wecom/permission-checks`: 查看最近权限检测历史。
+- `GET /api/scrm/wecom/status`: 企业微信集成中心状态，包含配置脱敏信息、token 缓存状态、权限检测摘要、资产数量、重试任务、最近回调和下一步建议。
+- `GET /api/scrm/wecom/error-dictionary`: 常见企业微信错误码解释和处理建议。
+- `GET /api/scrm/wecom/doctor`: 企微接入 doctor 检查。
+- `GET /api/scrm/wecom/retries`: 查看 `update_contact_way` 失败重试任务。
+- `POST /api/scrm/wecom/retries/{id}/retry`: 手动重试失败任务。
+- `GET /api/scrm/wecom/integration-log`: 查看最近回调和重试日志。
+
+`/api/system/status` 也会返回 `wecom` 摘要，方便演示和排障时快速判断当前接入底座状态。
+
 ## 关键环境变量
 
 参考 [.env.example](./.env.example)。
@@ -284,6 +302,7 @@ DURATION_SECONDS=60 CONCURRENCY=100 TARGET_RPS=300 npm run perf:load
 
 - 真实企微回调验签、加解密、消息去重和外部接口限流还需要继续接入。
 - 多租户、组织、角色权限和门店级数据隔离还未完全落地。
+- 企业微信集成中心当前是接入底座，不代表已经完成部门、成员、客户联系、客户群的完整真实同步。
 
 ## 客户运营中心持久化说明
 
