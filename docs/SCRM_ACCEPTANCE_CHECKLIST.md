@@ -8,6 +8,7 @@
 - 后端接口默认指向当前运行的 API，例如 `http://127.0.0.1:18082` 或 `.env` 中的 `SCRM_API_ADDR`。
 - PostgreSQL 行为验收需要先配置 `DATABASE_URL` 或 `SCRM_DATABASE_URL`，并执行 `npm run db:migrate`、`npm run db:seed`。
 - 不重置现有数据库，不删除 demo seed。
+- E2E 或人工验收测试数据必须遵守 [SCRM_TEST_DATA_SAFETY.md](./SCRM_TEST_DATA_SAFETY.md)：使用唯一 `test_run_id`，优先写入临时测试库或 `SCRM_TEST_DATABASE_URL`，验收结束后执行 cleanup dry-run 和 apply，并确认残留为 0。
 - 如果某项仍属于 MVP 原型而非后端持久化，需要在结果中标注“原型通过 / 后端待接入”。
 
 ## 验收记录模板
@@ -362,7 +363,7 @@ npm run test:backend
 PostgreSQL 行为测试：
 
 ```bash
-SCRM_TEST_DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15432/scrm_test?sslmode=disable npm run test:backend:db
+SCRM_TEST_DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15433/scrm_test?sslmode=disable npm run test:backend:db
 ```
 
 前端构建：
@@ -378,6 +379,16 @@ curl http://127.0.0.1:8080/api/health
 curl http://127.0.0.1:8080/api/system/status
 ```
 
+测试数据清理：
+
+```bash
+SCRM_TEST_DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15433/scrm_test?sslmode=disable \
+  npm run e2e:cleanup:dry-run -- --test-run-id=e2e_20260706_153000
+
+SCRM_TEST_DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15433/scrm_test?sslmode=disable \
+  npm run e2e:cleanup:apply -- --test-run-id=e2e_20260706_153000
+```
+
 ## 最终签收
 
 | 项目 | 结论 |
@@ -387,4 +398,5 @@ curl http://127.0.0.1:8080/api/system/status
 | DB 持久化是否满足 MVP 验收 | 通过 / 有条件通过 / 失败 |
 | 权限隔离是否满足 MVP 验收 | 通过 / 有条件通过 / 失败 |
 | 演示是否稳定 | 通过 / 有条件通过 / 失败 |
+| 测试数据是否已隔离并清理干净 | 通过 / 有条件通过 / 失败 |
 | 下一阶段是否可进入企微集成中心 | 是 / 否 |

@@ -1,4 +1,4 @@
-.PHONY: dev dev-backend dev-backend-db dev-db migrate seed test-backend test-db build status
+.PHONY: dev dev-backend dev-backend-db dev-db migrate seed test-backend test-db e2e-cleanup-dry-run e2e-cleanup-apply build status
 
 dev:
 	npm run dev
@@ -26,6 +26,12 @@ test-backend:
 
 test-db:
 	npm run test:backend:db
+
+e2e-cleanup-dry-run:
+	npm run e2e:cleanup:dry-run
+
+e2e-cleanup-apply:
+	npm run e2e:cleanup:apply
 
 build:
 	npm run build

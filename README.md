@@ -9,6 +9,7 @@
 - 产品说明：[docs/SCRM_PRODUCT_SPEC.md](./docs/SCRM_PRODUCT_SPEC.md)
 - 业务验收清单：[docs/SCRM_ACCEPTANCE_CHECKLIST.md](./docs/SCRM_ACCEPTANCE_CHECKLIST.md)
 - 稳定演示脚本：[docs/SCRM_DEMO_SCRIPT.md](./docs/SCRM_DEMO_SCRIPT.md)
+- 测试数据安全：[docs/SCRM_TEST_DATA_SAFETY.md](./docs/SCRM_TEST_DATA_SAFETY.md)
 
 ## 快速开始
 
@@ -85,7 +86,8 @@ npm run perf:smoke
 ```bash
 DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15432/scrm_dev?sslmode=disable
 SCRM_DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15432/scrm_dev?sslmode=disable
-SCRM_TEST_DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15432/scrm_test?sslmode=disable
+# DB 测试和 E2E 清理请使用临时/独立测试库，不要指向 15432：
+# SCRM_TEST_DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15433/scrm_test?sslmode=disable
 SCRM_AUTO_MIGRATE=true
 ```
 
@@ -109,10 +111,10 @@ npm run db:status
 backend/seeds/customer_ops_demo_seed.sql
 ```
 
-DB 测试需要 `SCRM_TEST_DATABASE_URL` 指向一个可写的测试库：
+DB 测试需要 `SCRM_TEST_DATABASE_URL` 指向一个可写的临时/独立测试库；脚本会拒绝 `15432`，避免误碰本地开发 volume：
 
 ```bash
-npm run test:backend:db
+SCRM_TEST_DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15433/scrm_test?sslmode=disable npm run test:backend:db
 ```
 
 如果没有测试库，普通测试仍可运行：
@@ -120,6 +122,30 @@ npm run test:backend:db
 ```bash
 npm run test:backend
 ```
+
+## 测试数据安全
+
+E2E 测试、业务验收测试和接口冒烟测试必须隔离测试数据。优先使用临时 PostgreSQL 容器或 `SCRM_TEST_DATABASE_URL`，不要向真实 `DATABASE_URL` 写入测试数据。
+
+核心规则：
+
+- 不删除、重置或清空现有 `15432` PostgreSQL volume。
+- 每轮测试生成唯一 `test_run_id`，例如 `e2e_20260706_153000`。
+- 测试客户、门店、导购、标签、SOP、异常、企微配置都必须带 `test_run_id` 或 `[E2E_TEST_<test_run_id>]` 前缀。
+- cleanup 必须先 dry-run，再 apply。
+- 严禁无 `WHERE` 条件的 `DELETE`，严禁 `TRUNCATE` / `DROP` 清理业务表。
+
+清理脚本：
+
+```bash
+SCRM_TEST_DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15433/scrm_test?sslmode=disable \
+  npm run e2e:cleanup:dry-run -- --test-run-id=e2e_20260706_153000
+
+SCRM_TEST_DATABASE_URL=postgres://scrm:scrm@127.0.0.1:15433/scrm_test?sslmode=disable \
+  npm run e2e:cleanup:apply -- --test-run-id=e2e_20260706_153000
+```
+
+完整规则见 [docs/SCRM_TEST_DATA_SAFETY.md](./docs/SCRM_TEST_DATA_SAFETY.md)。
 
 ## 业务数据测试建议
 
